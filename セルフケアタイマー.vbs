@@ -5,7 +5,7 @@ If WScript.Arguments.Count Then
 	End With
 Else
 	Sub Speak(Text)
-		CreateObject("WScript.Shell").Run"セルフケアタイマー.vbs "&Text
+		CreateObject("WScript.Shell").Run WScript.ScriptName&" "&Text
 	End Sub
 	Title="セルフケアタイマー"
 	Do
