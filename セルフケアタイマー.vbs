@@ -11,9 +11,8 @@ Else
 	Do
 		With CreateObject("SAPI.SpVoice")
 			.Rate=4
-			.Speak"ストレッチしましょう。"
+			.Speak"ストレッチしましょう。周囲の状況変化を確認しましたか?"
 		End With
-		Speak"周囲の状況変化を確認しましたか?"
 		If MsgBox("ストレッチしましょう。"&vbLf&vbLf&"周囲の状況変化を確認しましたか?",308,Title)=vbNo Then
 			Do
 				Speak"周囲の状況変化を確認しましょう。"
