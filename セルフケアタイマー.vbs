@@ -4,17 +4,25 @@ If WScript.Arguments.Count Then
 		.Speak WScript.Arguments(0)
 	End With
 Else
-	Function Alert(Text,Num)
+	Sub Speak(Text)
 		CreateObject("WScript.Shell").Run"セルフケアタイマー.vbs "&Text
-		Alert=MsgBox(Text,Num,"セルフケアタイマー")
-	End Function 
+	End Sub
+	Title="セルフケアタイマー"
 	Do
-		Do
-			If Alert("ストレッチしましょう。"&vbLf&vbLf&"周囲の状況変化を確認しましたか?",308)=vbYes Then Exit Do
-			Alert"周囲の状況変化を確認しましょう。",16
-		Loop While Alert("周囲の状況変化を確認しましたか?",308)=vbNo
-		If MsgBox("タイマーを終了しますか?",292,"セルフケアタイマー")=vbYes Then Exit Do
+		With CreateObject("SAPI.SpVoice")
+			.Rate=4
+			.Speak"ストレッチしましょう。"
+		End With
+		Speak"周囲の状況変化を確認しましたか?"
+		If MsgBox("ストレッチしましょう。"&vbLf&vbLf&"周囲の状況変化を確認しましたか?",308,Title)=vbNo Then
+			Do
+				Speak"周囲の状況変化を確認しましょう。"
+				MsgBox"周囲の状況変化を確認しましょう。",16,Title
+				Speak"周囲の状況変化を確認しましたか?"
+			Loop While MsgBox("周囲の状況変化を確認しましたか?",308,Title)=vbNo
+		End If
+		If MsgBox("タイマーを終了しますか?",292,Title)=vbYes Then Exit Do
 		WScript.Sleep 300E3-(1E3*Timer+60E3)Mod 300E3
 	Loop
-	MsgBox"セルフケアタイマーを終了しました。",,"セルフケアタイマー"
+	MsgBox"セルフケアタイマーを終了しました。",,Title
 End If
