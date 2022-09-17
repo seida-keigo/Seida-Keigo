@@ -10,10 +10,10 @@ Else
 	End Function 
 	Do
 		Do
-			If Alert("ストレッチしましょう。"&vbLf&vbLf&"周囲の状況変化を確認しましたか?",308)=6 Then Exit Do
+			If Alert("ストレッチしましょう。"&vbLf&vbLf&"周囲の状況変化を確認しましたか?",308)=vbYes Then Exit Do
 			Alert"周囲の状況変化を確認しましょう。",16
-		Loop While Alert("周囲の状況変化を確認しましたか?",308)=7
-		If MsgBox("タイマーを終了しますか?",292,"セルフケアタイマー")=6 Then Exit Do
+		Loop While Alert("周囲の状況変化を確認しましたか?",308)=vbNo
+		If MsgBox("タイマーを終了しますか?",292,"セルフケアタイマー")=vbYes Then Exit Do
 		WScript.Sleep 300E3-(1E3*Timer+60E3)Mod 300E3
 	Loop
 	MsgBox"セルフケアタイマーを終了しました。",,"セルフケアタイマー"
