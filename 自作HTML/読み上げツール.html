@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<style>
+			textarea{
+				height:calc(16em + 128px);
+			}
+		</style>
+		<title>読み上げツール</title>
+	</head>
+	<body>
+		<textarea placeholder="テキスト"></textarea>
+		<button>読み上げ</button>
+		<script>
+			document.querySelectorAll("button")[0].onclick=()=>{
+				let utt=new SpeechSynthesisUtterance(document.querySelectorAll("textarea")[0].value);
+				utt.rate=navigator.userAgent.includes("Windows NT")?2:1.125;
+				speechSynthesis.cancel(window.speech);
+				speech=speechSynthesis.speak(utt);
+			}
+		</script>
+	</body>
+</html>

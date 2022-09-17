@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<style>
+			textarea{
+				height:calc(16em + 128px);
+			}
+		</style>
+		<title>どこでもJavaScript</title>
+	</head>
+	<body>
+		<textarea placeholder="JavaScript"></textarea>
+		<button>実行</button>
+		<script>
+			console.assert=(truth,...items)=>{
+				if(!truth){
+					let newP=document.createElement("p");
+					newP.innerText="アサーションに失敗しました。"+items.map(x=>JSON.stringify(x)).join(" ");
+					newP.style="color:#f00;";
+					document.body.appendChild(newP);
+				}
+			}
+			console.clear=()=>{
+				for(let p of document.querySelectorAll("p")) p.remove();
+				let newP=document.createElement("p");
+				newP.innerText="コンソールをクリアしました。";
+				newP.style="font-style:italic;";
+				document.body.appendChild(newP);
+			}
+			console.error=(...items)=>{
+				let newP=document.createElement("p");
+				newP.innerText=items.map(x=>JSON.stringify(x)).join(" ");
+				newP.style="color:#f00;";
+				document.body.appendChild(newP);
+			}
+			console.log=console.info=(...items)=>{
+				let newP=document.createElement("p");
+				newP.innerText=items.map(x=>JSON.stringify(x)).join(" ");
+				document.body.appendChild(newP);
+			}
+			console.warn=(...items)=>{
+				let newP=document.createElement("p");
+				newP.innerText=items.map(x=>JSON.stringify(x)).join(" ");
+				newP.style="color:#ff0;";
+				document.body.appendChild(newP);
+			}
+			document.querySelectorAll("button")[0].onclick=()=>{
+				try{
+					eval(document.querySelectorAll("textarea")[0].value);
+				}
+				catch(error){
+					let newP=document.createElement("p");
+					newP.innerText=error;
+					newP.style="color:#f00;";
+					document.body.appendChild(newP);
+				}
+			}
+		</script>
+	</body>
+</html>

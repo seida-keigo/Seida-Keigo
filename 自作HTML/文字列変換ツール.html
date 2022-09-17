@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="style.css">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<style>
+			textarea[placeholder="変換前の文字列 ($に代入)"],#newText{
+				height:calc(6em + 48px);
+			}
+		</style>
+		<title>文字列変換ツール</title>
+	</head>
+	<body>
+		<textarea placeholder="変換前の文字列 ($に代入)"></textarea>
+		<textarea placeholder="$を変換するJavaScript式 (例: $.toUpperCase())"></textarea>
+		<textarea id="newText" readonly style="color:#f00;">値なし</textarea>
+		<button disabled id="copyButton">変換後の文字列をコピー</button>
+		<script>
+			for(let $ of document.querySelectorAll("textarea")) $.oninput=()=>{
+				if(document.querySelectorAll("textarea")[1].value.match(/\S/)){
+					let $=document.querySelectorAll("textarea")[0].value;
+					try{
+						$=eval(document.querySelectorAll("textarea")[1].value);
+						newText.style=typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;";
+						newText.value=$;
+						copyButton[$&&typeof $=="string"?"removeAttribute":"setAttribute"]("disabled","");
+					}
+					catch(error){
+						newText.style="color:#f00;";
+						newText.value=error;
+						copyButton.setAttribute("disabled","");
+					}
+				}
+				else{
+					newText.style="color:#f00;";
+					newText.value="値なし";
+					copyButton.setAttribute("disabled","");
+				}
+				copyButton.innerText="変換後の文字列をコピー";
+			}
+			copyButton.onclick=()=>{
+				newText.select();
+				document.execCommand("copy");
+				copyButton.setAttribute("disabled","");
+				copyButton.innerText="コピー済み";
+			}
+		</script>
+	</body>
+</html>
