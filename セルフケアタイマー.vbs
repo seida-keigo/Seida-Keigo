@@ -9,7 +9,6 @@ Else
 		Speak=Text
 	End Function
 	Notice="周囲の状況変化を確認しましょう"
-	Title="セルフケアタイマー"
 	Do
 		With CreateObject("SAPI.SpVoice")
 			.Rate=4
@@ -20,8 +19,8 @@ Else
 				MsgBox Speak("周囲の状況変化を確認しましょう。"),&H10,Notice
 			Loop While MsgBox(Speak("周囲の状況変化を確認しましたか?"),&H134,Notice)=vbNo
 		End If
-		If MsgBox("セルフケアタイマーを終了しますか?",&H124,Title)=vbYes Then Exit Do
+		If MsgBox("セルフケアタイマーを終了しますか?",&H124,"セルフケアタイマー")=vbYes Then Exit Do
 		WScript.Sleep 300E3-(1E3*Timer+60E3)Mod 300E3
 	Loop
-	MsgBox"セルフケアタイマーを終了しました。",,Title
+	MsgBox"セルフケアタイマーを終了しました。",,"セルフケアタイマー"
 End If
