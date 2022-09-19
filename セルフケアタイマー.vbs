@@ -10,12 +10,8 @@ Else
 	End Function
 	Notice="周囲の状況変化を確認しましょう"
 	Do
-		With CreateObject("SAPI.SpVoice")
-			.Rate=4
-			.Speak"ストレッチしましょう。"
-		End With
-		MsgBox"ストレッチしましょう。"&vbLf&vbLf&Speak("周囲の状況変化を確認しましょう。"),&H30,Notice
-		Do While MsgBox(Speak("周囲の状況変化を確認しましたか?"),&H124,Notice)=vbNo
+		MsgBox Speak("周囲の状況変化を確認しましょう。"&vbLf&vbLf&"ストレッチしましょう。"),&H30,Notice
+		Do While MsgBox("周囲の状況変化を確認しましたか?",&H124,Notice)=vbNo
 			MsgBox Speak("周囲の状況変化を確認しましょう。"),&H10,Notice
 		Loop
 		If MsgBox("セルフケアタイマーを終了しますか?",&H124,"セルフケアタイマー")=vbYes Then Exit Do
