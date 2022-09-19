@@ -16,6 +16,7 @@ Else
 		Speak"周囲の状況変化を確認しましょう。周囲の状況変化を確認しましょう。"
 		MsgBox"ストレッチしましょう。"&vbLf&vbLf&"周囲の状況変化を確認しましょう。",&H30,Notice
 		Do While MsgBox("周囲の状況変化を確認しましたか?",&H124,Notice)=vbNo
+			Speak"周囲の状況変化を確認しましょう。"
 			MsgBox"周囲の状況変化を確認しましょう。",&H10,Notice
 		Loop
 		If MsgBox("セルフケアタイマーを終了しますか?",&H124,"セルフケアタイマー")=vbYes Then Exit Do
