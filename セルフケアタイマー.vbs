@@ -14,7 +14,7 @@ Else
 		Do While MsgBox(Speak("周囲の状況変化を確認しましたか?"),&H124,Notice)=vbNo
 			MsgBox Speak("周囲の状況変化を確認しましょう。"),&H10,Notice
 		Loop
-		If MsgBox("セルフケアタイマーを終了しますか?",&H124,"セルフケアタイマー")=vbYes Then Exit Do
+		If MsgBox("作業を続けますか?",&H24,"セルフケアタイマー")=vbNo Then Exit Do
 		WScript.Sleep 300E3-(1E3*Timer+60E3)Mod 300E3
 	Loop
 	MsgBox"セルフケアタイマーを終了しました。",,"セルフケアタイマー"
