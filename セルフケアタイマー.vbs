@@ -14,11 +14,10 @@ Else
 			.Rate=4
 			.Speak"ストレッチしましょう。"
 		End With
-		If MsgBox("ストレッチしましょう。"&vbLf&vbLf&Speak("周囲の状況変化を確認しましたか?"),&H134,Notice)=vbNo Then
-			Do
-				MsgBox Speak("周囲の状況変化を確認しましょう。"),&H10,Notice
-			Loop While MsgBox(Speak("周囲の状況変化を確認しましたか?"),&H134,Notice)=vbNo
-		End If
+		MsgBox"ストレッチしましょう。"&vbLf&vbLf&Speak("周囲の状況変化を確認しましょう。"),&H30,Notice
+		Do While MsgBox("周囲の状況変化を確認しましたか?",&H124,Notice)=vbNo
+			MsgBox Speak("周囲の状況変化を確認しましょう。"),&H10,Notice
+		Loop
 		If MsgBox("セルフケアタイマーを終了しますか?",&H124,"セルフケアタイマー")=vbYes Then Exit Do
 		WScript.Sleep 300E3-(1E3*Timer+60E3)Mod 300E3
 	Loop
