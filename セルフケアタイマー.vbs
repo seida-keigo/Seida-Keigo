@@ -1,6 +1,6 @@
 If WScript.Arguments.Count Then
 	With CreateObject("SAPI.SpVoice")
-		.Rate=4
+		.Rate=3
 		.Speak WScript.Arguments(0)
 	End With
 	WScript.Quit
