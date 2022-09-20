@@ -12,6 +12,7 @@ Function Popup(Prompt,Buttons,Title)
 	Popup=CreateObject("WScript.Shell").Popup(Prompt,300-(1E3*(60+Timer)Mod 300E3)/1E3,Title,Buttons)
 End Function
 Notice="周囲の状況変化を確認しましょう"
+Title="セルフケアタイマー"
 Do
 	Speak"肘をどん角にしましょう。"
 	Popup"肘を鈍角にしましょう。",&H30,Notice
@@ -23,9 +24,9 @@ Do
 		Speak"周囲の状況変化を確認しましょう。"
 		Popup"周囲の状況変化を確認しましょう。",&H10,Notice
 	Loop
-	If Popup("セルフケアタイマーを続けますか?",&H24,"セルフケアタイマー")=vbNo Then Exit Do
+	If Popup("セルフケアタイマーを続けますか?",&H24,Title)=vbNo Then Exit Do
 	WScript.Sleep 300E3-1E3*(60+Timer)Mod 300E3
 Loop
-MsgBox"セルフケアタイマーを終了しました。",,"セルフケアタイマー"
+MsgBox"セルフケアタイマーを終了しました。",,Title
 
 ' 補足: 経験上、肘を鈍角にするまでPCの画面から目を離すことで、過集中を防げます。
