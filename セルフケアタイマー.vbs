@@ -11,7 +11,7 @@ Function Speak(Text)
 End Function
 Notice="周囲の状況変化を確認しましょう"
 Do
-	MsgBox Speak("周囲の状況変化を確認しましょう。"&vbLf&vbLf&"ストレッチしましょう。"),&H30,Notice
+	MsgBox Speak("ディスプレイから離れ、肘を鈍角にしましょう。"&vbLf&vbLf&"ストレッチしましょう。"),&H30,Notice
 	Do While MsgBox(Speak("周囲の状況変化を確認しましたか?"),&H124,Notice)=vbNo
 		MsgBox Speak("周囲の状況変化を確認しましょう。"),&H10,Notice
 	Loop
