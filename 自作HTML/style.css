@@ -19,7 +19,7 @@
 	transition:.25s background-color;
 }
 ::placeholder{
-	color:#ccc;
+	color:revert;
 }
 body{
 	background:#000;
