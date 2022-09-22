@@ -20,6 +20,7 @@
 }
 ::placeholder{
 	color:#ccc;
+	white-space:pre;
 }
 body{
 	background:#000;
