@@ -1,23 +1,32 @@
+<link href=style.css rel=stylesheet>
 <style>
-	div{background:#000;color:#fff;height:100%}
+input{
+	background:#333;
+	display:block;
+	margin-bottom:16px;
+	margin-top:16px;
+	padding:12px 16px;
+	width:calc(100% - 32px);
+}
 </style>
 <title>大声センサー</title>
-<div>開始</div>
+<input id=meter readonly value=0>
+<button>起動</div>
 <script>
-onclick=()=>{
+document.querySelectorAll("button")[0].onclick=()=>{
 	Notification.requestPermission()
 	new Notification("テスト通知です。")
 	navigator.mediaDevices.getUserMedia({audio:!0}).then($=>{
 		let A=new AudioContext()
-		let B=A.createScriptProcessor(256)
+		let B=A.createScriptProcessor(4**7)
 		let C=new Date().getTime()
 		B.onaudioprocess=function($){
-			document.querySelectorAll("div")[0].style.height=256*[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
-			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=4&&new Date().getTime()>C+5e3){
+			//meter.style.height=16*[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
+			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=512&&new Date().getTime()>C+5e3){
 				C=new Date().getTime()
 				new Notification("声を抑えましょう。")
-				console.log([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2))
 			}
+			meter.value=[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
 		}
 		B.connect(A.destination)
 		A.createMediaStreamSource($).connect(B)
