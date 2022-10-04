@@ -1,19 +1,18 @@
 <button>声量検知</button>
 <script>
 document.querySelectorAll("button")[0].onclick=()=>{
-	Notification.requestPermission(()=>new Notification("Hello World"))
-/*
+	Notification.requestPermission()
+	Notification("2")
 	let $=new AudioContext()
 	navigator.mediaDevices.getUserMedia({audio:!0}).then(A=>{
 		let B=$.createScriptProcessor(256)
 		B.onaudioprocess=function(B){
 			document.querySelectorAll("button")[0].innerHTML=Math.max(([0,...B.inputBuffer.getChannelData(0)].reduce((a,x)=>a+x**2))**.5,this.volume*this.averaging)
-			new Notification("Hello World")
 		}
 		B.volume=0
 		B.averaging=0
 		B.connect($.destination)
 		$.createMediaStreamSource(A).connect(B)
-	})*/
+	})
 }
 </script>
