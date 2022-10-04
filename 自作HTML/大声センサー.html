@@ -20,7 +20,7 @@ document.querySelectorAll("button")[0].onclick=()=>{
 		let B=A.createScriptProcessor(4**7)
 		let C=new Date().getTime()
 		B.onaudioprocess=function($){
-			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=512&&new Date().getTime()>C+5e3){
+			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=256&&new Date().getTime()>C+5e3){
 				C=new Date().getTime()
 				new Notification("声を抑えましょう。")
 			}
