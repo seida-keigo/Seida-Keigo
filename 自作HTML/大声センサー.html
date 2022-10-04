@@ -10,7 +10,7 @@ onclick=()=>{
 	navigator.mediaDevices.getUserMedia({audio:!0}).then($=>{
 		let A=new AudioContext()
 		let B=A.createScriptProcessor(256)
-		let C=0
+		let C=new Date().getTime()
 		B.onaudioprocess=function($){
 			document.querySelectorAll("div")[0].style.height=256*[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
 			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=4&&new Date().getTime()>C+10e3){
