@@ -17,7 +17,7 @@ document.querySelectorAll("button")[0].onclick=()=>{
 	Notification.requestPermission()
 	navigator.mediaDevices.getUserMedia({audio:!0}).then($=>{
 		let A=new AudioContext()
-		let B=A.createScriptProcessor(4**7)
+		let B=A.createScriptProcessor(4**6)
 		let C=new Date().getTime()
 		B.onaudioprocess=function($){
 			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=256&&new Date().getTime()>C+5e3){
