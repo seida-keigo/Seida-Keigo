@@ -15,13 +15,11 @@ input{
 <script>
 document.querySelectorAll("button")[0].onclick=()=>{
 	Notification.requestPermission()
-	new Notification("テスト通知です。")
 	navigator.mediaDevices.getUserMedia({audio:!0}).then($=>{
 		let A=new AudioContext()
 		let B=A.createScriptProcessor(4**7)
 		let C=new Date().getTime()
 		B.onaudioprocess=function($){
-			//meter.style.height=16*[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
 			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=512&&new Date().getTime()>C+5e3){
 				C=new Date().getTime()
 				new Notification("声を抑えましょう。")
