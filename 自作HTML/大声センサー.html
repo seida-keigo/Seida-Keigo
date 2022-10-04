@@ -1,0 +1,25 @@
+<style>
+	div{background:#000;color:#fff;height:100%}
+</style>
+<div>開始</div>
+<script>
+onclick=()=>{
+	Notification.requestPermission()
+	new Notification("テスト通知です。")
+	navigator.mediaDevices.getUserMedia({audio:!0}).then($=>{
+		let A=new AudioContext()
+		let B=A.createScriptProcessor(256)
+		let C=0
+		B.onaudioprocess=function($){
+			document.querySelectorAll("div")[0].style.height=256*[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
+			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=3&&new Date().getTime()>C+10e3){
+				C=new Date().getTime()
+				new Notification("声を抑えましょう。")
+				console.log([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2))
+			}
+		}
+		B.connect(A.destination)
+		A.createMediaStreamSource($).connect(B)
+	})
+}
+</script>
