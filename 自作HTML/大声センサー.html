@@ -13,7 +13,7 @@ onclick=()=>{
 		let C=new Date().getTime()
 		B.onaudioprocess=function($){
 			document.querySelectorAll("div")[0].style.height=256*[0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)
-			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=4&&new Date().getTime()>C+10e3){
+			if([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2)>=4&&new Date().getTime()>C+5e3){
 				C=new Date().getTime()
 				new Notification("声を抑えましょう。")
 				console.log([0,...$.inputBuffer.getChannelData(0)].reduce(($,A)=>$+A**2))
