@@ -1,6 +1,6 @@
 <button>声量検知</button>
 <script>
-Notification
+Notification.requestPermission()
 document.querySelectorAll("button")[0].onclick=()=>{
 	let $=new AudioContext()
 	navigator.mediaDevices.getUserMedia({audio:!0}).then(A=>{
