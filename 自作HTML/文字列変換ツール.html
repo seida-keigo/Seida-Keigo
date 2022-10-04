@@ -14,7 +14,7 @@
 	<body>
 		<textarea placeholder="変換前の文字列 ($に代入)"></textarea>
 		<textarea placeholder="$を変換するJavaScript式 (例: $.toUpperCase())"></textarea>
-		<textarea id="newText" readonly style="color:#f00;">値なし</textarea>
+		<textarea id="newText" placeholder="空文字列" readonly style="color:#f00;">値なし</textarea>
 		<button disabled id="copyButton">変換後の文字列をコピー</button>
 		<script>
 			for(let $ of document.querySelectorAll("textarea")) $.oninput=()=>{

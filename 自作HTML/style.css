@@ -19,7 +19,7 @@
 	transition:.25s background-color;
 }
 ::placeholder{
-	color:#ccc;
+	color:#bbb;
 }
 body{
 	background:#000;
@@ -64,6 +64,6 @@ p::before{
 	margin-bottom:-4px;
 }
 textarea{
-	background:#fff3;
+	background:#333;
 	white-space:pre-wrap;
 }
