@@ -19,7 +19,7 @@
 		<script>
 		fileSelector.onchange=e=>{
 			let reader=new FileReader()
-			reader.readAsText(e.target.files[0],prompt("読み込み時の文字コードを指定してください。","sjis"))
+			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。","sjis"))
 			reader.onload=()=>{
 				title.value=e.target.files[0].name
 				text.value=reader.result
