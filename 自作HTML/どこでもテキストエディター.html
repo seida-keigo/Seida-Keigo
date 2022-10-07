@@ -27,7 +27,7 @@
 				saveButton.removeAttribute("disabled")
 			}
 		}
-		title.oninput=()=>saveButton[title.value?"removeAttribute":"setAttribute"]("disabled","")
+		fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","")
 		saveButton.onclick=()=>{
 			let a=document.createElement("a")
 			a.setAttribute("download",fileName.value)
