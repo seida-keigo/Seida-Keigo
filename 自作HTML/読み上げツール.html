@@ -12,11 +12,11 @@
 		<title>読み上げツール</title>
 	</head>
 	<body>
-		<textarea placeholder="テキスト"></textarea>
-		<button>読み上げ</button>
+		<textarea id="text" placeholder="テキスト"></textarea>
+		<button onclick="read()">読み上げ</button>
 		<script>
-			document.querySelectorAll("button")[0].onclick=()=>{
-				let utterance=new SpeechSynthesisUtterance(document.querySelectorAll("textarea")[0].value);
+			read=()=>{
+				let utterance=new SpeechSynthesisUtterance(text.value);
 				utterance.rate=navigator.userAgent.includes("Windows NT")?2:1.125;
 				speechSynthesis.cancel(window.speech);
 				speech=speechSynthesis.speak(utterance);

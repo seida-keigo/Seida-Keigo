@@ -12,21 +12,26 @@
 		<title>どこでもファイルエディター</title>
 	</head>
 	<body>
-		<input type="file">
-		<input>
-		<textarea></textarea>
-		<button>保存</button>
+		<input id="fileSelector" type="file">
+		<input id="title">
+		<textarea id="text"></textarea>
+		<button id="saveButton" disabled>保存</button>
 		<script>
-		document.querySelectorAll("input")[0].onchange=e=>{
+		fileSelector.onchange=e=>{
 			let reader=new FileReader()
 			reader.readAsText(e.target.files[0],prompt("読み込み時の文字コードを指定してください。","sjis"))
 			reader.onload=()=>{
-				document.querySelectorAll("input")[1].value=e.target.files[0].name
-				document.querySelectorAll("textarea")[0].value=reader.result
+				title.value=e.target.files[0].name
+				text.value=reader.result
+				saveButton.removeAttribute("disabled")
 			}
 		}
-		document.querySelectorAll("button")[0].oninput=()=>{
-
+		title.oninput=()=>saveButton[title.value?"removeAttribute":"setAttribute"]("disabled","")
+		saveButton.onclick=()=>{
+			let a=document.createElement("a")
+			a.setAttribute("download",title.value)
+			a.setAttribute("href","data:,"+text.value)
+			a.click()
 		}
 		</script>
 	</body>
