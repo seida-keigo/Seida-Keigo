@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<style>
 			textarea{
-				height:calc(10em + 80px);
+				height:calc(12em + 96px);
 			}
 		</style>
 		<title>どこでもファイルエディター</title>
@@ -15,12 +15,12 @@
 		<input id="fileSelector" type="file">
 		<input id="fileName" placeholder="ファイル名">
 		<textarea id="text" placeholder="テキスト"></textarea>
-		<input id="mediaType" placeholder="ファイルタイプ (例: text/html)">
+		<!--input id="mediaType" placeholder="ファイルタイプ (例: text/html)"-->
 		<button id="saveButton" disabled>保存</button>
 		<script>
 		fileSelector.onchange=e=>{
 			let reader=new FileReader()
-			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。","sjis"))
+			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"))
 			reader.onload=()=>{
 				fileName.value=e.target.files[0].name
 				text.value=reader.result
@@ -31,7 +31,7 @@
 		saveButton.onclick=()=>{
 			let a=document.createElement("a")
 			a.setAttribute("download",fileName.value)
-			a.setAttribute("href","data:"+mediaType+","+text.value)
+			a.setAttribute("href","data:,"+text.value)
 			a.click()
 		}
 		</script>
