@@ -9,7 +9,7 @@
 				height:calc(12em + 96px);
 			}
 		</style>
-		<title>どこでもファイルエディター</title>
+		<title>どこでもテキストエディター</title>
 	</head>
 	<body>
 		<input id="fileSelector" type="file">
@@ -19,20 +19,20 @@
 		<button id="saveButton" disabled>保存</button>
 		<script>
 		fileSelector.onchange=e=>{
-			let reader=new FileReader()
-			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"))
+			let reader=new FileReader();
+			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
 			reader.onload=()=>{
-				fileName.value=e.target.files[0].name
-				text.value=reader.result
-				saveButton.removeAttribute("disabled")
+				fileName.value=e.target.files[0].name;
+				text.value=reader.result;
+				saveButton.removeAttribute("disabled");
 			}
 		}
-		fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","")
+		fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","");
 		saveButton.onclick=()=>{
-			let a=document.createElement("a")
-			a.setAttribute("download",fileName.value)
-			a.setAttribute("href","data:,"+text.value)
-			a.click()
+			let a=document.createElement("a");
+			a.setAttribute("download",fileName.value);
+			a.setAttribute("href","data:,"+text.value);
+			a.click();
 		}
 		</script>
 	</body>
