@@ -19,7 +19,7 @@
 				let utterance=new SpeechSynthesisUtterance(text.value);
 				utterance.rate=navigator.userAgent.includes("Windows NT")?2:1.125;
 				speechSynthesis.cancel(window.speech);
-				speech=speechSynthesis.speak(utterance);
+				let speech=speechSynthesis.speak(utterance);
 			}
 		</script>
 	</body>
