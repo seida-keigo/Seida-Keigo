@@ -31,7 +31,7 @@
 		saveButton.onclick=()=>{
 			let a=document.createElement("a")
 			a.setAttribute("download",fileName.value)
-			a.setAttribute("href","data:"+mediaType+","+fileName.value)
+			a.setAttribute("href","data:"+mediaType+","+text.value)
 			a.click()
 		}
 		</script>
