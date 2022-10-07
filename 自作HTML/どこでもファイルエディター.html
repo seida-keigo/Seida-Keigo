@@ -2,44 +2,32 @@
 <html>
 	<head>
 		<link href="style.css" rel="stylesheet">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<style>
-		button,input,textarea{margin-bottom:16;margin-top:16}
-		button,input,textarea{width:calc(100% - 32px)}
-		button,input,textarea{margin-bottom:16;margin-top:16;width:calc(100% - 32px)}
-		input,textarea{background:#ccc}
-
-
-		@FONT-FACE{FONT-FAMILY:A;SRC:LOCAL(VERDANA);UNICODE-RANGE:U+20}
-		@FONT-FACE{FONT-FAMILY:B;SRC:LOCAL(YU GOTHIC MEDIUM)}
-		@FONT-FACE{FONT-FAMILY:B;FONT-WEIGHT:BOLD;SRC:LOCAL(YU GOTHIC BOLD)}
-		*,::file-selector-button,::placeholder{ALL:UNSET;DISPLAY:REVERT;LINE-HEIGHT:CALC(1EM + 8PX)}
-		::file-selector-button{font-size:initial;width:100%}
-		::placeholder{COLOR:#CCC}
-		:ROOT{FONT-FAMILY:A,ARIAL,B;FONT-KERNING:NONE}
-		BODY{BACKGROUND:#000;COLOR:#FFF;PADDING:8}
-		BUTTON,::file-selector-button,INPUT,textarea{MARGIN:8;PADDING:12 16;WIDTH:CALC(100% - 48PX)}
-		BUTTON,::file-selector-button{COLOR:INITIAL;FONT-WEIGHT:BOLD;TEXT-ALIGN:CENTER}
-		BUTTON:DISABLED{BACKGROUND:#FFF6}
-		BUTTON:NOT(:DISABLED),::file-selector-button{BACKGROUND:#FFF;CURSOR:POINTER}
-		BUTTON:HOVER:NOT(:DISABLED){BACKGROUND:#CCC}
-		INPUT,textarea{BACKGROUND:#333}
-		textarea{height:calc(8em + 64px)}
+			textarea{
+				height:calc(16em + 128px);
+			}
 		</style>
+		<title>どこでもファイルエディター</title>
 	</head>
-<input style=font-size:0 type=file>
-<input style="padding:12 16">
-<textarea></textarea>
-<button>�ۑ�</button>
-<script>
-document.querySelectorAll("input")[0].onchange=A=>{
-	let B=new FileReader()
-	B.readAsText(A.target.files[0],"sjis")
-	B.onload=()=>{
-		document.querySelectorAll("input")[1].value=A.target.files[0].name
-		document.querySelectorAll("textarea")[0].value=B.result
-	}
-}
-document.querySelectorAll("button")[0].oninput=()=>{
+	<body>
+		<input type="file">
+		<input>
+		<textarea></textarea>
+		<button>保存</button>
+		<script>
+		document.querySelectorAll("input")[0].onchange=e=>{
+			let reader=new FileReader()
+			reader.readAsText(e.target.files[0],prompt("読み込み時の文字コードを指定してください。","sjis"))
+			reader.onload=()=>{
+				document.querySelectorAll("input")[1].value=e.target.files[0].name
+				document.querySelectorAll("textarea")[0].value=reader.result
+			}
+		}
+		document.querySelectorAll("button")[0].oninput=()=>{
 
-}
-</script>
+		}
+		</script>
+	</body>
+</html>

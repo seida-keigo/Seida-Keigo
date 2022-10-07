@@ -16,10 +16,10 @@
 		<button>読み上げ</button>
 		<script>
 			document.querySelectorAll("button")[0].onclick=()=>{
-				let utt=new SpeechSynthesisUtterance(document.querySelectorAll("textarea")[0].value);
-				utt.rate=navigator.userAgent.includes("Windows NT")?2:1.125;
+				let utterance=new SpeechSynthesisUtterance(document.querySelectorAll("textarea")[0].value);
+				utterance.rate=navigator.userAgent.includes("Windows NT")?2:1.125;
 				speechSynthesis.cancel(window.speech);
-				speech=speechSynthesis.speak(utt);
+				speech=speechSynthesis.speak(utterance);
 			}
 		</script>
 	</body>

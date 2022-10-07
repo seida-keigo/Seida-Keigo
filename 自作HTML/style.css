@@ -12,7 +12,7 @@
 	font-weight:bold;
 	src:local(yu gothic bold);
 }
-*,::placeholder{
+*,::file-selector-button,::placeholder{
 	all:unset;
 	display:revert;
 	line-height:calc(1em + 8px);
@@ -29,29 +29,39 @@ body{
 	margin:16px;
 	overflow-wrap:break-word;
 }
-button,p,textarea{
+button,p,input,textarea{
 	margin-bottom:16px;
 	margin-top:16px;
 }
-button,textarea{
+button,input,textarea{
 	display:block;
 	padding:12px 16px;
 	width:calc(100% - 32px);
 }
-button{
+button,input[type="file"]{
 	color:initial;
 	font-weight:bold;
 	text-align:center;
 }
-button:disabled{
+:is(button,input[type="file"]):disabled{
 	background:#fff6;
 }
-button:not(:disabled){
+:is(button,input[type="file"]):not(:disabled){
 	background:#fff;
 	cursor:pointer;
 }
-button:hover:not(:disabled){
+:is(button,input[type="file"]):hover:not(:disabled){
 	background:#ccc;
+}
+input:not([type="file"]),textarea{
+	background:#333;
+	white-space:pre-wrap;
+}
+input[type="file"]{
+	font-size:0;
+}
+::file-selector-button{
+	font-size:initial;
 }
 p::after,p::before{
 	content:"";
@@ -62,8 +72,4 @@ p::after{
 }
 p::before{
 	margin-bottom:-4px;
-}
-textarea{
-	background:#333;
-	white-space:pre-wrap;
 }
