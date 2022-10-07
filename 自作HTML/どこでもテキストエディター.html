@@ -13,15 +13,16 @@
 	</head>
 	<body>
 		<input id="fileSelector" type="file">
-		<input id="title">
-		<textarea id="text"></textarea>
+		<input id="fileName" placeholder="ファイル名">
+		<textarea id="text" placeholder="テキスト"></textarea>
+		<input id="mediaType" placeholder="ファイルタイプ (例: text/html)">
 		<button id="saveButton" disabled>保存</button>
 		<script>
 		fileSelector.onchange=e=>{
 			let reader=new FileReader()
 			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。","sjis"))
 			reader.onload=()=>{
-				title.value=e.target.files[0].name
+				fileName.value=e.target.files[0].name
 				text.value=reader.result
 				saveButton.removeAttribute("disabled")
 			}
@@ -29,8 +30,8 @@
 		title.oninput=()=>saveButton[title.value?"removeAttribute":"setAttribute"]("disabled","")
 		saveButton.onclick=()=>{
 			let a=document.createElement("a")
-			a.setAttribute("download",title.value)
-			a.setAttribute("href","data:,"+text.value)
+			a.setAttribute("download",fileName.value)
+			a.setAttribute("href","data:"+mediaType+","+fileName.value)
 			a.click()
 		}
 		</script>
