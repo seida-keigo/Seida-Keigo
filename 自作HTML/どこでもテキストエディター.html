@@ -15,14 +15,13 @@
 		<input id="fileSelector" type="file">
 		<input id="fileName" placeholder="ファイル名">
 		<textarea id="text" placeholder="テキスト"></textarea>
-		<!--input id="mediaType" placeholder="ファイルタイプ (例: text/html)"-->
 		<button id="saveButton" disabled>保存</button>
 		<script>
-		fileSelector.onchange=e=>{
+		fileSelector.onchange=()=>{
 			let reader=new FileReader();
-			reader.readAsText(e.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
+			reader.readAsText(fileSelector.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
 			reader.onload=()=>{
-				fileName.value=e.target.files[0].name;
+				fileName.value=fileSelector.files[0].name;
 				text.value=reader.result;
 				saveButton.removeAttribute("disabled");
 			}
