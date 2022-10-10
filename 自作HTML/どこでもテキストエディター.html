@@ -30,7 +30,6 @@
 		saveButton.onclick=()=>{
 			let a=document.createElement("a");
 			a.download=fileName.value;
-			//a.href="data:,"+encodeURIComponent(text.value);
 			a.href=URL.createObjectURL(new File([text.value],""));
 			a.click();
 		}
