@@ -14,7 +14,7 @@
 	<body>
 		<input id="fileSelector" type="file">
 		<input id="fileName" placeholder="ファイル名">
-		<textarea id="text" placeholder="テキスト"></textarea>
+		<textarea id="content" placeholder="テキスト"></textarea>
 		<button id="saveButton" disabled>保存</button>
 		<script>
 		fileSelector.onchange=()=>{
@@ -22,7 +22,7 @@
 			reader.readAsText(fileSelector.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
 			reader.onload=()=>{
 				fileName.value=fileSelector.files[0].name;
-				text.value=reader.result;
+				content.value=reader.result;
 				saveButton.removeAttribute("disabled");
 			}
 		}
@@ -30,7 +30,7 @@
 		saveButton.onclick=()=>{
 			let a=document.createElement("a");
 			a.download=fileName.value;
-			a.href=URL.createObjectURL(new Blob([text.value]));
+			a.href=URL.createObjectURL(new Blob([content.value]));
 			a.click();
 		}
 		</script>
