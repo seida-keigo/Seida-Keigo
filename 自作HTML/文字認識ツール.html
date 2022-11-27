@@ -24,7 +24,7 @@
 				reader.onload=()=>{
 					result.placeholder="読み取り中..."
 					result.value=""
-					Tesseract.recognize(reader.result,"eng+jpn").then($=>{
+					Tesseract.recognize(reader.result,prompt("言語","eng+jpn")).then($=>{
 						result.value=$.data.text.replace(/ /g,"")
 						result.placeholder="読み取り結果"
 					})
