@@ -1,0 +1,21 @@
+<style>
+textarea{
+	height:calc(16em + 128px)
+}
+</style>
+<link href=style.css rel=stylesheet>
+<input id=fileSelector type=file>
+<textarea id=result placeholder=“Ç‚ÝŽæ‚èŒ‹‰Ê></textarea>
+<script src=http:unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js>
+</script><!--v2.1.0-->
+<script>
+document.querySelectorAll("input")[0].onchange=()=>{
+	let reader=new FileReader()
+	reader.readAsDataURL(fileSelector.files[0])
+	result.value=""
+	reader.onload=()=>{
+		result.placeholder="“Ç‚ÝŽæ‚è’†..."
+		Tesseract.recognize(reader.result,"jpn").then($=>result.value=$.data.text.replace(/ /g,""))
+	}
+}
+</script>
