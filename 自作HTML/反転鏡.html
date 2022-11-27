@@ -15,7 +15,7 @@ navigator.mediaDevices.getUserMedia({
 }).then($=>{
 	document.querySelectorAll("video")[0].autoplay=""
 	document.querySelectorAll("video")[0].muted=""
-	document.querySelectorAll("video")[0].playsinline=""
+	document.querySelectorAll("video")[0].setAttribute("playsinline","")
 	document.querySelectorAll("video")[0].srcObject=$
 	document.querySelectorAll("video")[0].play()
 })
