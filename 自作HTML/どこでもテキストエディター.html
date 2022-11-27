@@ -17,22 +17,22 @@
 		<textarea id="content" placeholder="テキスト"></textarea>
 		<button id="saveButton" disabled>保存</button>
 		<script>
-		fileSelector.onchange=()=>{
-			let reader=new FileReader();
-			reader.readAsText(fileSelector.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
-			reader.onload=()=>{
-				fileName.value=fileSelector.files[0].name;
-				content.value=reader.result;
-				saveButton.removeAttribute("disabled");
+			fileSelector.onchange=()=>{
+				let reader=new FileReader();
+				reader.readAsText(fileSelector.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
+				reader.onload=()=>{
+					fileName.value=fileSelector.files[0].name;
+					content.value=reader.result;
+					saveButton.removeAttribute("disabled");
+				}
 			}
-		}
-		fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","");
-		saveButton.onclick=()=>{
-			let a=document.createElement("a");
-			a.download=fileName.value;
-			a.href=URL.createObjectURL(new Blob([content.value]));
-			a.click();
-		}
+			fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","");
+			saveButton.onclick=()=>{
+				let a=document.createElement("a");
+				a.download=fileName.value;
+				a.href=URL.createObjectURL(new Blob([content.value]));
+				a.click();
+			}
 		</script>
 	</body>
 </html>
