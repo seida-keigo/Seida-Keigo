@@ -12,10 +12,13 @@ textarea{
 document.querySelectorAll("input")[0].onchange=()=>{
 	let reader=new FileReader()
 	reader.readAsDataURL(fileSelector.files[0])
-	result.value=""
 	reader.onload=()=>{
 		result.placeholder="“Ç‚ÝŽæ‚è’†..."
-		Tesseract.recognize(reader.result,"jpn").then($=>result.value=$.data.text.replace(/ /g,""))
+		result.value=""
+		Tesseract.recognize(reader.result,"jpn").then($=>{
+			result.value=$.data.text.replace(/ /g,"")
+			result.placeholder="“Ç‚ÝŽæ‚èŒ‹‰Ê"
+		})
 	}
 }
 </script>
