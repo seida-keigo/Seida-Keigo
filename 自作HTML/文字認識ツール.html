@@ -14,8 +14,6 @@
 	<body>
 		<input id="fileSelector" type="file">
 		<textarea id="result" placeholder="読み取り結果"></textarea>
-		<script src="http:unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
-		</script>
 		<script>
 		alert(window.Tesseract)
 		fileSelector.onchange=()=>{
@@ -35,6 +33,8 @@
 				});
 			}
 		}
+		</script>
+		<script src="http:unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
 	</body>
 </html>
