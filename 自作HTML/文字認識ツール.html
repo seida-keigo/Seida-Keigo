@@ -14,27 +14,21 @@
 	<body>
 		<input id="fileSelector" type="file">
 		<textarea id="result" placeholder="読み取り結果"></textarea>
+		<script src="https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
+		</script>
 		<script>
-		alert(window.Tesseract)
 		fileSelector.onchange=()=>{
-			let reader=new FileReader();
-			reader.readAsDataURL(fileSelector.files[0]);
+			let reader=new FileReader()
+			reader.readAsDataURL(fileSelector.files[0])
 			reader.onload=()=>{
-				result.placeholder="読み取り中...";
-				result.value="";
+				result.placeholder="読み取り中..."
+				result.value=""
 				Tesseract.recognize(reader.result,"jpn").then($=>{
-					try{
-						result.value=$.data.text.replace(/ /g,"");
-						result.placeholder="読み取り結果";
-					}
-					catch(error){
-						alert(error);
-					}
-				});
+					result.value=$.data.text.replace(/ /g,"")
+					result.placeholder="読み取り結果"
+				})
 			}
 		}
-		</script>
-		<script src="http:unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
 	</body>
 </html>
