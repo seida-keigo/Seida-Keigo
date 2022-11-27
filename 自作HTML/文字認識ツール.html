@@ -16,7 +16,7 @@
 		<textarea id="result" placeholder="読み取り結果"></textarea>
 		<script src="https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
-		<script>
+		<script>alert(window.Tesseract)
 		fileSelector.onchange=()=>{
 			let reader=new FileReader()
 			reader.readAsDataURL(fileSelector.files[0])
