@@ -17,7 +17,7 @@
 		<script src="http:unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
 		<script>
-		alert(Tesseract)
+		alert(window.Tesseract)
 		fileSelector.onchange=()=>{
 			let reader=new FileReader();
 			reader.readAsDataURL(fileSelector.files[0]);
