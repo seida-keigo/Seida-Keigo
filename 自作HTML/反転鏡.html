@@ -1,0 +1,18 @@
+<style>
+body{
+	margin:unset
+}
+video{
+	height:100%;margin-left:auto;margin-right:auto;max-height:100%;max-width:100%;width:100%
+}
+</style>
+<video>
+</video>
+<script>
+navigator.mediaDevices.getUserMedia({
+	video:1
+}).then($=>{
+	document.querySelectorAll("video")[0].srcObject=$
+	document.querySelectorAll("video")[0].play()
+})
+</script>
