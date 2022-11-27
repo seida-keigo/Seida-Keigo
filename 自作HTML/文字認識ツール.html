@@ -16,19 +16,20 @@
 		<textarea id="result" placeholder="読み取り結果"></textarea>
 		<script src="https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
-		<script>alert(window.Tesseract)
-		fileSelector.onchange=()=>{
-			let reader=new FileReader()
-			reader.readAsDataURL(fileSelector.files[0])
-			reader.onload=()=>{
-				result.placeholder="読み取り中..."
-				result.value=""
-				Tesseract.recognize(reader.result,"jpn").then($=>{
-					result.value=$.data.text.replace(/ /g,"")
-					result.placeholder="読み取り結果"
-				})
+		<script>
+			window.Tesseract||alert("Tesseract.jsの読み込みに失敗しました。")
+			fileSelector.onchange=()=>{
+				let reader=new FileReader()
+				reader.readAsDataURL(fileSelector.files[0])
+				reader.onload=()=>{
+					result.placeholder="読み取り中..."
+					result.value=""
+					Tesseract.recognize(reader.result,"jpn").then($=>{
+						result.value=$.data.text.replace(/ /g,"")
+						result.placeholder="読み取り結果"
+					})
+				}
 			}
-		}
 		</script>
 	</body>
 </html>
