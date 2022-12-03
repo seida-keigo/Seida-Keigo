@@ -17,16 +17,17 @@
 		<!--script src="https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script-->
 		<script>
-			t=()=>{
+			t = () => {
 				return function(e) {
 					var t = {}
 					function r(n) {
-						if (t[n])
-							return t[n].exports
+						if (t[n]) return t[n].exports
 						var o = t[n] = {
 							i: n, l: !1, exports: {}
 						}
-						return e[n].call(o.exports, o, o.exports, r), o.l = !0, o.exports
+						e[n].call(o.exports, o, o.exports, r)
+						o.l = !0
+						return o.exports
 					}
 					return r.m = e, r.c = t, r.d = function(e, t, n) {
 						r.o(e, t) || Object.defineProperty(e, t, {
@@ -38,31 +39,20 @@
 						}), Object.defineProperty(e, "__esModule", {
 							value: !0
 						})
-					}, r.t = function(e, t) {
-						if (1 & t && (e = r(e)), 8 & t)
-							return e
-						if (4 & t && "object" == typeof e && e && e.__esModule)
-							return e
+					}, r.t = (e, t) => {
+						if (1 & t && (e = r(e)), 8 & t) return e
+						if (4 & t && "object" == typeof e && e && e.__esModule) return e
 						var n = Object.create(null)
 						if (r.r(n), Object.defineProperty(n, "default", {
 							enumerable: !0, value: e
-						}), 2 & t && "string" != typeof e)
-							for (var o in e)
-								r.d(n, o, function(t) {
-									return e[t]
-								}
-								.bind(null, o))
+						}), 2 & t && "string" != typeof e) for (var o in e) r.d(n, o, function(t) {
+							return e[t]
+						}.bind(null, o))
 						return n
-					}, r.n = function(e) {
-						var t = e && e.__esModule ? function() {
-							return e.default
-						}
-						: function() {
-							return e
-						}
-						
+					}, r.n = e => {
+						var t = e && e.__esModule ? () => e.default : () => e
 						return r.d(t, "a", t), t
-					}, r.o = function(e, t) {
+					}, r.o = (e, t) => {
 						return Object.prototype.hasOwnProperty.call(e, t)
 					}, r.p = "", r(r.s = 12)
 				}([function(e, t, r) {
@@ -89,9 +79,9 @@
 						}
 						i.hasMetaOption = function(e) {
 							return e && e.meta
-						}, i.fetchBlob = function(e, t) {
+						}, i.fetchBlob = (e, t) => {
 							t()
-						}, i.isInstanceOf = function(e, t) {
+						}, i.isInstanceOf = (e, t) => {
 							return Object.prototype.toString.call(t) === "[object " + e + "]"
 						}, i.transform = function(e, t, r, n, o) {
 							r(e, o)
@@ -150,8 +140,8 @@
 											h = p += c
 										}
 										!n.disableImageHead && h > 6 && (l.slice ? o.imageHead = l.slice(0, h) : o.imageHead = new Uint8Array(l).subarray(0, h))
-									} else
-										console.log("Invalid JPEG file: Missing JPEG marker.")
+									}
+									else console.log("Invalid JPEG file: Missing JPEG marker.")
 									r(o)
 								}), "readAsArrayBuffer") || r(o)
 							}, e.replaceHead = function(t, r, n) {
@@ -163,7 +153,6 @@
 									maxMetaDataSize: 256, disableMetaDataParsers: !0
 								})
 							}
-							
 							var r = e.transform
 							e.transform = function(t, n, o, i, a) {
 								e.hasMetaOption(n) ? e.parseMetaData(i, (function(a) {
@@ -172,11 +161,11 @@
 							}
 						}) ? n.apply(t, o) : n) || (e.exports = i)
 					}()
-				}, function(e, t) {
-					e.exports = function(e, t) {
+				}, (e, t) => {
+					e.exports = (e, t) => {
 						return "".concat(e, "-").concat(t, "-").concat(Math.random().toString(16).slice(3, 8))
 					}
-				}, function(e, t) {
+				}, (e, t) => {
 					var r = this
 					var n = !1
 					t.logging = n, t.setLogging = function(e) {
@@ -186,7 +175,7 @@
 							t[o] = arguments[o]
 						return n ? console.log.apply(r, t) : null
 					}
-				}, function(e, t) {
+				}, (e, t) => {
 					var r, n, o = e.exports = {}
 					function i() {
 						throw new Error("setTimeout has not been defined")
@@ -399,10 +388,10 @@
 						var O = {}
 						var x = y(c)
 						S += 1
-						var E = function(e, t) {
+						var E = (e, t) => {
 							g[e] = t
 						}
-						var P = function(e, t) {
+						var P = (e, t) => {
 							O[e] = t
 						}
 						var j = function(e) {
@@ -429,7 +418,7 @@
 								}
 							}))
 						}
-						var R = function(e, t) {
+						var R = (e, t) => {
 							return j(f({
 								id: t, action: "FS", payload: {
 									method: "readFile", args: [e, {
@@ -438,7 +427,7 @@
 								}
 							}))
 						}
-						var I = function(e, t) {
+						var I = (e, t) => {
 							return j(f({
 								id: t, action: "FS", payload: {
 									method: "unlink", args: [e]
@@ -568,19 +557,20 @@
 								}))), g[c]({
 									jobId: r, data: u
 								})
-							} else if ("reject" === o) {
+							}
+							else if ("reject" === o) {
 								if (O[c](s), !i)
 									throw Error(s)
 								i(s)
-							} else
-								"progress" === o && n(a({}, s, {
-									userJobId: r
-								}))
+							}
+							else "progress" === o && n(a({}, s, {
+								userJobId: r
+							}))
 						})), {
 							id: t, worker: x, setResolve: E, setReject: P, load: k, writeText: L, readText: R, removeFile: I, FS: D, loadLanguage: T, initialize: C, setParameters: B, recognize: F, getPDF: M, detect: U, terminate: N
 						}
 					}
-				}, function(e, t) {
+				}, (e, t) => {
 					e.exports = {
 						TESSERACT_ONLY: 0, LSTM_ONLY: 1, TESSERACT_LSTM_COMBINED: 2, DEFAULT: 3
 					}
@@ -592,7 +582,7 @@
 							var t = e.transform
 							e.transform = function(r, n, o, i, a) {
 								t.call(e, e.scale(r, n, a), n, o, i, a)
-							}, e.transformCoordinates = function() {}, e.getTransformedOptions = function(e, t) {
+							}, e.transformCoordinates = function() {}, e.getTransformedOptions = (e, t) => {
 								var r, n, o, i, a = t.aspectRatio
 								if (!a)
 									return t
@@ -625,7 +615,7 @@
 							}
 						}) ? n.apply(t, o) : n) || (e.exports = i)
 					}()
-				}, function(e, t, r) {
+				}, (e, t, r) => {
 					var n, o, i
 					!function(a) {
 						"use strict"
@@ -650,7 +640,6 @@
 							}, t.prototype.get = function(e) {
 								return this[e] || this[this.map[e]]
 							}
-							
 							var r = {
 								1: {
 									getValue: function(e, t) {
@@ -698,8 +687,8 @@
 										return u
 									}
 									console.log("Invalid Exif data: Invalid data offset.")
-								} else
-									console.log("Invalid Exif data: Invalid tag type.")
+								}
+								else console.log("Invalid Exif data: Invalid tag type.")
 							}
 							function o(e, t, r, o, i, a, c, s) {
 								var u, l, f, p, d, h
@@ -721,34 +710,32 @@
 											37500: !0
 										}
 									}, f = r + 10
-									if (1165519206 === e.getUint32(r + 4))
-										if (f + 8 > e.byteLength)
-											console.log("Invalid Exif data: Invalid segment size.")
-										else if (0 === e.getUint16(r + 8)) {
-											switch (e.getUint16(f)) {
-												case 18761:
-												c = !0
-												break
-												case 19789:
-												c = !1
-												break
+									if (1165519206 === e.getUint32(r + 4)) if (f + 8 > e.byteLength) console.log("Invalid Exif data: Invalid segment size.")
+									else if (0 === e.getUint16(r + 8)) {
+										switch (e.getUint16(f)) {
+											case 18761:
+											c = !0
+											break
+											case 19789:
+											c = !1
+											break
 											default:
-												return void console.log("Invalid Exif data: Invalid byte alignment marker.")
-											}
-											42 === e.getUint16(f + 2, c) ? (s = e.getUint32(f + 4, c), i.exif = new t, a.disableExifOffsets || (i.exifOffsets = new t, i.exifTiffOffset = f, i.exifLittleEndian = c), (s = o(e, f, f + s, c, i.exif, i.exifOffsets, u, l)) && !a.disableExifThumbnail && (s = o(e, f, f + s, c, i.exif, i.exifOffsets, u, l), i.exif[513] && i.exif[514] && (i.exif[513] = function(e, t, r) {
-												if (r && !(t + r > e.byteLength))
-													return new Blob([e.buffer.slice(t, t + r)],{
-														type: "image/jpeg"
-													})
-												console.log("Invalid Exif data: Invalid thumbnail data.")
-											}(e, f + i.exif[513], i.exif[514]))), Object.keys(i.exif.privateIFDs).forEach((function(r) {
-												!function(e, r, n, i, a, c, s) {
-													var u = e.exif[r]
-													u && (e.exif[r] = new t(r), e.exifOffsets && (e.exifOffsets[r] = new t(r)), o(n, i, i + u, a, e.exif[r], e.exifOffsets && e.exifOffsets[r], c && c[r], s && s[r]))
-												}(i, r, e, f, c, u, l)
-											}))) : console.log("Invalid Exif data: Missing TIFF marker.")
-										} else
-											console.log("Invalid Exif data: Missing byte alignment offset.")
+											return void console.log("Invalid Exif data: Invalid byte alignment marker.")
+										}
+										42 === e.getUint16(f + 2, c) ? (s = e.getUint32(f + 4, c), i.exif = new t, a.disableExifOffsets || (i.exifOffsets = new t, i.exifTiffOffset = f, i.exifLittleEndian = c), (s = o(e, f, f + s, c, i.exif, i.exifOffsets, u, l)) && !a.disableExifThumbnail && (s = o(e, f, f + s, c, i.exif, i.exifOffsets, u, l), i.exif[513] && i.exif[514] && (i.exif[513] = function(e, t, r) {
+											if (r && !(t + r > e.byteLength))
+												return new Blob([e.buffer.slice(t, t + r)],{
+													type: "image/jpeg"
+												})
+											console.log("Invalid Exif data: Invalid thumbnail data.")
+										}(e, f + i.exif[513], i.exif[514]))), Object.keys(i.exif.privateIFDs).forEach((function(r) {
+											!function(e, r, n, i, a, c, s) {
+												var u = e.exif[r]
+												u && (e.exif[r] = new t(r), e.exifOffsets && (e.exifOffsets[r] = new t(r)), o(n, i, i + u, a, e.exif[r], e.exifOffsets && e.exifOffsets[r], c && c[r], s && s[r]))
+											}(i, r, e, f, c, u, l)
+										}))) : console.log("Invalid Exif data: Missing TIFF marker.")
+									}
+									else console.log("Invalid Exif data: Missing byte alignment offset.")
 								}
 							}, e.metaDataParsers.jpeg[65505].push(e.parseExifData), e.exifWriters = {
 								274: function(e, t, r) {
@@ -901,8 +888,8 @@
 												if ("suspendedStart" === n)
 													throw n = "completed", r.arg
 												r.dispatchException(r.arg)
-											} else
-												"return" === r.method && r.abrupt("return", r.arg)
+											}
+											else "return" === r.method && r.abrupt("return", r.arg)
 											n = "executing"
 											var s = u(e, t, r)
 											if ("normal" === s.type) {
@@ -937,7 +924,6 @@
 							h[i] = function() {
 								return this
 							}
-							
 							var g = Object.getPrototypeOf
 							var m = g && g(g(x([])))
 							m && m !== r && n.call(m, i) && (h = m)
@@ -961,13 +947,9 @@
 													var f = l.value
 													return f && "object" === t(f) && n.call(f, "__await") ? Promise.resolve(f.__await).then((function(e) {
 														r("next", e, a, c)
-													}), (function(e) {
-														r("throw", e, a, c)
-													})) : Promise.resolve(f).then((function(e) {
+													}), e => void r("throw", e, a, c)) : Promise.resolve(f).then((function(e) {
 														l.value = e, a(l)
-													}), (function(e) {
-														return r("throw", e, a, c)
-													}))
+													}), e => r("throw", e, a, c))
 												}
 												c(s.arg)
 											}(o, i, r, a)
@@ -980,15 +962,18 @@
 								var r = e.iterator[t.method]
 								if (void 0 === r) {
 									if (t.delegate = null, "throw" === t.method) {
-										if (e.iterator.return && (t.method = "return", t.arg = void 0, w(e, t), "throw" === t.method))
-											return l
+										if (e.iterator.return && (t.method = "return", t.arg = void 0, w(e, t), "throw" === t.method)) return l
 										t.method = "throw", t.arg = new TypeError("The iterator does not provide a 'throw' method")
 									}
 									return l
 								}
 								var n = u(r, e.iterator, t.arg)
-								if ("throw" === n.type)
-									return t.method = "throw", t.arg = n.arg, t.delegate = null, l
+								if ("throw" === n.type) {
+									t.method = "throw"
+									t.arg = n.arg
+									t.delegate = null
+									return l
+								}
 								var o = n.arg
 								return o ? o.done ? (t[e.resultName] = o.value, t.next = e.nextLoc, "return" !== t.method && (t.method = "next", t.arg = void 0), t.delegate = null, l) : o : (t.method = "throw", t.arg = new TypeError("iterator result is not an object"), t.delegate = null, l)
 							}
@@ -1010,17 +995,19 @@
 							function x(e) {
 								if (e) {
 									var t = e[i]
-									if (t)
-										return t.call(e)
-									if ("function" == typeof e.next)
-										return e
+									if (t) return t.call(e)
+									if ("function" == typeof e.next) return e
 									if (!isNaN(e.length)) {
 										var r = -1
 										var o = function t() {
-											for (; ++r < e.length;)
-												if (n.call(e, r))
-													return t.value = e[r], t.done = !1, t
-											return t.value = void 0, t.done = !0, t
+											for (; ++r < e.length;) if (n.call(e, r)) {
+												t.value = e[r]
+												t.done = !1
+												return t
+											}
+											t.value = void 0
+											t.done = !0
+											return t
 										}
 										return o.next = o
 									}
@@ -1034,77 +1021,102 @@
 									value: void 0, done: !0
 								}
 							}
-							return p.prototype = y.constructor = d, d.constructor = p, d[c] = p.displayName = "GeneratorFunction", e.isGeneratorFunction = function(e) {
+							p.prototype = y.constructor = d
+							d.constructor = p
+							d[c] = p.displayName = "GeneratorFunction", e.isGeneratorFunction = e => {
 								var t = "function" == typeof e && e.constructor
 								return !!t && (t === p || "GeneratorFunction" === (t.displayName || t.name))
-							}, e.mark = function(e) {
+							}
+							e.mark = e => {
 								return Object.setPrototypeOf ? Object.setPrototypeOf(e, d) : (e.__proto__ = d, c in e || (e[c] = "GeneratorFunction")), e.prototype = Object.create(y), e
-							}, e.awrap = function(e) {
+							}
+							e.awrap = e => {
 								return {
 									__await: e
 								}
-							}, b(v.prototype), v.prototype[a] = function() {
+							}
+							b(v.prototype)
+							v.prototype[a] = function() {
 								return this
-							}, e.AsyncIterator = v, e.async = function(t, r, n, o) {
+							}
+							e.AsyncIterator = v, e.async = function(t, r, n, o) {
 								var i = new v(s(t, r, n, o))
-								return e.isGeneratorFunction(r) ? i : i.next().then((function(e) {
+								return e.isGeneratorFunction(r) ? i : i.next().then(e => {
 									return e.done ? e.value : i.next()
-								}))
-							}, b(y), y[c] = "Generator", y[i] = function() {
+								})
+							}
+							b(y)
+							y[c] = "Generator"
+							y[i] = () => {
 								return this
-							}, y.toString = function() {
-								return "[object Generator]"
-							}, e.keys = function(e) {
+							}
+							y.toString = () => "[object Generator]"
+							e.keys = e => {
 								var t = []
-								for (var r in e)
-									t.push(r)
-								return t.reverse(), function r() {
+								for (var r in e) t.push(r)
+								t.reverse()
+								return function r() {
 									for (; t.length;) {
 										var n = t.pop()
-										if (n in e)
-											return r.value = n, r.done = !1, r
+										if (n in e) {
+											r.value = n
+											r.done = !1
+											return r
+										}
 									}
-									return r.done = !0, r
+									r.done = !0
+									return r
 								}
-							}, e.values = x, O.prototype = {
+							}
+							e.values = x
+							O.prototype = {
 								constructor: O, reset: function(e) {
-									if (this.prev = 0, this.next = 0, this.sent = this._sent = void 0, this.done = !1, this.delegate = null, this.method = "next", this.arg = void 0, this.tryEntries.forEach(S), !e)
-										for (var t in this)
-											"t" === t.charAt(0) && n.call(this, t) && !isNaN(+t.slice(1)) && (this[t] = void 0)
+									this.prev = 0
+									this.next = 0
+									this.sent = this._sent = void 0
+									this.done = !1
+									this.delegate = null
+									this.method = "next"
+									this.arg = void 0
+									this.tryEntries.forEach(S)
+									if (!e) for (var t in this) "t" === t.charAt(0) && n.call(this, t) && !isNaN(+t.slice(1)) && (this[t] = void 0)
 								}, stop: function() {
 									this.done = !0
 									var e = this.tryEntries[0].completion
-									if ("throw" === e.type)
-										throw e.arg
+									if ("throw" === e.type) throw e.arg
 									return this.rval
 								}, dispatchException: function(e) {
 									if (this.done)
 										throw e
 									var t = this
-									function r(r, n) {
-										return a.type = "throw", a.arg = e, t.next = r, n && (t.method = "next", t.arg = void 0), !!n
+									r = (r, n) => {
+										a.type = "throw"
+										a.arg = e
+										t.next = r
+										if (n) {
+											t.method = "next"
+											t.arg = void 0
+										}
+										return !!n
 									}
 									for (var o = this.tryEntries.length - 1; o >= 0; --o) {
 										var i = this.tryEntries[o]
 										var a = i.completion
-										if ("root" === i.tryLoc)
-											return r("end")
+										if ("root" === i.tryLoc) return r("end")
 										if (i.tryLoc <= this.prev) {
 											var c = n.call(i, "catchLoc")
 											var s = n.call(i, "finallyLoc")
 											if (c && s) {
-												if (this.prev < i.catchLoc)
-													return r(i.catchLoc, !0)
-												if (this.prev < i.finallyLoc)
-													return r(i.finallyLoc)
-											} else if (c) {
-												if (this.prev < i.catchLoc)
-													return r(i.catchLoc, !0)
-											} else {
+												if (this.prev < i.catchLoc) return r(i.catchLoc, !0)
+												if (this.prev < i.finallyLoc) return r(i.finallyLoc)
+											}
+											else if (c) {
+												if (this.prev < i.catchLoc) return r(i.catchLoc, !0)
+											}
+											else {
 												if (!s)
 													throw new Error("try statement without catch or finally")
-												if (this.prev < i.finallyLoc)
-													return r(i.finallyLoc)
+												if (this.prev < i.finallyLoc) return r(i.finallyLoc)
 											}
 										}
 									}
@@ -1126,8 +1138,7 @@
 								}, finish: function(e) {
 									for (var t = this.tryEntries.length - 1; t >= 0; --t) {
 										var r = this.tryEntries[t]
-										if (r.finallyLoc === e)
-											return this.complete(r.completion, r.afterLoc), S(r), l
+										if (r.finallyLoc === e) return this.complete(r.completion, r.afterLoc), S(r), l
 									}
 								}, catch: function(e) {
 									for (var t = this.tryEntries.length - 1; t >= 0; --t) {
@@ -1147,7 +1158,8 @@
 										iterator: x(e), resultName: t, nextLoc: r
 									}, "next" === this.method && (this.arg = void 0), l
 								}
-							}, e
+							}
+							return e
 						}("object" === t(e) ? e.exports : {})
 						try {
 							regeneratorRuntime = r
@@ -1177,8 +1189,7 @@
 								return r
 							}
 						}(e) || function(e) {
-							if (Symbol.iterator in Object(e) || "[object Arguments]" === Object.prototype.toString.call(e))
-								return Array.from(e)
+							if (Symbol.iterator in Object(e) || "[object Arguments]" === Object.prototype.toString.call(e)) return Array.from(e)
 						}(e) || function() {
 							throw new TypeError("Invalid attempt to spread non-iterable instance")
 						}()
@@ -1344,7 +1355,6 @@
 					var i = "browser" === r(17)("type") ? r(5) : function(e) {
 						return e
 					}
-					
 					e.exports = function(e) {
 						var t = function(e) {
 							for (var t = 1; t < arguments.length; t++) {
@@ -1523,8 +1533,8 @@
 								type: "application/javascript"
 							})
 							t = new Worker(URL.createObjectURL(o))
-						} else
-							t = new Worker(r)
+						}
+						else t = new Worker(r)
 						return t
 					}
 				}, function(e, t) {
@@ -1779,7 +1789,7 @@
 					}
 					!function(c) {
 						"use strict"
-						o = [r(0), r(10)], void 0 === (i = "function" == typeof (n = function(e) {
+						o = [r(0), r(10)], void 0 === (i = "function" == typeof (n = e => {
 							var t = e.ExifMap.prototype
 							t.tags = {
 								256: "ImageWidth", 257: "ImageHeight", 258: "BitsPerSample", 259: "Compression", 262: "PhotometricInterpretation", 274: "Orientation", 277: "SamplesPerPixel", 284: "PlanarConfiguration", 530: "YCbCrSubSampling", 531: "YCbCrPositioning", 282: "XResolution", 283: "YResolution", 296: "ResolutionUnit", 273: "StripOffsets", 278: "RowsPerStrip", 279: "StripByteCounts", 513: "JPEGInterchangeFormat", 514: "JPEGInterchangeFormatLength", 301: "TransferFunction", 318: "WhitePoint", 319: "PrimaryChromaticities", 529: "YCbCrCoefficients", 532: "ReferenceBlackWhite", 306: "DateTime", 270: "ImageDescription", 271: "Make", 272: "Model", 305: "Software", 315: "Artist", 33432: "Copyright", 34665: {
@@ -1847,23 +1857,19 @@
 									return this.stringValues[e][t]
 									case "ExifVersion":
 									case "FlashpixVersion":
-									if (!t)
-										return
+									if (!t) return
 									return String.fromCharCode(t[0], t[1], t[2], t[3])
 									case "ComponentsConfiguration":
-									if (!t)
-										return
+									if (!t) return
 									return this.stringValues[e][t[0]] + this.stringValues[e][t[1]] + this.stringValues[e][t[2]] + this.stringValues[e][t[3]]
 									case "GPSVersionID":
-									if (!t)
-										return
+									if (!t) return
 									return t[0] + "." + t[1] + "." + t[2] + "." + t[3]
 								}
 								return String(t)
 							}, t.getAll = function() {
 								var e, t, r, n = {}
-								for (e in this)
-									Object.prototype.hasOwnProperty.call(this, e) && ((t = this[e]) && t.getAll ? n[this.privateIFDs[e].name] = t.getAll() : (r = this.tags[e]) && (n[r] = this.getText(r)))
+								for (e in this) Object.prototype.hasOwnProperty.call(this, e) && ((t = this[e]) && t.getAll ? n[this.privateIFDs[e].name] = t.getAll() : (r = this.tags[e]) && (n[r] = this.getText(r)))
 								return n
 							}, t.getName = function(e) {
 								var t = this.tags[e]
@@ -1875,12 +1881,11 @@
 										if (r = t.privateIFDs[e])
 											for (e in n = o[e])
 												Object.prototype.hasOwnProperty.call(n, e) && (r.map[n[e]] = Number(e))
-										else
-											t.map[o[e]] = Number(e)
+										else t.map[o[e]] = Number(e)
 							}()
 						}) ? n.apply(t, o) : n) || (e.exports = i)
 					}()
-				}, function(e, t, r) {
+				}, (e, t, r) => {
 					var n, o, i
 					!function(a) {
 						"use strict"
@@ -1926,11 +1931,11 @@
 							var o = e.getTransformedOptions
 							i = document.createElement("img"), i.onload = function() {
 								e.orientation = 1 === i.width && 2 === i.height
-							}, i.src = "data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/xABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q==", e.hasCanvasOption = function(r) {
+							}, i.src = "data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/xABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q==", e.hasCanvasOption = r => {
 								return !0 == !!r.orientation && !e.orientation || r.orientation > 1 && r.orientation < 9 || t.call(e, r)
-							}, e.hasMetaOption = function(t) {
+							}, e.hasMetaOption = t => {
 								return t && !0 === t.orientation && !e.orientation || r.call(e, t)
-							}, e.transformCoordinates = function(t, r) {
+							}, e.transformCoordinates = (t, r) => {
 								n.call(e, t, r)
 								var o = t.getContext("2d")
 								var i = t.width
@@ -1938,70 +1943,82 @@
 								var c = t.style.width
 								var s = t.style.height
 								var u = r.orientation
-								if (u > 1 && u < 9)
-									switch (u > 4 && (t.width = a, t.height = i, t.style.width = s, t.style.height = c), u) {
-										case 2:
-										o.translate(i, 0), o.scale(-1, 1)
-										break
-										case 3:
-										o.translate(i, a), o.rotate(Math.PI)
-										break
-										case 4:
-										o.translate(0, a), o.scale(1, -1)
-										break
-										case 5:
-										o.rotate(.5 * Math.PI), o.scale(1, -1)
-										break
-										case 6:
-										o.rotate(.5 * Math.PI), o.translate(0, -a)
-										break
-										case 7:
-										o.rotate(.5 * Math.PI), o.translate(i, -a), o.scale(-1, 1)
-										break
-										case 8:
-										o.rotate(-.5 * Math.PI), o.translate(-i, 0)
-									}
+								if (u > 1 && u < 9) switch (u > 4 && (t.width = a, t.height = i, t.style.width = s, t.style.height = c), u) {
+									case 2:
+									o.translate(i, 0), o.scale(-1, 1)
+									break
+									case 3:
+									o.translate(i, a), o.rotate(Math.PI)
+									break
+									case 4:
+									o.translate(0, a), o.scale(1, -1)
+									break
+									case 5:
+									o.rotate(.5 * Math.PI), o.scale(1, -1)
+									break
+									case 6:
+									o.rotate(.5 * Math.PI), o.translate(0, -a)
+									break
+									case 7:
+									o.rotate(.5 * Math.PI), o.translate(i, -a), o.scale(-1, 1)
+									break
+									case 8:
+									o.rotate(-.5 * Math.PI), o.translate(-i, 0)
+								}
 							}, e.getTransformedOptions = function(t, r, n) {
 								var i, a, c = o.call(e, t, r), s = c.orientation
 								if (!0 === s) {
-									if (e.orientation)
-										return c
+									if (e.orientation) return c
 									s = n && n.exif && n.exif.get("Orientation")
 								}
-								if (!(s > 1 && s < 9))
-									return c
-								for (a in i = {}, c)
-									Object.prototype.hasOwnProperty.call(c, a) && (i[a] = c[a])
+								if (!(s > 1 && s < 9)) return c
+								for (a in i = {}, c) Object.prototype.hasOwnProperty.call(c, a) && (i[a] = c[a])
 								switch (i.orientation = s, s) {
 									case 2:
-									i.left = c.right, i.right = c.left
+									i.left = c.right
+									i.right = c.left
 									break
 									case 3:
-									i.left = c.right, i.top = c.bottom, i.right = c.left, i.bottom = c.top
+									i.left = c.right
+									i.top = c.bottom
+									i.right = c.left
+									i.bottom = c.top
 									break
 									case 4:
-									i.top = c.bottom, i.bottom = c.top
+									i.top = c.bottom
+									i.bottom = c.top
 									break
 									case 5:
-									i.left = c.top, i.top = c.left, i.right = c.bottom, i.bottom = c.right
+									i.left = c.top
+									i.top = c.left
+									i.right = c.bottom
+									i.bottom = c.right
 									break
 									case 6:
-									i.left = c.top, i.top = c.right, i.right = c.bottom, i.bottom = c.left
+									i.left = c.top
+									i.top = c.right
+									i.right = c.bottom
+									i.bottom = c.left
 									break
 									case 7:
-									i.left = c.bottom, i.top = c.right, i.right = c.top, i.bottom = c.left
+									i.left = c.bottom
+									i.top = c.right
+									i.right = c.top
+									i.bottom = c.left
 									break
 									case 8:
-									i.left = c.bottom, i.top = c.left, i.right = c.top, i.bottom = c.right
+									i.left = c.bottom
+									i.top = c.left
+									i.right = c.top
+									i.bottom = c.right
 								}
 								return i.orientation > 4 && (i.maxWidth = c.maxHeight, i.maxHeight = c.maxWidth, i.minWidth = c.minHeight, i.minHeight = c.minWidth, i.sourceWidth = c.sourceHeight, i.sourceHeight = c.sourceWidth), i
 							}
-							
 							var i
 						}) ? n.apply(t, o) : n) || (e.exports = i)
 					}()
 				}, function(e, t, r) {
-					function n(e, t, r, n, o, i, a) {
+					n = (e, t, r, n, o, i, a) => {
 						try {
 							var c = e[i](a)
 							var s = c.value
@@ -2010,18 +2027,14 @@
 						}
 						c.done ? t(s) : Promise.resolve(s).then(n, o)
 					}
-					function o(e) {
+					o = e => {
 						return function() {
 							var t = this
 							var r = arguments
 							return new Promise((function(o, i) {
 								var a = e.apply(t, r)
-								function c(e) {
-									n(a, o, i, c, s, "next", e)
-								}
-								function s(e) {
-									n(a, o, i, c, s, "throw", e)
-								}
+								c = e => n(a, o, i, c, s, "next", e)
+								s = e => n(a, o, i, c, s, "throw", e)
 								c(void 0)
 							}))
 						}
@@ -2042,14 +2055,13 @@
 										case 7:
 										return e.abrupt("return", a.recognize(t).finally(o(regeneratorRuntime.mark((function e() {
 											return regeneratorRuntime.wrap((function(e) {
-												for (; ;)
-													switch (e.prev = e.next) {
-														case 0:
-														return e.next = 2, a.terminate()
-														case 2:
-														case "end":
-														return e.stop()
-													}
+												for (; ;) switch (e.prev = e.next) {
+													case 0:
+													return e.next = 2, a.terminate()
+													case 2:
+													case "end":
+													return e.stop()
+												}
 											}), e)
 										})))))
 										case 8:
@@ -2063,39 +2075,35 @@
 						}
 					}()
 					var c = function() {
-						var e = o(regeneratorRuntime.mark((function e(t, r) {
+						var e = o(regeneratorRuntime.mark(e = (t, r) => {
 							var n
-							return regeneratorRuntime.wrap((function(e) {
-								for (; ;)
-									switch (e.prev = e.next) {
-										case 0:
-										return n = i(r), e.next = 3, n.load()
-										case 3:
-										return e.next = 5, n.loadLanguage("osd")
-										case 5:
-										return e.next = 7, n.initialize("osd")
-										case 7:
-										return e.abrupt("return", n.detect(t).finally(o(regeneratorRuntime.mark((function e() {
-											return regeneratorRuntime.wrap((function(e) {
-												for (; ;)
-													switch (e.prev = e.next) {
-														case 0:
-														return e.next = 2, n.terminate()
-														case 2:
-														case "end":
-														return e.stop()
-													}
-											}), e)
-										})))))
-										case 8:
-										case "end":
-										return e.stop()
-									}
-							}), e)
-						})))
-						return function(t, r) {
-							return e.apply(this, arguments)
-						}
+							return regeneratorRuntime.wrap(e => {
+								for (; ;) switch (e.prev = e.next) {
+									case 0:
+									return n = i(r), e.next = 3, n.load()
+									case 3:
+									return e.next = 5, n.loadLanguage("osd")
+									case 5:
+									return e.next = 7, n.initialize("osd")
+									case 7:
+									return e.abrupt("return", n.detect(t).finally(o(regeneratorRuntime.mark(e = () => {
+										return regeneratorRuntime.wrap(e => {
+											for (; ;) switch (e.prev = e.next) {
+												case 0:
+												return e.next = 2, n.terminate()
+												case 2:
+												case "end":
+												return e.stop()
+											}
+										}, e)
+									}))))
+									case 8:
+									case "end":
+									return e.stop()
+								}
+							}, e)
+						}))
+						return (t, r) => e.apply(this, arguments)
 					}()
 					e.exports = {
 						recognize: a, detect: c
@@ -2104,10 +2112,8 @@
 					e.exports = {
 						AFR: "afr", AMH: "amh", ARA: "ara", ASM: "asm", AZE: "aze", AZE_CYRL: "aze_cyrl", BEL: "bel", BEN: "ben", BOD: "bod", BOS: "bos", BUL: "bul", CAT: "cat", CEB: "ceb", CES: "ces", CHI_SIM: "chi_sim", CHI_TRA: "chi_tra", CHR: "chr", CYM: "cym", DAN: "dan", DEU: "deu", DZO: "dzo", ELL: "ell", ENG: "eng", ENM: "enm", EPO: "epo", EST: "est", EUS: "eus", FAS: "fas", FIN: "fin", FRA: "fra", FRK: "frk", FRM: "frm", GLE: "gle", GLG: "glg", GRC: "grc", GUJ: "guj", HAT: "hat", HEB: "heb", HIN: "hin", HRV: "hrv", HUN: "hun", IKU: "iku", IND: "ind", ISL: "isl", ITA: "ita", ITA_OLD: "ita_old", JAV: "jav", JPN: "jpn", KAN: "kan", KAT: "kat", KAT_OLD: "kat_old", KAZ: "kaz", KHM: "khm", KIR: "kir", KOR: "kor", KUR: "kur", LAO: "lao", LAT: "lat", LAV: "lav", LIT: "lit", MAL: "mal", MAR: "mar", MKD: "mkd", MLT: "mlt", MSA: "msa", MYA: "mya", NEP: "nep", NLD: "nld", NOR: "nor", ORI: "ori", PAN: "pan", POL: "pol", POR: "por", PUS: "pus", RON: "ron", RUS: "rus", SAN: "san", SIN: "sin", SLK: "slk", SLV: "slv", SPA: "spa", SPA_OLD: "spa_old", SQI: "sqi", SRP: "srp", SRP_LATN: "srp_latn", SWA: "swa", SWE: "swe", SYR: "syr", TAM: "tam", TEL: "tel", TGK: "tgk", TGL: "tgl", THA: "tha", TIR: "tir", TUR: "tur", UIG: "uig", UKR: "ukr", URD: "urd", UZB: "uzb", UZB_CYRL: "uzb_cyrl", VIE: "vie", YID: "yid"
 					}
-				}, function(e, t) {
-					e.exports = {
-						OSD_ONLY: "0", AUTO_OSD: "1", AUTO_ONLY: "2", AUTO: "3", SINGLE_COLUMN: "4", SINGLE_BLOCK_VERT_TEXT: "5", SINGLE_BLOCK: "6", SINGLE_LINE: "7", SINGLE_WORD: "8", CIRCLE_WORD: "9", SINGLE_CHAR: "10", SPARSE_TEXT: "11", SPARSE_TEXT_OSD: "12"
-					}
+				}, (e, t) => e.exports = {
+					OSD_ONLY: "0", AUTO_OSD: "1", AUTO_ONLY: "2", AUTO: "3", SINGLE_COLUMN: "4", SINGLE_BLOCK_VERT_TEXT: "5", SINGLE_BLOCK: "6", SINGLE_LINE: "7", SINGLE_WORD: "8", CIRCLE_WORD: "9", SINGLE_CHAR: "10", SPARSE_TEXT: "11", SPARSE_TEXT_OSD: "12"
 				}])
 			}
 			"object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.Tesseract = t() : window.Tesseract = t()
@@ -2119,7 +2125,7 @@
 				reader.onload=()=>{
 					result.placeholder="読み取り中..."
 					result.value=""
-					Tesseract.recognize(reader.result,prompt("言語を入力してください。","jpn+eng")).then($=>{
+					Tesseract.recognize(reader.result,"jpn+eng"||prompt("言語を入力してください。","jpn+eng")).then($=>{
 						result.value=$.data.text.replace(/ /g,"")
 						result.placeholder="読み取り結果"
 					})
