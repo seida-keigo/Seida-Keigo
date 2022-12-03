@@ -37,22 +37,18 @@
 				}
 				var a=o.createObjectURL&&o||o.URL&&URL.revokeObjectURL&&URL||o.webkitURL&&webkitURL
 				c=(e,t)=>{
-					!e||"blob:"!==e.slice(0,5)||t&&t.noRevoke||i.revokeObjectURL(e)
+					if(e)"blob:"!==e.slice(0,5)||t&&t.noRevoke||i.revokeObjectURL(e)
 				}
-				i.hasMetaOption=e=>{
-					return e&&e.meta
-				}
-				i.fetchBlob=(e,t)=>{
-					t()
-				}
-				i.isInstanceOf=(e,t)=>Object.prototype.toString.call(t)==="[object"+e+"]",i.transform=(e,t,r,n,o)=>{
-					r(e,o)
-				}
+				i.hasMetaOption=e=>e&&e.meta
+				i.fetchBlob=(e,t)=>void t()
+				i.isInstanceOf=(e,t)=>Object.prototype.toString.call(t)==="[object"+e+"]",i.transform=(e,t,r,n,o)=>void r(e,o)
 				i.onerror=(e,t,r,n,o,i)=>{
-					c(n,i),o&&o.call(e,t)
+					c(n,i)
+					if(o)o.call(e,t)
 				}
 				i.onload=(e,t,r,n,o,a)=>{
-					c(n,a),o&&i.transform(e,a,o,r,{
+					c(n,a)
+					if(o)i.transform(e,a,o,r,{
 						originalWidth:e.naturalWidth||e.width,originalHeight:e.naturalHeight||e.height
 					})
 				}
@@ -73,59 +69,61 @@
 				if(undefined!==n)e.exports=n
 			},(e,t,r)=>{
 				var n
-				var o,i
-				{
-					o=[r(0)]
-					undefined===(i="function"==typeof(n=e=>{
-						var t="undefined"!=typeof Blob&&(Blob.prototype.slice||Blob.prototype.webkitSlice||Blob.prototype.mozSlice)
-						e.blobSlice=t&&function(){
-							var e=this.slice||this.webkitSlice||this.mozSlice
-							return e.apply(this,arguments)
-						},e.metaDataParsers={
-							jpeg:{
-								65505:[],65517:[]
-							}
-						},e.parseMetaData=function(t,r,n,o){
-							o=o||{}
-							var i=this
-							var a=(n=n||{}).maxMetaDataSize||262144
-							!!("undefined"!=typeof DataView&&t&&t.size>=12&&"image/jpeg"===t.type&&e.blobSlice)&&e.readFile(e.blobSlice.call(t,0,a),(t=>{
-								if(t.target.error)
-									return console.log(t.target.error),void r(o)
-								var a,c,s,u,l=t.target.result,f=new DataView(l),p=2,d=f.byteLength-4,h=p
-								if(65496===f.getUint16(0)){
-									for(;p<d&&((a=f.getUint16(p))>=65504&&a<=65519||65534===a);){
-										if(p+(c=f.getUint16(p+2)+2)>f.byteLength){
-											console.log("Invalid meta data:Invalid segment size.")
-											break
-										}
-										if((s=e.metaDataParsers.jpeg[a])&&!n.disableMetaDataParsers)
-											for(u=0;u<s.length;u+=1)
-												s[u].call(i,f,p,c,o,n)
-										h=p+=c
+				var o
+				var i
+				o=[r(0)]
+				if(undefined!==(i="function"==typeof(n=e=>{
+					var t="undefined"!=typeof Blob&&(Blob.prototype.slice||Blob.prototype.webkitSlice||Blob.prototype.mozSlice)
+					e.blobSlice=t&&function(){
+						var e=this.slice||this.webkitSlice||this.mozSlice
+						return e.apply(this,arguments)
+					}
+					e.metaDataParsers={
+						jpeg:{
+							65505:[],65517:[]
+						}
+					}
+					e.parseMetaData=function(t,r,n,o){
+						o=o||{}
+						var i=this
+						var a=(n=n||{}).maxMetaDataSize||262144
+						!!("undefined"!=typeof DataView&&t&&t.size>=12&&"image/jpeg"===t.type&&e.blobSlice)&&e.readFile(e.blobSlice.call(t,0,a),(t=>{
+							if(t.target.error)
+								return console.log(t.target.error),void r(o)
+							var a,c,s,u,l=t.target.result,f=new DataView(l),p=2,d=f.byteLength-4,h=p
+							if(65496===f.getUint16(0)){
+								for(;p<d&&((a=f.getUint16(p))>=65504&&a<=65519||65534===a);){
+									if(p+(c=f.getUint16(p+2)+2)>f.byteLength){
+										console.log("Invalid meta data:Invalid segment size.")
+										break
 									}
-									!n.disableImageHead&&h>6&&(l.slice?o.imageHead=l.slice(0,h):o.imageHead=new Uint8Array(l).subarray(0,h))
+									if((s=e.metaDataParsers.jpeg[a])&&!n.disableMetaDataParsers)
+										for(u=0;u<s.length;u+=1)
+											s[u].call(i,f,p,c,o,n)
+									h=p+=c
 								}
-								else console.log("Invalid JPEG file:Missing JPEG marker.")
-								r(o)
-							}),"readAsArrayBuffer")||r(o)
-						},e.replaceHead=function(t,r,n){
-							e.parseMetaData(t,(function(o){
-								n(new Blob([r,e.blobSlice.call(t,o.imageHead.byteLength)],{
-									type:"image/jpeg"
-								}))
-							}),{
-								maxMetaDataSize:256,disableMetaDataParsers:!0
-							})
-						}
-						var r=e.transform
-						e.transform=function(t,n,o,i,a){
-							e.hasMetaOption(n)?e.parseMetaData(i,(function(a){
-								r.call(e,t,n,o,i,a)
-							}),n,a):r.apply(e,arguments)
-						}
-					})?n.apply(t,o):n)||(e.exports=i)
-				}
+								!n.disableImageHead&&h>6&&(l.slice?o.imageHead=l.slice(0,h):o.imageHead=new Uint8Array(l).subarray(0,h))
+							}
+							else console.log("Invalid JPEG file:Missing JPEG marker.")
+							r(o)
+						}),"readAsArrayBuffer")||r(o)
+					}
+					e.replaceHead=(t,r,n)=>{
+						e.parseMetaData(t,o=>{
+							n(new Blob([r,e.blobSlice.call(t,o.imageHead.byteLength)],{
+								type:"image/jpeg"
+							}))
+						},{
+							maxMetaDataSize:256,disableMetaDataParsers:!0
+						})
+					}
+					var r=e.transform
+					e.transform=function(t,n,o,i,a){
+						e.hasMetaOption(n)?e.parseMetaData(i,(function(a){
+							r.call(e,t,n,o,i,a)
+						}),n,a):r.apply(e,arguments)
+					}
+				})?n.apply(t,o):n))(e.exports=i)
 			},(e,t)=>{
 				e.exports=(e,t)=>{
 					return e+"-"+t+"-"+Math.random().toString(16).slice(3,8)
@@ -133,26 +131,26 @@
 			},(e,t)=>{
 				var r=this
 				var n=!1
-				t.logging=n,t.setLogging=e=>{
-					n=e
-				},t.log=function(){
-					for(var e=arguments.length,t=new Array(e),o=0;o<e;o++)
-						t[o]=arguments[o]
+				t.logging=n
+				t.setLogging=e=>void(n=e)
+				t.log=function(){
+					for(var e=arguments.length,t=new Array(e),o=0;o<e;o++)t[o]=arguments[o]
 					return n?console.log.apply(r,t):null
 				}
 			},(e,t)=>{
 				var r,n,o=e.exports={}
-				function i(){
+				i=()=>{
 					throw new Error("setTimeout has not been defined")
 				}
-				function a(){
+				a=()=>{
 					throw new Error("clearTimeout has not been defined")
 				}
-				function c(e){
-					if(r===setTimeout)
+				c=e=>{
+					if(r===setTimeout)return setTimeout(e,0)
+					if((r===i||!r)&&setTimeout){
+						r=setTimeout
 						return setTimeout(e,0)
-					if((r===i||!r)&&setTimeout)
-						return r=setTimeout,setTimeout(e,0)
+					}
 					try{
 						return r(e,0)
 					}
@@ -177,23 +175,33 @@
 				catch(e){
 					n=a
 				}
-				var s
 				var u=[]
 				var l=!1
 				var f=-1
-				p=()=>l&&s&&(l=!1,s.length?u=""+s+u:f=-1,u.length&&d())
+				p=()=>{
+					if(l&&s){
+						l=!1
+						s.length?u=""+s+u:f=-1
+						if(u.length)d()
+					}
+				}
 				d=()=>{
 					if(!l){
-						var e=c(p)
+						e=c(p)
 						l=!0
-						for(var t=u.length;t;){
-							for(s=u,u=[];++f<t;)s&&s[f].run()
+						for(t=u.length;t;){
+							s=u
+							u=[]
+							for(;++f<t;)s&&s[f].run()
 							f=-1
 							t=u.length
 						}
 						l=!1
 						if(n===clearTimeout)s=clearTimeout(e)
-						if((n===a||!n)&&clearTimeout)s=n=clearTimeout,clearTimeout(e)
+						if((n===a||!n)&&clearTimeout){
+							s=n=clearTimeout
+							clearTimeout(e)
+						}
 						try{
 							n(e)
 						}
@@ -211,7 +219,7 @@
 					this.fun=e
 					this.array=t
 				}
-				function g(){}
+				g=()=>{}
 				o.nextTick=e=>{
 					var t=new Array(arguments.length-1)
 					if(arguments.length>1)for(var r=1;r<arguments.length;r++)t[r-1]=arguments[r]
@@ -232,21 +240,23 @@
 			},(e,t,r)=>{
 				var n
 				var o
-				undefined===(o="function"==typeof(n=function(){
+				if(undefined!==(o="function"==typeof(n=()=>{
 					return function(){
 						var e=arguments.length
-						if(0===e)
-							throw new Error("resolveUrl requires at least one argument;got none.")
+						if(0===e)throw new Error("resolveUrl requires at least one argument;got none.")
 						var t=document.createElement("base")
-						if(t.href=arguments[0],1===e)
-							return t.href
+						if(t.href=arguments[0],1===e)return t.href
 						var r=document.getElementsByTagName("head")[0]
 						r.insertBefore(t,r.firstChild)
-						for(var n,o=document.createElement("a"),i=1;i<e;i++)
-							o.href=arguments[i],n=o.href,t.href=n
-						return r.removeChild(t),n
+						for(var n,o=document.createElement("a"),i=1;i<e;i++){
+							o.href=arguments[i]
+							n=o.href
+							t.href=n
+						}
+						r.removeChild(t)
+						return n
 					}
-				})?n.call(t,r,t,e):n)||(e.exports=o)
+				})?n.call(t,r,t,e):n))(e.exports=o)
 			},(e,t,r)=>{
 				var n=r(2)
 				var o=0
@@ -261,7 +271,7 @@
 					}
 				}
 			},(e,t,r)=>{
-				function n(e,t,r,n,o,i,a){
+				n=(e,t,r,n,o,i,a)=>{
 					try{
 						var c=e[i](a)
 						var s=c.value
@@ -271,25 +281,22 @@
 					}
 					c.done?t(s):Promise.resolve(s).then(n,o)
 				}
-				o=e=>{
-					return function(){
-						var t=this
-						var r=arguments
-						return new Promise((function(o,i){
-							var a=e.apply(t,r)
-							c=e=>void n(a,o,i,c,s,"next",e)
-							s=e=>void n(a,o,i,c,s,"throw",e)
-							c(undefined)
-						}))
-					}
+				o=e=>()=>{
+					var t=this
+					var r=arguments
+					return new Promise((o,i)=>{
+						var a=e.apply(t,r)
+						c=e=>void n(a,o,i,c,s,"next",e)
+						s=e=>void n(a,o,i,c,s,"throw",e)
+						c(undefined)
+					})
 				}
 				function i(e,t){
 					var r=Object.keys(e)
 					if(Object.getOwnPropertySymbols){
 						var n=Object.getOwnPropertySymbols(e)
-						t&&(n=n.filter(t=>{
-							return Object.getOwnPropertyDescriptor(e,t).enumerable
-						})),r.push.apply(r,n)
+						if(t)n=n.filter(t=>Object.getOwnPropertyDescriptor(e,t).enumerable)
+						r.push.apply(r,n)
 					}
 					return r
 				}
@@ -427,30 +434,30 @@
 							}
 						}))
 					}
-					var F=function(){
-						var e=o(regeneratorRuntime.mark((function e(t){
-							var r,n,o=arguments
-							return regeneratorRuntime.wrap(e=>{
-								for(;;)
-									switch(e.prev=e.next){
-										case 0:
-										return r=o.length>1&&undefined!==o[1]?o[1]:{},n=o.length>2?o[2]:undefined,e.t0=j,e.t1=f,e.t2=n,e.next=7,w(t)
-										case 7:
-										return e.t3=e.sent,e.t4=r,e.t5={
-											image:e.t3,options:e.t4
-										},e.t6={
-											id:e.t2,action:"recognize",payload:e.t5
-										},e.t7=(0,e.t1)(e.t6),e.abrupt("return",(0,e.t0)(e.t7))
-										case 13:
-										case"end":
-										return e.stop()
-									}
-							},e)
-						})))
-						return function(t){
-							return e.apply(this,arguments)
-						}
-					}()
+					var e=o(regeneratorRuntime.mark(e=t=>{
+						var r
+						var n
+						var o=arguments
+						return regeneratorRuntime.wrap(e=>{
+							for(;;)
+								switch(e.prev=e.next){
+									case 0:
+									return r=o.length>1&&undefined!==o[1]?o[1]:{},n=o.length>2?o[2]:undefined,e.t0=j,e.t1=f,e.t2=n,e.next=7,w(t)
+									case 7:
+									return e.t3=e.sent,e.t4=r,e.t5={
+										image:e.t3,options:e.t4
+									},e.t6={
+										id:e.t2,action:"recognize",payload:e.t5
+									},e.t7=(0,e.t1)(e.t6),e.abrupt("return",(0,e.t0)(e.t7))
+									case 13:
+									case"end":
+									return e.stop()
+								}
+						},e)
+					}))
+					function F(t){
+						return e.apply(this,arguments)
+					}
 					var M=function(){
 						var e=arguments.length>0&&undefined!==arguments[0]?arguments[0]:"Tesseract OCR Result"
 						var t=arguments.length>1&&undefined!==arguments[1]&&arguments[1]
@@ -462,24 +469,23 @@
 						}))
 					}
 					var U=function(){
-						var e=o(regeneratorRuntime.mark((function e(t,r){
+						var e=o(regeneratorRuntime.mark(e=(t,r)=>{
 							return regeneratorRuntime.wrap(e=>{
-								for(;;)
-									switch(e.prev=e.next){
-										case 0:
-										return e.t0=j,e.t1=f,e.t2=r,e.next=5,w(t)
-										case 5:
-										return e.t3=e.sent,e.t4={
-											image:e.t3
-										},e.t5={
-											id:e.t2,action:"detect",payload:e.t4
-										},e.t6=(0,e.t1)(e.t5),e.abrupt("return",(0,e.t0)(e.t6))
-										case 10:
-										case"end":
-										return e.stop()
-									}
+								for(;;)switch(e.prev=e.next){
+									case 0:
+									return e.t0=j,e.t1=f,e.t2=r,e.next=5,w(t)
+									case 5:
+									return e.t3=e.sent,e.t4={
+										image:e.t3
+									},e.t5={
+										id:e.t2,action:"detect",payload:e.t4
+									},e.t6=(0,e.t1)(e.t5),e.abrupt("return",(0,e.t0)(e.t6))
+									case 10:
+									case"end":
+									return e.stop()
+								}
 							},e)
-						})))
+						}))
 						return function(t,r){
 							return e.apply(this,arguments)
 						}
@@ -508,7 +514,7 @@
 						var c=e.action
 						var s=e.data
 						if("resolve"===o){
-							p("[".concat(t,"]:Complete"+r))
+							p("["+t+"]:Complete"+r)
 							var u=s
 							"recognize"===c?u=l(s):"getPDF"===c&&(u=Array.from(a({},s,{
 								length:Object.keys(s).length
@@ -1179,48 +1185,54 @@
 					var f=function(){
 						return Object.keys(t).length
 					}
-					var p=function(){
-						if(0!==i.length)
-							for(var e=Object.keys(t),n=0;n<e.length;n+=1)
-								if(undefined===r[e[n]]){
-									i[0](t[e[n]])
-									break
-								}
+					var p=()=>{
+						if(0!==i.length)for(var e=Object.keys(t),n=0;n<e.length;n+=1)if(undefined===r[e[n]]){
+							i[0](t[e[n]])
+							break
+						}
 					}
-					var d=function(t,u){
-						return new Promise((function(l,f){
+					var d=(t,u)=>{
+						return new Promise((l,f)=>{
 							var d=c({
 								action:t,payload:u
 							})
-							i.push(function(){
-								var e=a(regeneratorRuntime.mark((function e(a){
-									return regeneratorRuntime.wrap((function(e){
-										for(;;)
-											switch(e.prev=e.next){
-												case 0:
-												return i.shift(),r[a.id]=d,e.prev=2,e.t0=l,e.next=6,a[t].apply(n,[].concat(o(u),[d.id]))
-												case 6:
-												e.t1=e.sent,(0,e.t0)(e.t1),e.next=13
-												break
-												case 10:
-												e.prev=10,e.t2=e.catch(2),f(e.t2)
-												case 13:
-												return e.prev=13,delete r[a.id],p(),e.finish(13)
-												case 17:
-												case"end":
-												return e.stop()
-											}
-									}),e,null,[[2,10,13,17]])
-								})))
-								return function(t){
-									return e.apply(this,arguments)
+							var e=a(regeneratorRuntime.mark(e=a=>regeneratorRuntime.wrap(e=>{
+								for(;;)switch(e.prev=e.next){
+									case 0:
+									i.shift()
+									r[a.id]=d
+									e.prev=2
+									e.t0=l
+									e.next=6
+									return a[t].apply(n,[].concat(o(u),[d.id]))
+									case 6:
+									e.t1=e.sent
+									e.t0(e.t1)
+									e.next=13
+									break
+									case 10:
+									e.prev=10
+									e.t2=e.catch(2)
+									f(e.t2)
+									case 13:
+									e.prev=13
+									delete r[a.id]
+									p()
+									return e.finish(13)
+									case 17:
+									case"end":
+									return e.stop()
 								}
-							}()),s("[".concat(e,"]:Add"+d.id,"to JobQueue")),s("[".concat(e,"]:JobQueue length="+i.length)),p()
-						}))
+							},e,null,[[2,10,13,17]])))
+							i.push(t=>e.apply(this,arguments))
+							s("["+e+"]:Add"+d.id+"to JobQueue")
+							s("["+e+"]:JobQueue length="+i.length)
+							p()
+						})
 					}
 					return{
 						addWorker:function(r){
-							return t[r.id]=r,s("[".concat(e+"]:Add"+r.id)),s("["+(e+"]:Number of workers="+f())),p(),r.id
+							return t[r.id]=r,s("["+e+"]:Add"+r.id),s("["+(e+"]:Number of workers="+f())),p(),r.id
 						},addJob:function(){
 							var t=a(regeneratorRuntime.mark((function t(r){
 								var n,o,i,a=arguments
@@ -1232,7 +1244,7 @@
 												t.next=2
 												break
 											}
-											throw Error("[".concat(e,"]:You need to have at least one worker before adding jobs"))
+											throw Error("["+e+"]:You need to have at least one worker before adding jobs")
 											case 2:
 											for(n=a.length,o=new Array(n>1?n-1:0),i=1;i<n;i++)
 												o[i-1]=a[i]
@@ -1456,7 +1468,7 @@
 						}
 						return e
 					}({},l,{
-						workerPath:undefined!==t&&"development"===t.env.TESS_ENV?a("/dist/worker.dev.js?nocache=".concat(Math.random().toString(36).slice(3))):"https://unpkg.com/tesseract.js@v"+s+"/dist/worker.min.js",corePath:"https://unpkg.com/tesseract.js-core@v"+u["tesseract.js-core"].substring(1)+"/tesseract-core."+("object"===("undefined"==typeof WebAssembly?"undefined":n(WebAssembly))?"wasm":"asm")+".js"
+						workerPath:undefined!==t&&"development"===t.env.TESS_ENV?a("/dist/worker.dev.js?nocache="+Math.random().toString(36).slice(3)):"https://unpkg.com/tesseract.js@v"+s+"/dist/worker.min.js",corePath:"https://unpkg.com/tesseract.js-core@v"+u["tesseract.js-core"].substring(1)+"/tesseract-core."+("object"===("undefined"==typeof WebAssembly?"undefined":n(WebAssembly))?"wasm":"asm")+".js"
 					})
 				}).call(this,r(4))
 			},function(e){
@@ -1842,71 +1854,98 @@
 							L:"Landscape",P:"Portrait",S:"Square"
 						}
 					},t.getText=e=>{
-						var t=this.get(e)
-						var r=this.map[e]
-						var n=this.stringValues[r]
+						t=this.get(e)
+						r=this.map[e]
+						n=this.stringValues[r]
 						return n?n[t]:String(t)
 					},t.getAll=function(){
-						var e,t,r={}
+						var e
+						var t
+						r={}
 						for(e in this)Object.prototype.hasOwnProperty.call(this,e)&&(t=this.tags[e])&&(r[t]=this.getText(t))
 						return r
 					},t.getName=e=>this.tags[e],function(){
 						var e
-						var r=t.tags
-						var n=t.map||{}
+						r=t.tags
+						n=t.map||{}
 						for(e in r)if(Object.prototype.hasOwnProperty.call(r,e))n[r[e]]=Number(e)
 					}()
 				}
 				i="function"==typeof(n)?n.apply(t,o):n
-				undefined===i||(e.exports=i)
+				if(undefined!==i)e.exports=i
 			},(e,t,r)=>{
 				var n,o,i
 				o=[r(0),r(9),r(1)],undefined===(i="function"==typeof(n=e=>{
-					var t=e.hasCanvasOption
-					var r=e.hasMetaOption
-					var n=e.transformCoordinates
-					var o=e.getTransformedOptions
-					i=document.createElement("img"),i.onload=function(){
-						e.orientation=1===i.width&&2===i.height
-					},i.src="data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/xABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q==",e.hasCanvasOption=r=>{
+					t=e.hasCanvasOption
+					r=e.hasMetaOption
+					n=e.transformCoordinates
+					o=e.getTransformedOptions
+					i=document.createElement("img")
+					i.onload=()=>{
+						if(e.orientation=1===i.width)2===i.height
+					}
+					i.src="data:image/jpeg;base64,/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/2wCEAAEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAf/AABEIAAEAAgMBEQACEQEDEQH/xABKAAEAAAAAAAAAAAAAAAAAAAALEAEAAAAAAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAAAAAAEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwA/8H//2Q=="
+					e.hasCanvasOption=r=>{
 						return!0==!!r.orientation&&!e.orientation||r.orientation>1&&r.orientation<9||t.call(e,r)
-					},e.hasMetaOption=t=>{
+					}
+					e.hasMetaOption=t=>{
 						return t&&!0===t.orientation&&!e.orientation||r.call(e,t)
-					},e.transformCoordinates=(t,r)=>{
+					}
+					e.transformCoordinates=(t,r)=>{
 						n.call(e,t,r)
-						var o=t.getContext("2d")
-						var i=t.width
-						var a=t.height
-						var c=t.style.width
-						var s=t.style.height
-						var u=r.orientation
-						if(u>1&&u<9)switch(u>4&&(t.width=a,t.height=i,t.style.width=s,t.style.height=c),u){
-							case 2:
-							o.translate(i,0),o.scale(-1,1)
-							break
-							case 3:
-							o.translate(i,a),o.rotate(Math.PI)
-							break
-							case 4:
-							o.translate(0,a),o.scale(1,-1)
-							break
-							case 5:
-							o.rotate(.5*Math.PI),o.scale(1,-1)
-							break
-							case 6:
-							o.rotate(.5*Math.PI),o.translate(0,-a)
-							break
-							case 7:
-							o.rotate(.5*Math.PI),o.translate(i,-a),o.scale(-1,1)
-							break
-							case 8:
-							o.rotate(-.5*Math.PI),o.translate(-i,0)
+						o=t.getContext("2d")
+						i=t.width
+						a=t.height
+						c=t.style.width
+						s=t.style.height
+						u=r.orientation
+						if(u>1&&u<9){
+							if(u>4){
+								t.width=a
+								t.height=i
+								t.style.width=s
+								t.style.height=c
+							}
+							switch(u){
+								case 2:
+								o.translate(i,0)
+								o.scale(-1,1)
+								break
+								case 3:
+								o.translate(i,a)
+								o.rotate(Math.PI)
+								break
+								case 4:
+								o.translate(0,a)
+								o.scale(1,-1)
+								break
+								case 5:
+								o.rotate(.5*Math.PI)
+								o.scale(1,-1)
+								break
+								case 6:
+								o.rotate(.5*Math.PI)
+								o.translate(0,-a)
+								break
+								case 7:
+								o.rotate(.5*Math.PI)
+								o.translate(i,-a)
+								o.scale(-1,1)
+								break
+								case 8:
+								o.rotate(-.5*Math.PI)
+								o.translate(-i,0)
+							}
 						}
-					},e.getTransformedOptions=function(t,r,n){
-						var i,a,c=o.call(e,t,r),s=c.orientation
+					}
+					e.getTransformedOptions=(t,r,n)=>{
+						var i
+						var a
+						c=o.call(e,t,r)
+						var s=c.orientation
 						if(!0===s){
 							if(e.orientation)return c
-							s=n&&n.exif&&n.exif.get("Orientation")
+							if(s=n&&n.exif)n.exif.get("Orientation")
 						}
 						if(!(s>1&&s<9))return c
 						for(a in i={},c)Object.prototype.hasOwnProperty.call(c,a)&&(i[a]=c[a])
