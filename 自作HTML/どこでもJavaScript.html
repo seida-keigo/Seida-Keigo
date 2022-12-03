@@ -16,7 +16,7 @@
 		<button>実行</button>
 		<script>
 			console.assert=(truth,...items)=>{
-				if(truth) return
+				if(truth) return;
 				let p=document.createElement("p");
 				p.innerText="アサーションに失敗しました。"+items.map(x=>JSON.stringify(x)).join(" ");
 				p.style="color:#f00;";
@@ -47,7 +47,7 @@
 				document.body.appendChild(p);
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
-				let event
+				let event;
 				try{
 					eval(document.querySelectorAll("textarea")[0].value);
 				}

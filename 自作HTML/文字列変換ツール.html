@@ -18,7 +18,7 @@
 		<button disabled>変換後の文字列をコピー</button>
 		<script>
 			for(let $ of[0,1]) document.querySelectorAll("textarea")[$].oninput=()=>{
-				let event=0[0]
+				let event;
 				if(document.querySelectorAll("textarea")[1].value){
 					let $=document.querySelectorAll("textarea")[0].value;
 					try{
