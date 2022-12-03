@@ -272,18 +272,14 @@
 						}
 						c.done?t(s):Promise.resolve(s).then(n,o)
 					}
-					function o(e){
+					o=e=>{
 						return function(){
 							var t=this
 							var r=arguments
 							return new Promise((function(o,i){
 								var a=e.apply(t,r)
-								function c(e){
-									n(a,o,i,c,s,"next",e)
-								}
-								function s(e){
-									n(a,o,i,c,s,"throw",e)
-								}
+								c=e=>void n(a,o,i,c,s,"next",e)
+								s=e=>void n(a,o,i,c,s,"throw",e)
 								c(undefined)
 							}))
 						}
@@ -368,8 +364,11 @@
 							var r=e.id
 							var n=e.action
 							var o=e.payload
-							return new Promise(function(e,i){
-								p("[".concat(t,"]:Start"+r,",action="+n)),E(n,e),P(n,i),A(x,{
+							return new Promise((e,i)=>{
+								p("["+t+"]:Start"+r+",action="+n)
+								E(n,e)
+								P(n,i)
+								A(x,{
 									workerId:t,jobId:r,action:n,payload:o
 								})
 							})
@@ -1423,15 +1422,10 @@
 						defaultOptions:n,spawnWorker:o,terminateWorker:i,onMessage:a,send:c,loadImage:s
 					}
 				},(e,t,r)=>{
-					(t=>{
-						function n(e){
-							return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?e=>{
-								return typeof e
-							}
-							:e=>{
-								return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e
-							})(e)
-						}
+					;(t=>{
+						n=e=>(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?e=>typeof e:e=>{
+							return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e
+						})(e)
 						function o(e,t){
 							var r=Object.keys(e)
 							if(Object.getOwnPropertySymbols){
@@ -1442,7 +1436,7 @@
 							}
 							return r
 						}
-						function i(e,t,r){
+						i=(e,t,r)=>{
 							return t in e?Object.defineProperty(e,t,{
 								value:r,enumerable:!0,configurable:!0,writable:!0
 							}):e[t]=r,e
@@ -1511,19 +1505,18 @@
 					e.exports=function(){
 						var e,t=(e=regeneratorRuntime.mark((function e(t,r){
 							return regeneratorRuntime.wrap(e=>{
-								for(;;)
-									switch(e.prev=e.next){
-										case 0:
-										t.postMessage(r)
-										case 1:
-										case"end":
-										return e.stop()
-									}
+								for(;;)switch(e.prev=e.next){
+									case 0:
+									t.postMessage(r)
+									case 1:
+									case"end":
+									return e.stop()
+								}
 							},e)
 						})),function(){
 							var t=this
 							var n=arguments
-							return new Promise((function(o,i){
+							return new Promise((o,i)=>{
 								var a=e.apply(t,n)
 								function c(e){
 									r(a,o,i,c,s,"next",e)
@@ -1532,7 +1525,7 @@
 									r(a,o,i,c,s,"throw",e)
 								}
 								c(undefined)
-							}))
+							})
 						})
 						return function(e,r){
 							return t.apply(this,arguments)
@@ -1574,7 +1567,7 @@
 								t(n.result)
 							},n.onerror=e=>{
 								var t=e.target.error.code
-								r(Error("File could not be read!Code=".concat(t)))
+								r(Error("File could not be read!Code="+t))
 							},n.readAsArrayBuffer(e)
 						}))
 					}
@@ -2035,17 +2028,22 @@
 							return regeneratorRuntime.wrap(e=>{
 								for(;;)switch(e.prev=e.next){
 									case 0:
-									return n=i(r),e.next=3,n.load()
+									n=i(r)
+									e.next=3
+									return n.load()
 									case 3:
-									return e.next=5,n.loadLanguage("osd")
+									e.next=5
+									return n.loadLanguage("osd")
 									case 5:
-									return e.next=7,n.initialize("osd")
+									e.next=7
+									return n.initialize("osd")
 									case 7:
 									return e.abrupt("return",n.detect(t).finally(o(regeneratorRuntime.mark(e=()=>{
 										return regeneratorRuntime.wrap(e=>{
 											for(;;)switch(e.prev=e.next){
 												case 0:
-												return e.next=2,n.terminate()
+												e.next=2
+												return n.terminate()
 												case 2:
 												case"end":
 												return e.stop()
