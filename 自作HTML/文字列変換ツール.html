@@ -43,8 +43,8 @@
 			document.querySelectorAll("button")[0].onclick=()=>{
 				document.querySelectorAll("textarea")[2].select();
 				document.execCommand("copy");
-				document.querySelectorAll("button")[0].setAttribute("disabled","");
-				document.querySelectorAll("button")[0].innerText="コピー済み";
+				event.target.setAttribute("disabled","");
+				event.target.innerText="コピー済み";
 			}
 		</script>
 	</body>
