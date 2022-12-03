@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="style.css"rel="stylesheet">
+		<link href="style.css" rel="stylesheet">
 		<meta charset="utf-8">
-		<meta name="viewport"content="width=device-width,initial-scale=1">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<style>
 			textarea{
 				height:calc(16em + 128px);
@@ -12,22 +12,22 @@
 		<title>文字認識ツール</title>
 	</head>
 	<body>
-		<input id="fileInput"type="file">
-		<textarea id="result"placeholder="読み取り結果"readonly></textarea>
+		<input id="fileInput" type="file">
+		<textarea id="result" placeholder="読み取り結果" readonly></textarea>
 		<script src="https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
 		<script>
-			window.Tesseract||alert("Tesseract.jsの読み込みに失敗しました。")
+			window.Tesseract||alert("Tesseract.jsの読み込みに失敗しました。");
 			fileInput.onchange=()=>{
-				let reader=new FileReader()
-				reader.readAsDataURL(event.target.files[0])
+				let reader=new FileReader();
+				reader.readAsDataURL(event.target.files[0]);
 				reader.onload=()=>{
-					result.placeholder="読み取り中..."
-					result.value=""
+					result.placeholder="読み取り中...";
+					result.value="";
 					Tesseract.recognize(reader.result,prompt("言語を入力してください。","jpn+eng")).then($=>{
-						result.value=$.data.text.replace(/ /g,"")
-						result.placeholder="読み取り結果"
-					})
+						result.value=$.data.text.replace(/ /g,"");
+						result.placeholder="読み取り結果";
+					});
 				}
 			}
 		</script>
