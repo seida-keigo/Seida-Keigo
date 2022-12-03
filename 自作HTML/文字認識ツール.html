@@ -12,15 +12,15 @@
 		<title>文字認識ツール</title>
 	</head>
 	<body>
-		<input id="fileSelector" type="file">
+		<input id="fileInput" type="file">
 		<textarea id="result" placeholder="読み取り結果"></textarea>
 		<script src="https://unpkg.com/tesseract.js@v2.1.5/dist/tesseract.min.js">
 		</script>
 		<script>
 			window.Tesseract||alert("Tesseract.jsの読み込みに失敗しました。")
-			fileSelector.onchange=()=>{
+			fileInput.onchange=()=>{
 				let reader=new FileReader()
-				reader.readAsDataURL(fileSelector.files[0])
+				reader.readAsDataURL(event.target.files[0])
 				reader.onload=()=>{
 					result.placeholder="読み取り中..."
 					result.value=""

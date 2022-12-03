@@ -16,46 +16,46 @@
 		<button>実行</button>
 		<script>
 			console.assert=(truth,...items)=>{
-				if(!truth){
-					let newP=document.createElement("p");
-					newP.innerText="アサーションに失敗しました。"+items.map(x=>JSON.stringify(x)).join(" ");
-					newP.style="color:#f00;";
-					document.body.appendChild(newP);
-				}
+				if(truth) return
+				let p=document.createElement("p");
+				p.innerText="アサーションに失敗しました。"+items.map(x=>JSON.stringify(x)).join(" ");
+				p.style="color:#f00;";
+				document.body.appendChild(p);
 			}
 			console.clear=()=>{
 				for(let p of document.querySelectorAll("p")) p.remove();
-				let newP=document.createElement("p");
-				newP.innerText="コンソールをクリアしました。";
-				newP.style="font-style:italic;";
-				document.body.appendChild(newP);
+				let p=document.createElement("p");
+				p.innerText="コンソールをクリアしました。";
+				p.style="font-style:italic;";
+				document.body.appendChild(p);
 			}
 			console.error=(...items)=>{
-				let newP=document.createElement("p");
-				newP.innerText=items.map(x=>JSON.stringify(x)).join(" ");
-				newP.style="color:#f00;";
-				document.body.appendChild(newP);
+				let p=document.createElement("p");
+				p.innerText=items.map(x=>JSON.stringify(x)).join(" ");
+				p.style="color:#f00;";
+				document.body.appendChild(p);
 			}
 			console.log=console.info=(...items)=>{
-				let newP=document.createElement("p");
-				newP.innerText=items.map(x=>JSON.stringify(x)).join(" ");
-				document.body.appendChild(newP);
+				let p=document.createElement("p");
+				p.innerText=items.map(x=>JSON.stringify(x)).join(" ");
+				document.body.appendChild(p);
 			}
 			console.warn=(...items)=>{
-				let newP=document.createElement("p");
-				newP.innerText=items.map(x=>JSON.stringify(x)).join(" ");
-				newP.style="color:#ff0;";
-				document.body.appendChild(newP);
+				let p=document.createElement("p");
+				p.innerText=items.map(x=>JSON.stringify(x)).join(" ");
+				p.style="color:#ff0;";
+				document.body.appendChild(p);
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
+				let event=0[0]
 				try{
 					eval(document.querySelectorAll("textarea")[0].value);
 				}
 				catch(error){
-					let newP=document.createElement("p");
-					newP.innerText=error;
-					newP.style="color:#f00;";
-					document.body.appendChild(newP);
+					let p=document.createElement("p");
+					p.innerText=error;
+					p.style="color:#f00;";
+					document.body.appendChild(p);
 				}
 			}
 		</script>
