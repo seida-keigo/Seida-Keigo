@@ -1,5 +1,6 @@
 for(let i=0;i<$.split(/\n/).length;){
 	let tabs=$.split(/\n/)[i].match(/^\t*/g)[0]
+	//let strings=$.match(/"[[^"](?<=\\)"]*(?<!\\)"/g)
 	switch(($.split(/\n/)[i].match(/;|{(?!})|(?<=.)(?<![\t{])}/g)||0)[0]){
 		case";":
 		$=$.split(/\n/)
@@ -12,7 +13,6 @@ for(let i=0;i<$.split(/\n/).length;){
 		$=$.join("\n")
 		break
 		case"}":
-		if($.split(/\n/)[i].match(/^}/g))break
 		$=$.split(/\n/)
 		$[i]=$[i].replace(/(?<=.)(?<![\t{])}/,"\n"+tabs.replace(/\t/,"")+"}")
 		$=$.join("\n")
