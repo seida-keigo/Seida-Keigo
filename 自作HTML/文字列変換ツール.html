@@ -5,16 +5,16 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<style>
-			.text{
-				height:calc(6em + 48px);
+			textarea{
+				height:calc(5em + 40px);
 			}
 		</style>
 		<title>文字列変換ツール</title>
 	</head>
 	<body>
-		<textarea class="text" placeholder="変換前の文字列 ($に代入)"></textarea>
+		<textarea placeholder="変換前の文字列 ($に代入)"></textarea>
 		<textarea placeholder="$を変換するJavaScript式 (例: $.toUpperCase())"></textarea>
-		<textarea class="text" placeholder="空文字列" readonly style="color:#f00;">値なし</textarea>
+		<textarea placeholder="空文字列" readonly style="color:#f00;">値なし</textarea>
 		<button disabled>変換後の文字列をコピー</button>
 		<script>
 			for(let $ of[0,1]) document.querySelectorAll("textarea")[$].oninput=()=>{
