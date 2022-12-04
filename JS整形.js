@@ -1,6 +1,6 @@
-for(let i=0;i<$.split(/\n/).length;++i){
+for(let i=0;i<$.split(/\n/).length;){
 	let tabs=$.split(/\n/)[i].match(/^\t*/g)[0]
-	switch(($.split(/\n/)[i].match(/;|{|}/g)||0)[0]){
+	switch(($.split(/\n/)[i].match(/;|{(?!})|(?<!{)}/g)||0)[0]){
 		case";":
 		$=$.split(/\n/)
 		$[i]=$[i].replace(/;/,";\n"+tabs)
@@ -15,10 +15,11 @@ for(let i=0;i<$.split(/\n/).length;++i){
 		if(!$.split(/\n/)[i].match(/^}/g))
 		if(!$.split(/\n/)[i].match(/\t}/g)){
 			$=$.split(/\n/)
-			$[i]=$[i].replace(/}/,"\n"+tabs.replace(/\t$/,"")+"}")
+			$[i]=$[i].replace(/}/,tabs.replace(/\t/,"")+"}")
 			$=$.join("\n")
 		}
 	}
+	++i
 }
 $
 
