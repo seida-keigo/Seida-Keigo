@@ -1,6 +1,6 @@
 for(let i=0;i<$.split(/\n/).length;){
 	let tabs=$.split(/\n/)[i].match(/^\t*/g)[0]
-	switch(($.split(/\n/)[i].match(/;|{(?!})|(?<!{)}/g)||0)[0]){
+	switch(($.split(/\n/)[i].match(/;|{(?!})|(?<![\t{])}/g)||0)[0]){
 		case";":
 		$=$.split(/\n/)
 		$[i]=$[i].replace(/;/,";\n"+tabs)
@@ -8,14 +8,13 @@ for(let i=0;i<$.split(/\n/).length;){
 		break
 		case"{":
 		$=$.split(/\n/)
-		$[i]=$[i].replace(/{/,"{\n\t"+tabs)
+		$[i]=$[i].replace(/{(?!})/,"{\n\t"+tabs)
 		$=$.join("\n")
 		break
 		case"}":
-		if(!$.split(/\n/)[i].match(/^}/g))
-		if(!$.split(/\n/)[i].match(/\t}/g)){
+		if(!$.split(/\n/)[i].match(/^}/g)){
 			$=$.split(/\n/)
-			$[i]=$[i].replace(/}/,tabs.replace(/\t/,"")+"}")
+			$[i]=$[i].replace(/(?<!\t)(?<!{)}/,"\n"+tabs.replace(/\t/,"")+"}")
 			$=$.join("\n")
 		}
 	}
