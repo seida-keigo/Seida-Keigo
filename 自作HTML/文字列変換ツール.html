@@ -18,24 +18,27 @@
 		<button disabled>変換後の文字列をコピー</button>
 		<script>
 			for(let $ of[0,1]) document.querySelectorAll("textarea")[$].oninput=()=>{
-				let event;
 				if(document.querySelectorAll("textarea")[1].value){
 					let $=document.querySelectorAll("textarea")[0].value;
 					try{
+						let event;
 						$=eval(document.querySelectorAll("textarea")[1].value);
-						document.querySelectorAll("textarea")[2].style=typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;";
-						document.querySelectorAll("textarea")[2].value=$;
+						Object.assign(document.querySelectorAll("textarea")[2],{
+							style:typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;",value:$
+						});
 						document.querySelectorAll("button")[0][$&&typeof $=="string"?"removeAttribute":"setAttribute"]("disabled","");
 					}
 					catch(error){
-						document.querySelectorAll("textarea")[2].style="color:#f00;";
-						document.querySelectorAll("textarea")[2].value=error;
+						Object.assign(document.querySelectorAll("textarea")[2],{
+							style:"color:#f00;",value:error
+						});
 						document.querySelectorAll("button")[0].setAttribute("disabled","");
 					}
 				}
 				else{
-					document.querySelectorAll("textarea")[2].style="color:#f00;";
-					document.querySelectorAll("textarea")[2].value="値なし";
+					Object.assign(document.querySelectorAll("textarea")[2],{
+						style:"color:#f00;",value:"値なし"
+					});
 					document.querySelectorAll("button")[0].setAttribute("disabled","");
 				}
 				document.querySelectorAll("button")[0].innerText="変換後の文字列をコピー";
