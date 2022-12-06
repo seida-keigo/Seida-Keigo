@@ -1,14 +1,20 @@
+<link href=style.css rel=stylesheet>
 <meta charset=utf8>
 <meta name=viewport content=width=device-width>
+<style>
+	textarea{
+		height:calc(100% - 24px);height:calc(12em + 96px)
+	}
+</style>
 <title>音声認識ツール</title>
-<span></span>
+<textarea readonly></textarea>
 <script>
 Object.assign(new webkitSpeechRecognition(),{
 	continuous:true,interimResults:true,lang:"ja-JP",onend:()=>Object.assign(document.createElement("a"),{
-		download:new Date+" メモ.txt",href:URL.createObjectURL(new Blob([document.querySelectorAll("span")[0].innerText]))
+		download:(date=>date.getMonth()+"."+date.getDate()+" "+date.getHours()+":"+date.getMinutes())(new Date())+" メモ.txt",href:URL.createObjectURL(new Blob([document.querySelectorAll("span")[0].innerText]))
 	}).click(),onresult:()=>{
 		try{
-			document.querySelectorAll("span")[0].innerText=[...event.results].map($=>"　"+$[0].transcript).join("\n")
+			document.querySelectorAll("textarea")[0].value=[...event.results].map($=>"　"+$[0].transcript).join("\n")
 			//"("+[...$].map($=>$.transcript).join("|")+")"
 			//scroll(0,document.documentElement.scrollHeight-document.documentElement.clientHeight)
 		}

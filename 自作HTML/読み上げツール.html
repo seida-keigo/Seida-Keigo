@@ -17,10 +17,10 @@
 		<script>
 			speechSynthesis.cancel(window.speech);
 			readButton.onclick=()=>{
-				let utterance=new SpeechSynthesisUtterance(text.value);
-				utterance.rate=navigator.userAgent.includes("Windows NT")?2:1.125;
 				speechSynthesis.cancel(window.speech);
-				let speech=speechSynthesis.speak(utterance);
+				let speech=speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(text.value),{
+					rate:navigator.userAgent.includes("Windows NT")?2:1.125
+				}));
 			}
 		</script>
 	</body>
