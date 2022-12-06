@@ -17,6 +17,12 @@
 		<script>
 			console.assert=(truth,...items)=>{
 				if(truth) return;
+				
+				document.body.appendChild(Object.assign(document.createElement("p"),{
+					innerText:"アサーションに失敗しました。"+items.map(x=>JSON.stringify(x)).join(" "),style:"color:#f00;"
+				}))
+				
+				return;
 				let p=document.createElement("p");
 				p.innerText="アサーションに失敗しました。"+items.map(x=>JSON.stringify(x)).join(" ");
 				p.style="color:#f00;";
@@ -24,6 +30,12 @@
 			}
 			console.clear=()=>{
 				for(let p of document.querySelectorAll("p")) p.remove();
+				
+				document.body.appendChild(Object.assign(document.createElement("p"),{
+					innerText:"コンソールをクリアしました。",style:"font-style:italic;"
+				}))
+				
+				return;
 				let p=document.createElement("p");
 				p.innerText="コンソールをクリアしました。";
 				p.style="font-style:italic;";
