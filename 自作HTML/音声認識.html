@@ -3,17 +3,31 @@
 <span id=result></span>
 <script>
 const recognition=new webkitSpeechRecognition()
-recognition.continuous=true
+
+Object.assign(recognition,{
+	continuous:true,interimResults:true,lang:"ja-JP",onend:recognition.start,onresult:()=>{
+		try{
+			result.innerText=[...event.results].map($=>"　"+$[0].transcript).join("\n")
+			//"("+[...$].map($=>$.transcript).join("|")+")"
+			//scroll(0,document.documentElement.scrollHeight-document.documentElement.clientHeight)
+		}
+		catch(error){
+			console.error(error)
+		}
+	}
+})
+
+//recognition.continuous=true
 //recognition.grammars=
-recognition.interimResults=true
+//recognition.interimResults=true
 //recognition.maxAlternatives=
-recognition.lang="ja-JP"
+//recognition.lang="ja-JP"
 //recognition.onaudioend=
 //recognition.onaudiostart=
-recognition.onend=recognition.start//()=>event.preventDefault()
+//recognition.onend=recognition.start//()=>event.preventDefault()
 //recognition.onerror=
 //recognition.onnomatch=
-recognition.onresult=()=>{
+/*recognition.onresult=()=>{
 	try{
 		result.innerText=[...event.results].map($=>"　"+$[0].transcript).join("\n")
 		//"("+[...$].map($=>$.transcript).join("|")+")"
@@ -22,7 +36,7 @@ recognition.onresult=()=>{
 	catch(error){
 		console.error(error)
 	}
-}
+}*/
 //recognition.onsoundend=
 //recognition.onsoundstart=
 //recognition.onspeechend=
