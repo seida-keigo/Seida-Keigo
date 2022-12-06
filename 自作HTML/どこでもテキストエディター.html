@@ -27,12 +27,9 @@
 				}
 			}
 			fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","");
-			saveButton.onclick=()=>{
-				let a=document.createElement("a");
-				a.download=fileName.value;
-				a.href=URL.createObjectURL(new Blob([content.value]));
-				a.click();
-			}
+			saveButton.onclick=Object.assign(document.createElement("a"),{
+				download:fileName.value,href:URL.createObjectURL(new Blob([content.value]))
+			}).click;
 		</script>
 	</body>
 </html>
