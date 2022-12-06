@@ -2,9 +2,10 @@
 <title>音声認識</title>
 <span id=result></span>
 <script>
-const recognition=new webkitSpeechRecognition()
+	
+//const recognition=new webkitSpeechRecognition()
 
-Object.assign(recognition,{
+Object.assign(new webkitSpeechRecognition(),{
 	continuous:true,interimResults:true,lang:"ja-JP",onend:recognition.start,onresult:()=>{
 		try{
 			result.innerText=[...event.results].map($=>"　"+$[0].transcript).join("\n")
@@ -15,7 +16,7 @@ Object.assign(recognition,{
 			console.error(error)
 		}
 	}
-})
+}).start()
 
 //recognition.continuous=true
 //recognition.grammars=
@@ -42,5 +43,5 @@ Object.assign(recognition,{
 //recognition.onspeechend=
 //recognition.onspeechstart=
 //recognition.onstart=
-recognition.start()
+
 </script>
