@@ -1,0 +1,34 @@
+<meta charset=utf8>
+<title>音声認識</title>
+<span id=result></span>
+<script>
+const recognition=new webkitSpeechRecognition()
+recognition.continuous=true
+//recognition.grammars=
+recognition.interimResults=true
+//recognition.maxAlternatives=
+recognition.lang="ja-JP"
+//recognition.onaudioend=
+//recognition.onaudiostart=
+recognition.onend=()=>event.preventDefault()//recognition.start
+//recognition.onerror=
+//recognition.onnomatch=
+recognition.onresult=()=>{
+	try{
+		result.innerText=[...event.results].map($=>"　"+$[0].transcript).join("\n")
+		//"("+[...$].map($=>$.transcript).join("|")+")"
+		//scroll(0,document.documentElement.scrollHeight-document.documentElement.clientHeight)
+	}
+	catch(error){
+		console.error(error)
+	}
+}
+//recognition.onsoundend=
+//recognition.onsoundstart=
+//recognition.onspeechend=
+//recognition.onspeechstart=
+//recognition.onstart=
+recognition.start()
+
+//イベントチームのコメントを書く
+</script>
