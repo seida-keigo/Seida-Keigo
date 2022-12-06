@@ -6,7 +6,7 @@
 //const recognition=new webkitSpeechRecognition()
 
 Object.assign(new webkitSpeechRecognition(),{
-	continuous:true,interimResults:true,lang:"ja-JP",onend:recognition.start,onresult:()=>{
+	continuous:true,interimResults:true,lang:"ja-JP",onend:this.start,onresult:()=>{
 		try{
 			result.innerText=[...event.results].map($=>"　"+$[0].transcript).join("\n")
 			//"("+[...$].map($=>$.transcript).join("|")+")"
