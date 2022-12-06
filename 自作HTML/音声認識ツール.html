@@ -11,7 +11,7 @@
 <script>
 Object.assign(new webkitSpeechRecognition(),{
 	continuous:true,interimResults:true,lang:"ja-JP",onend:()=>Object.assign(document.createElement("a"),{
-		download:(date=>date.getMonth()+"."+date.getDate()+" "+date.getHours()+":"+date.getMinutes())(new Date())+" メモ.txt",href:URL.createObjectURL(new Blob([document.querySelectorAll("textarea")[0].value]))
+		download:(date=>date.getMonth()+"月"+date.getDate()+"日")(new Date())+" メモ.txt",href:URL.createObjectURL(new Blob([document.querySelectorAll("textarea")[0].value]))
 	}).click(),onresult:()=>{
 		try{
 			document.querySelectorAll("textarea")[0].value=[...event.results].map($=>"　"+$[0].transcript).join("\n")
