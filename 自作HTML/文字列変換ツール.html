@@ -19,9 +19,9 @@
 		<script>
 			for(let $ of[0,1]) document.querySelectorAll("textarea")[$].oninput=()=>{
 				if(document.querySelectorAll("textarea")[1].value){
-					let $=document.querySelectorAll("textarea")[0].value;
 					try{
 						let event;
+						let $=document.querySelectorAll("textarea")[0].value;
 						$=eval(document.querySelectorAll("textarea")[1].value);
 						Object.assign(document.querySelectorAll("textarea")[2],{
 							style:typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;",value:$

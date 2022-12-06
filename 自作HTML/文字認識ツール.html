@@ -20,12 +20,12 @@
 			window.Tesseract||alert("Tesseract.jsの読み込みに失敗しました。");
 			fileInput.onchange=()=>Object.assign(new FileReader(),{
 				onload:()=>{
-					result.placeholder="読み取り中...";
-					result.value="";
-					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then($=>{
-						result.value=$.data.text.replace(/ /g,"");
-						result.placeholder="読み取り結果";
+					Object.assign(result,{
+						placeholder:"読み取り中...",value:""
 					});
+					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then($=>Object.assign(result,{
+						value:$.data.text.replace(/ /g,""),placeholder:"読み取り結果"
+					}));
 				}
 			}).readAsDataURL(event.target.files[0]);
 		</script>
