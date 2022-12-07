@@ -23,8 +23,8 @@
 					Object.assign(result,{
 						placeholder:"読み取り中...",value:""
 					});
-					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then($=>Object.assign(result,{
-						value:$.data.text.replace(/ /g,""),placeholder:"読み取り結果"
+					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then(job=>Object.assign(result,{
+						value:job.data.text.replace(/ /g,""),placeholder:"読み取り結果"
 					}));
 				}
 			}).readAsDataURL(event.target.files[0]);

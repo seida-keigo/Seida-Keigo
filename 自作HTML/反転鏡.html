@@ -25,8 +25,8 @@
 		<script>
 			navigator.mediaDevices.getUserMedia({
 				video:1
-			}).then(object=>Object.assign(video,{
-				autoplay:false,muted:false,playsInline:true,srcObject:object
+			}).then(stream=>Object.assign(video,{
+				autoplay:false,muted:false,playsInline:true,srcObject:stream
 			}).play());
 		</script>
 	</body>
