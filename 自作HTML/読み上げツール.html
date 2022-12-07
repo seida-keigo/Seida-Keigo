@@ -15,10 +15,10 @@
 		<textarea id="text" placeholder="テキスト"></textarea>
 		<button id="readButton">読み上げ</button>
 		<script>
-			speechSynthesis.cancel(window.speech);
+			speechSynthesis.cancel();
 			readButton.onclick=()=>{
-				speechSynthesis.cancel(window.speech);
-				let speech=speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(text.value),{
+				speechSynthesis.cancel();
+				speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(text.value),{
 					rate:navigator.userAgent.includes("Windows NT")?2:1.125
 				}));
 			}
