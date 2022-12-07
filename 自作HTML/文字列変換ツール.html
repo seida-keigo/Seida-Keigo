@@ -26,28 +26,29 @@
 						Object.assign(document.querySelectorAll("textarea")[2],{
 							style:typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;",value:$
 						});
-						document.querySelectorAll("button")[0][$&&typeof $=="string"?"removeAttribute":"setAttribute"]("disabled","");
+						document.querySelectorAll("button")[0].disabled=!$||typeof $!="string";
 					}
 					catch(error){
 						Object.assign(document.querySelectorAll("textarea")[2],{
 							style:"color:#f00;",value:error
 						});
-						document.querySelectorAll("button")[0].setAttribute("disabled","");
+						document.querySelectorAll("button")[0].disabled=true;
 					}
 				}
 				else{
 					Object.assign(document.querySelectorAll("textarea")[2],{
 						style:"color:#f00;",value:"値なし"
 					});
-					document.querySelectorAll("button")[0].setAttribute("disabled","");
+					document.querySelectorAll("button")[0].disabled=true;
 				}
 				document.querySelectorAll("button")[0].innerText="変換後の文字列をコピー";
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
 				document.querySelectorAll("textarea")[2].select();
 				document.execCommand("copy");
-				event.target.setAttribute("disabled","");
-				event.target.innerText="コピー済み";
+				Object.assign(event.target,{
+					disabled:true,innerText:"コピー済み"
+				});
 			}
 		</script>
 	</body>

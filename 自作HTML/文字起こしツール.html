@@ -12,27 +12,6 @@
 Object.assign(new webkitSpeechRecognition(),{
 	continuous:true,interimResults:true,lang:"ja-JP",onend:()=>Object.assign(document.createElement("a"),{
 		download:(date=>date.getMonth()+"月"+date.getDate()+"日")(new Date())+" メモ.txt",href:URL.createObjectURL(new Blob([document.querySelectorAll("textarea")[0].value]))
-	}).click(),onresult:()=>{
-		try{
-			document.querySelectorAll("textarea")[0].value=[...event.results].map($=>"　"+$[0].transcript).join("\n")
-			//"("+[...$].map($=>$.transcript).join("|")+")"
-			//scroll(0,document.documentElement.scrollHeight-document.documentElement.clientHeight)
-		}
-		catch(error){
-			console.error(error)
-		}
-	}
+	}).click(),onresult:()=>document.querySelectorAll("textarea")[0].value=[...event.results].map($=>"　"+$[0].transcript).join("\n")
 }).start()
-//recognition.grammars=
-//recognition.maxAlternatives=
-//recognition.onaudioend=
-//recognition.onaudiostart=
-//recognition.onend=recognition.start//()=>event.preventDefault()
-//recognition.onerror=
-//recognition.onnomatch=
-//recognition.onsoundend=
-//recognition.onsoundstart=
-//recognition.onspeechend=
-//recognition.onspeechstart=
-//recognition.onstart=
 </script>

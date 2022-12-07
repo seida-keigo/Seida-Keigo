@@ -21,10 +21,10 @@
 				onload:()=>{
 					fileName.value=fileInput.files[0].name;
 					content.value=event.target.result;
-					saveButton.removeAttribute("disabled");
+					saveButton.disabled=true;
 				}
 			}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
-			fileName.oninput=()=>saveButton[fileName.value?"removeAttribute":"setAttribute"]("disabled","");
+			fileName.oninput=()=>saveButton.disabled=!event.target.value;
 			saveButton.onclick=()=>Object.assign(document.createElement("a"),{
 				download:fileName.value,href:URL.createObjectURL(new Blob([content.value]))
 			}).click();
