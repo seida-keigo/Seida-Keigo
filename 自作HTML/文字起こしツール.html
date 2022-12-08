@@ -1,17 +1,24 @@
-<link href=style.css rel=stylesheet>
-<meta charset=utf8>
-<meta name=viewport content=width=device-width>
-<style>
-	textarea{
-		height:calc(100% - 24px)
-	}
-</style>
-<title>文字起こしツール</title>
-<textarea readonly></textarea>
-<script>
-Object.assign(new webkitSpeechRecognition(),{
-	continuous:true,interimResults:true,lang:"ja-JP",onend:()=>Object.assign(document.createElement("a"),{
-		download:(date=>date.getMonth()+1+"月"+date.getDate())(new Date())+"日 メモ.txt",href:URL.createObjectURL(new Blob([document.querySelectorAll("textarea")[0].value]))
-	}).click(),onresult:()=>document.querySelectorAll("textarea")[0].value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
-}).start()
-</script>
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="style.css" rel="stylesheet">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<style>
+			textarea{
+				height:calc(100% - 24px);
+			}
+		</style>
+		<title>文字起こしツール</title>
+	</head>
+	<body>
+		<textarea id="text" readonly></textarea>
+		<script>
+			Object.assign(new webkitSpeechRecognition(),{
+				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>Object.assign(document.createElement("a"),{
+					download:(date=>date.getMonth()+1+"月"+date.getDate())(new Date())+"日 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
+				}).click(),onresult:()=>text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
+			}).start();
+		</script>
+	</body>
+</html>
