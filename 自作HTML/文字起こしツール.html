@@ -18,9 +18,12 @@
 		<textarea id="text" readonly></textarea>
 		<script>
 			Object.assign(new webkitSpeechRecognition(),{
-				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>Object.assign(document.createElement("a"),{
-					download:(date=>date.getMonth()+1+"月"+date.getDate())(new Date())+"日 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
-				}).click(),onresult:()=>text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
+				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
+					let date=new Date();
+					Object.assign(document.createElement("a"),{
+						download:date.getMonth()+1+"月"+date.getDate()+"日 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
+					}).click()
+				},onresult:()=>text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
 			}).start();
 		</script>
 	</body>
