@@ -27,9 +27,9 @@
 					if(!document.querySelectorAll("textarea")[1].value)throw"値なし";
 					$=eval(document.querySelectorAll("textarea")[1].value);
 					Object.assign(document.querySelectorAll("textarea")[2],{
-						style:typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;",value:$
+						style:$===""+$?"white-space:pre-wrap;":"font-style:italic;",value:$
 					});
-					document.querySelectorAll("button")[0].disabled=!$||typeof $!="string";
+					document.querySelectorAll("button")[0].disabled=!$||$!==""+$;
 				}
 				catch(error){
 					Object.assign(document.querySelectorAll("textarea")[2],{

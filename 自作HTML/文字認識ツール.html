@@ -26,7 +26,7 @@
 						placeholder:"読み取り中...",value:""
 					});
 					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then(job=>Object.assign(text,{
-						value:job.data.text.replace(/ /g,""),placeholder:"読み取り結果"
+						placeholder:"読み取り結果",value:job.data.text.replace(/ /g,"")
 					}));
 				}
 			}).readAsDataURL(event.target.files[0]);
