@@ -55,7 +55,7 @@ button,input[type="file"]{
 }
 input:not([type="file"]),textarea{
 	background:#333;
-	white-space:pre-wrap;
+	/*white-space:pre-wrap;*/
 }
 input[type="file"]{
 	font-size:0;
