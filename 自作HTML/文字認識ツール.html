@@ -22,7 +22,6 @@
 		<script>
 			fileInput.onchange=()=>Object.assign(new FileReader(),{
 				onload:()=>{
-					if(!window.Tesseract)return alert("Tesseract.jsの読み込みに失敗しました。");
 					Object.assign(result,{
 						placeholder:"読み取り中...",value:""
 					});
