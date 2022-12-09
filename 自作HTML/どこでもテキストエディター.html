@@ -9,28 +9,27 @@
 				height:calc(100% - 16px);
 			}
 			textarea{
-				height:calc(100% - 216px);
+				height:calc(100% - 152px);
 			}
 		</style>
 		<title>どこでもテキストエディター</title>
 	</head>
 	<body>
 		<input id="fileInput" type="file">
-		<input id="fileName" placeholder="ファイル名">
 		<textarea id="text" placeholder="テキスト"></textarea>
-		<button id="saveButton" disabled>保存</button>
+		<button id="saveButton">保存</button>
 		<script>
 			fileInput.onchange=()=>Object.assign(new FileReader(),{
 				onload:()=>{
-					fileName.value=fileInput.files[0].name;
 					text.value=event.target.result;
-					saveButton.disabled=true;
 				}
-			}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルした場合は、UTF-8として読み込みます。","sjis"));
-			fileName.oninput=()=>saveButton.disabled=!event.target.value;
-			saveButton.onclick=()=>Object.assign(document.createElement("a"),{
-				download:fileName.value,href:URL.createObjectURL(new Blob([text.value]))
-			}).click();
+			}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
+			saveButton.onclick=()=>{
+				let fileName=prompt("ファイル名を入力してください。",(fileInput.files[0]||{}).name);
+				if(fileName) Object.assign(document.createElement("a"),{
+					download:fileName,href:URL.createObjectURL(new Blob([text.value]))
+				}).click();
+			}
 		</script>
 	</body>
 </html>

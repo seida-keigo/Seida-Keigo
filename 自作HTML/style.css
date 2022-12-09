@@ -21,6 +21,9 @@
 ::placeholder{
 	color:#bbb;
 }
+::-webkit-scrollbar{
+	display:none;
+}
 body{
 	background:#000;
 	color:#fff;
@@ -55,7 +58,6 @@ button,input[type="file"]{
 }
 input:not([type="file"]),textarea{
 	background:#333;
-	/*white-space:pre-wrap;*/
 }
 input[type="file"]{
 	font-size:0;

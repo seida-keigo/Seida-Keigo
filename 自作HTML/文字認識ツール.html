@@ -16,16 +16,16 @@
 	</head>
 	<body>
 		<input id="fileInput" type="file">
-		<textarea id="result" placeholder="読み取り結果" readonly></textarea>
+		<textarea id="text" placeholder="読み取り結果" readonly></textarea>
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
 			fileInput.onchange=()=>Object.assign(new FileReader(),{
 				onload:()=>{
-					Object.assign(result,{
+					Object.assign(text,{
 						placeholder:"読み取り中...",value:""
 					});
-					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then(job=>Object.assign(result,{
+					Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then(job=>Object.assign(text,{
 						value:job.data.text.replace(/ /g,""),placeholder:"読み取り結果"
 					}));
 				}
