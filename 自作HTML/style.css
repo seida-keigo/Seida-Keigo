@@ -73,3 +73,6 @@ p::after{
 p::before{
 	margin-bottom:-4px;
 }
+textarea{
+	min-height:calc(1em + 8px);
+}
