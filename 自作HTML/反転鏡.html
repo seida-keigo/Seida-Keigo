@@ -19,13 +19,13 @@
 		<title>反転鏡</title>
 	</head>
 	<body>
-		<video id="video">
+		<video id="video" playsinline>
 		</video>
 		<script>
 			navigator.mediaDevices.getUserMedia({
 				video:1
 			}).then(stream=>Object.assign(video,{
-				autoplay:false,muted:false,playsInline:true,srcObject:stream
+				autoplay:false,muted:false,srcObject:stream
 			}).play());
 		</script>
 	</body>
