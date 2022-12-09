@@ -20,9 +20,9 @@
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
-			window.Tesseract||alert("Tesseract.jsの読み込みに失敗しました。");
 			fileInput.onchange=()=>Object.assign(new FileReader(),{
 				onload:()=>{
+					if(!window.Tesseract)return alert("Tesseract.jsの読み込みに失敗しました。");
 					Object.assign(result,{
 						placeholder:"読み取り中...",value:""
 					});
