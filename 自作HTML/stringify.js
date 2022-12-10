@@ -6,6 +6,7 @@ let stringify=item=>{
 	if(item===null)return"null";
 	if(typeof item=="object"||typeof item=="symbol")switch(item.constructor.name){
 		case"Array":
+		if(!Object.keys(item).length)return"[]";
 		return"Object.assign([],{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"})";
 		case"Object":
 		return"{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"}";
