@@ -29,9 +29,9 @@
 					if(!document.querySelectorAll("textarea")[1].value)throw"値なし";
 					$=eval(document.querySelectorAll("textarea")[1].value);
 					Object.assign(document.querySelectorAll("textarea")[2],{
-						style:$===""+$?"white-space:pre-wrap;":"font-style:italic;",value:$===""+$?$:stringify($)
+						style:typeof $=="string"?"white-space:pre-wrap;":"font-style:italic;",value:typeof $=="string"?$:stringify($)
 					});
-					document.querySelectorAll("button")[0].disabled=!$||$!==""+$;
+					document.querySelectorAll("button")[0].disabled=!$||typeof $!="string";
 				}
 				catch(error){
 					Object.assign(document.querySelectorAll("textarea")[2],{
