@@ -8,6 +8,6 @@ let stringify=item=>{
 	//if(item.constructor.name=="Object")return"{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"}";
 	if(typeof item=="object")return"Object.assign(new "+item.constructor.name+",{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"})";
 	if(typeof item=="string")return JSON.stringify(item);
-	if(typeof item=="symbol")return"Symbol(\""+item.description+"\")";
+	if(typeof item=="symbol")return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
 	if(item===undefined)return;
 }
