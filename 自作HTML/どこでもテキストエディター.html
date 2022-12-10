@@ -19,7 +19,7 @@
 		<textarea id="text" placeholder="テキスト"></textarea>
 		<button id="saveButton">保存</button>
 		<script>
-			fileInput.onchange=()=>Object.assign(new FileReader(),{
+			fileInput.onchange=()=>Object.assign(new FileReader,{
 				onload:()=>text.value=event.target.result
 			}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
 			saveButton.onclick=()=>{

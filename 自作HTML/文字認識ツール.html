@@ -20,7 +20,7 @@
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
-			fileInput.onchange=()=>Object.assign(new FileReader(),{
+			fileInput.onchange=()=>Object.assign(new FileReader,{
 				onload:()=>{
 					Object.assign(text,{
 						placeholder:"読み取り中...",value:""
