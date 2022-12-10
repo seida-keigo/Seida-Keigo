@@ -7,13 +7,10 @@ let stringify=item=>{
 	if(typeof item=="object"||typeof item=="symbol")switch(item.constructor.name){
 		case"Array":
 		return"Object.assign([],{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"})";
-		break;
 		case"Object":
 		return"{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"}";
-		break;
 		case"RegExp":
 		return item;
-		break;
 		default:
 		if(!Object.keys(item).length)return"new "+item.constructor.name;
 		return"Object.assign(new "+item.constructor.name+",{"+Object.keys(item).map(key=>"\""+key+"\":"+stringify(item[key])).join(",")+"})";
