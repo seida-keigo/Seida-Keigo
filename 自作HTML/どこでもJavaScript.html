@@ -49,18 +49,21 @@
 				}));
 			}
 			console.error=(...items)=>{
+				if(!items.length)return;
 				for(let p of document.querySelectorAll("p.placeholder")) p.remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 					innerText:items.map(item=>JSON.stringify(item)).join(" "),style:"color:#f00;"
 				}));
 			}
 			console.log=console.info=(...items)=>{
+				if(!items.length)return;
 				for(let p of document.querySelectorAll("p.placeholder")) p.remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 					innerText:items.map(item=>JSON.stringify(item)).join(" ")
 				}));
 			}
 			console.warn=(...items)=>{
+				if(!items.length)return;
 				for(let p of document.querySelectorAll("p.placeholder")) p.remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 					innerText:items.map(item=>JSON.stringify(item)).join(" "),style:"color:#ff0;"
