@@ -55,8 +55,8 @@
 				//if(typeof item=="symbol")return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
 				if(item===undefined)return;
 			}
-			console.assert=(truth,...items)=>{
-				if(truth)return;
+			console.assert=(assertion,...items)=>{
+				if(assertion)return;
 				for(let p of document.querySelectorAll("p.placeholder")) p.remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 					innerText:"アサーションに失敗しました。"+items.map(item=>stringify(item)).join(" "),style:"color:#f00;"
