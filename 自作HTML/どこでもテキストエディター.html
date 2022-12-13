@@ -15,15 +15,18 @@
 		<title>どこでもテキストエディター</title>
 	</head>
 	<body>
-		<input id="fileInput" type="file">
+		<button id="fileInput">ファイルを選択</button>
 		<textarea id="text" placeholder="テキスト"></textarea>
 		<button id="saveButton">保存</button>
 		<script>
-			fileInput.onchange=()=>Object.assign(new FileReader,{
-				onload:()=>text.value=event.target.result
-			}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
+			let fileBox=Object.assign(document.createElement("input"),{
+				onchange:()=>Object.assign(new FileReader,{
+					onload:()=>text.value=event.target.result
+				}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis")),type:"file"
+			});
+			fileInput.onclick=()=>fileBox.click();
 			saveButton.onclick=()=>{
-				let fileName=prompt("ファイル名を入力してください。",(fileInput.files[0]||{}).name);
+				let fileName=prompt("ファイル名を入力してください。",(fileBox.files[0]||{}).name);
 				if(fileName) Object.assign(document.createElement("a"),{
 					download:fileName,href:URL.createObjectURL(new Blob([text.value]))
 				}).click();
