@@ -22,11 +22,16 @@
 		<video id="video" playsinline>
 		</video>
 		<script>
-			navigator.mediaDevices.getUserMedia({
-				video:1
-			}).then(stream=>Object.assign(video,{
-				srcObject:stream
-			}).play());
+			try{
+				navigator.mediaDevices.getUserMedia({
+					video:1
+				}).then(stream=>Object.assign(video,{
+					srcObject:stream
+				}).play());
+			}
+			catch(error){
+				alert(error);
+			}
 		</script>
 	</body>
 </html>
