@@ -6,7 +6,7 @@ If WScript.Arguments.Count Then
 	WScript.Quit
 End If
 Sub Speak(Text)
-	CreateObject("WScript.Shell").Run WScript.ScriptName&" "&Text
+	CreateObject("WScript.Shell").Run""""&WScript.ScriptName&""" "&Text
 End Sub
 Do
 	Speak"•I‚ğ‚Ç‚ñŠp‚É‚µ‚Ü‚µ‚å‚¤B"
