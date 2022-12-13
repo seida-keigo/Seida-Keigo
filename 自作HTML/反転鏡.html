@@ -24,9 +24,16 @@
 		<script>
 			navigator.mediaDevices.getUserMedia({
 				video:1
-			}).then(stream=>Object.assign(video,{
-				srcObject:stream
-			}).play());
+			}).then(stream=>{
+				try{
+					Object.assign(video,{
+						srcObject:stream
+					}).play()
+				}
+				catch(error){
+					alert(error)
+				}
+			});
 		</script>
 	</body>
 </html>
