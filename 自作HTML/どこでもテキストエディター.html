@@ -32,9 +32,9 @@
 				},type:"file"
 			}).click();
 			saveButton.onclick=()=>{
-				let fileName=prompt("ファイル名を入力してください。",originalFileName);
-				if(fileName) Object.assign(document.createElement("a"),{
-					download:fileName,href:URL.createObjectURL(new Blob([text.value]))
+				let newFileName=prompt("ファイル名を入力してください。",originalFileName);
+				if(newFileName) Object.assign(document.createElement("a"),{
+					download:newFileName,href:URL.createObjectURL(new Blob([text.value]))
 				}).click();
 				else alert("ファイル名がありません。");
 			}
