@@ -19,11 +19,13 @@
 		<button id="readButton">読み上げ</button>
 		<script>
 			speechSynthesis.cancel();
+			let utterance=Object.assign(new SpeechSynthesisUtterance,{
+				rate:navigator.userAgent.includes("Windows NT")?2:1.125
+			});
 			readButton.onclick=()=>{
 				speechSynthesis.cancel();
-				speechSynthesis.speak(Object.assign(new SpeechSynthesisUtterance(text.value),{
-					rate:navigator.userAgent.includes("Windows NT")?2:1.125
-				}));
+				utterance.text=text.value;
+				speechSynthesis.speak(utterance);
 			}
 		</script>
 	</body>
