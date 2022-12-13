@@ -36,6 +36,7 @@
 				if(fileName) Object.assign(document.createElement("a"),{
 					download:fileName,href:URL.createObjectURL(new Blob([text.value]))
 				}).click();
+				else alert("ファイル名がありません。");
 			}
 		</script>
 	</body>
