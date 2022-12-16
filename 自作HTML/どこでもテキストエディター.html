@@ -29,11 +29,11 @@
 				},type:"file"
 			}).click();
 			saveButton.onclick=()=>{
-				let newFileName=prompt("ファイル名を入力してください。",fileName);
+				let newFileName="";
+				while(newFileName=="") newFileName=prompt("ファイル名を入力してください。",fileName);
 				if(newFileName) Object.assign(document.createElement("a"),{
 					download:newFileName,href:URL.createObjectURL(new Blob([text.value]))
 				}).click();
-				else if(newFileName=="") alert("ファイル名がありません。");
 			}
 		</script>
 	</body>
