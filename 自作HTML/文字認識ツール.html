@@ -8,18 +8,37 @@
 			html,body{
 				height:calc(100% - 16px);
 			}
+			div{
+				background:#333;
+				height:calc(50% - 72px);
+				overflow:scroll;
+				padding:16px 16px;
+			}
+			canvas{
+				display:block;
+				margin-left:auto;
+				margin-right:auto;
+			}
 			textarea{
 				height:calc(100% - 88px);
+				height:calc(50% - 64px);
 			}
 		</style>
 		<title>文字認識ツール</title>
 	</head>
 	<body>
 		<button id="selectButton">画像を選択</button>
+		<div>
+			<canvas id="sourceCanvas">
+			</canvas>
+			<canvas id="clipedCanvas" style="display:none">
+			</canvas>
+		</div>
 		<textarea id="text" placeholder="読み取り結果" readonly></textarea>
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
+			/*
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
 					onload:()=>{
@@ -32,6 +51,47 @@
 					}
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
+			*/
+			let image=document.createElement("img");
+			let context=sourceCanvas.getContext("2d");
+			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
+				onchange:()=>Object.assign(new FileReader,{
+					onload:()=>Object.assign(image,{
+						onerror:()=>alert("このファイルは読み込めません。"),onload:()=>{
+							sourceCanvas.width=event.target.width;
+							sourceCanvas.height=event.target.height;
+							context.drawImage(event.target,0,0);
+						},src:event.target.result
+					})
+				}).readAsDataURL(event.target.files[0]),type:"file"
+			}).click();
+			let left;
+			let Top;
+			sourceCanvas.onmousedown=()=>{
+				left=event.offsetX;
+				Top=event.offsetY;
+			}
+			sourceCanvas.onmousemove=()=>{
+				if(event.buttons%2==0) return;
+				let width=event.offsetX-left;
+				let height=event.offsetY-Top;
+				context.drawImage(image,0,0);//できれば修正
+				context.fillStyle="#f005";
+				context.fillRect(left,Top,width,height);
+				if(event.buttons%2!=0){
+					clipedCanvas.width=Math.abs(width);
+					clipedCanvas.height=Math.abs(height);
+					clipedCanvas.getContext("2d").drawImage(image,left,Top,width,height,0,0,clipedCanvas.width,clipedCanvas.height);
+				}
+			}
+			sourceCanvas.onmouseup=()=>{
+				Object.assign(text,{
+					placeholder:"読み取り中...",value:""
+				});
+				Tesseract.recognize(clipedCanvas.toDataURL()/*prompt("言語を入力してください。","jpn+eng")*/).then(job=>Object.assign(text,{
+					placeholder:"読み取り結果",value:job.data.text/*.replace(/ /g,"")*/
+				}));
+			}
 		</script>
 	</body>
 </html>
