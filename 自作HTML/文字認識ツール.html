@@ -12,7 +12,7 @@
 				background:#333;
 				height:calc(50% - 72px);
 				overflow:scroll;
-				padding:16px 16px;
+				padding:16px;
 			}
 			canvas{
 				display:block;
@@ -34,24 +34,10 @@
 			<canvas id="clipedCanvas" style="display:none">
 			</canvas>
 		</div>
-		<textarea id="text" placeholder="読み取り結果" readonly></textarea>
+		<textarea id="result" placeholder="読み取り結果" readonly></textarea>
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
-			/*
-			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
-				onchange:()=>Object.assign(new FileReader,{
-					onload:()=>{
-						Object.assign(text,{
-							placeholder:"読み取り中...",value:""
-						});
-						Tesseract.recognize(event.target.result,prompt("言語を入力してください。","jpn+eng")).then(job=>Object.assign(text,{
-							placeholder:"読み取り結果",value:job.data.text.replace(/ /g,"")
-						}));
-					}
-				}).readAsDataURL(event.target.files[0]),type:"file"
-			}).click();
-			*/
 			let image=document.createElement("img");
 			let context=sourceCanvas.getContext("2d");
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
@@ -85,10 +71,10 @@
 				}
 			}
 			sourceCanvas.onmouseup=()=>{
-				Object.assign(text,{
+				Object.assign(result,{
 					placeholder:"読み取り中...",value:""
 				});
-				Tesseract.recognize(clipedCanvas.toDataURL()/*prompt("言語を入力してください。","jpn+eng")*/).then(job=>Object.assign(text,{
+				Tesseract.recognize(clipedCanvas.toDataURL()/*prompt("言語を入力してください。","jpn+eng")*/).then(job=>Object.assign(result,{
 					placeholder:"読み取り結果",value:job.data.text/*.replace(/ /g,"")*/
 				}));
 			}
