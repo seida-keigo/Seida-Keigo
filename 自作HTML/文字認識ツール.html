@@ -31,14 +31,13 @@
 		<div>
 			<canvas id="sourceCanvas">
 			</canvas>
-			<canvas id="clipedCanvas" style="display:none">
-			</canvas>
 		</div>
 		<textarea id="result" placeholder="読み取り結果" readonly></textarea>
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
 			let image=document.createElement("img");
+			let clipedCanvas=document.createElement("canvas");
 			let context=sourceCanvas.getContext("2d");
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
@@ -51,24 +50,22 @@
 					})
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
-			let left;
-			let Top;
+			let x;
+			let y;
 			sourceCanvas.onmousedown=()=>{
-				left=event.offsetX;
-				Top=event.offsetY;
+				x=event.offsetX;
+				y=event.offsetY;
 			}
 			sourceCanvas.onmousemove=()=>{
 				if(event.buttons%2==0) return;
-				let width=event.offsetX-left;
-				let height=event.offsetY-Top;
+				let width=event.offsetX-x;
+				let height=event.offsetY-y;
 				context.drawImage(image,0,0);//できれば修正
 				context.fillStyle="#f005";
-				context.fillRect(left,Top,width,height);
-				if(event.buttons%2!=0){
-					clipedCanvas.width=Math.abs(width);
-					clipedCanvas.height=Math.abs(height);
-					clipedCanvas.getContext("2d").drawImage(image,left,Top,width,height,0,0,clipedCanvas.width,clipedCanvas.height);
-				}
+				context.fillRect(x,y,width,height);
+				clipedCanvas.width=Math.abs(width);
+				clipedCanvas.height=Math.abs(height);
+				clipedCanvas.getContext("2d").drawImage(image,x,y,width,height,0,0,clipedCanvas.width,clipedCanvas.height);
 			}
 			sourceCanvas.onmouseup=()=>{
 				Object.assign(result,{
