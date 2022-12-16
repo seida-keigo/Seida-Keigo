@@ -20,7 +20,7 @@
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
-			let fileInput=Object.assign(document.createElement("input"),{
+			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
 					onload:()=>{
 						Object.assign(text,{
@@ -31,8 +31,7 @@
 						}));
 					}
 				}).readAsDataURL(event.target.files[0]),type:"file"
-			});
-			selectButton.onclick=()=>fileInput.click();
+			}).click();
 		</script>
 	</body>
 </html>
