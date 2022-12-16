@@ -9,21 +9,23 @@
 				height:calc(100% - 16px);
 			}
 			textarea{
-				height:calc(100% - 24px);
+				height:calc(100% - 88px);
 			}
 		</style>
 		<title>文字起こしツール</title>
 	</head>
 	<body>
 		<textarea id="text" readonly></textarea>
+		<button id="saveButton">メモを保存</button>
 		<script>
+			saveButton.onclick=()=>{
+				let date=new Date;
+				Object.assign(document.createElement("a"),{
+					download:date.getMonth()+1+"月"+date.getDate()+"日 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
+				}).click();
+			}
 			Object.assign(new webkitSpeechRecognition,{
-				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
-					let date=new Date;
-					Object.assign(document.createElement("a"),{
-						download:date.getMonth()+1+"月"+date.getDate()+"日 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
-					}).click();
-				},onresult:()=>text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
+				continuous:true,interimResults:true,lang:"ja-JP",onend:saveButton.onclick,onresult:()=>text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
 			}).start();
 		</script>
 	</body>
