@@ -16,10 +16,12 @@
 				padding:16px;
 			}
 			div.source{
-				height:calc(50% - 104px);
+				height:calc(50% - 136px);
+				min-height:1em;
 			}
 			div.clipped{
-				height:calc(25% - 76px);
+				height:calc(25% - 92px);
+				min-height:1em;
 			}
 			canvas{
 				display:block;
@@ -29,13 +31,14 @@
 				margin-left:auto;
 			}
 			textarea{
-				height:calc(25% - 68px);
+				height:calc(25% - 84px);
 			}
 		</style>
 		<title>文字読み取りツール</title>
 	</head>
 	<body>
 		<button id="selectButton">画像を選択</button>
+		<input id="language" placeholder="言語コード (デフォルト: eng) (日本語の場合はjpn)">
 		<div class="source">
 			<canvas id="sourceCanvas">
 			</canvas>
@@ -83,12 +86,12 @@
 				Object.assign(result,{
 					placeholder:"読み取り中...",value:""
 				});
-				Tesseract.recognize(clippedCanvas.toDataURL()/*prompt("言語を入力してください。","jpn+eng")*/).then(job=>{
+				Tesseract.recognize(clippedCanvas.toDataURL(),language.value||undefined).then(job=>{
 					Object.assign(result,{
 						placeholder:"読み取り結果",value:job.data.text/*.replace(/ /g,"")*/
 					});
 					copyButton.disabled=!result.value;
-				});
+				}).catch(()=>alert("言語コードが不正です。"));
 			}
 			copyButton.onclick=()=>{
 				result.select();
