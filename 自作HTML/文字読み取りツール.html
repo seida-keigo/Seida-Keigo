@@ -19,7 +19,7 @@
 				height:calc(50% - 104px);
 				min-height:1em;
 			}
-			div.clipped{
+			div.trimmed{
 				height:calc(25% - 76px);
 				min-height:1em;
 			}
@@ -43,8 +43,8 @@
 			<canvas id="sourceCanvas">
 			</canvas>
 		</div>
-		<div class="clipped">
-			<canvas id="clippedCanvas">
+		<div class="trimmed">
+			<canvas id="trimmedCanvas">
 			</canvas>
 		</div>
 		<textarea id="result" placeholder="読み取り結果" readonly></textarea>
@@ -58,8 +58,9 @@
 				onchange:()=>Object.assign(new FileReader,{
 					onload:()=>Object.assign(image,{
 						onerror:()=>alert("このファイルは読み込めません。"),onload:()=>{
-							sourceCanvas.width=event.target.width;
-							sourceCanvas.height=event.target.height;
+							Object.assign(sourceCanvas,{
+								width:event.target.width,height:event.target.height
+							});
 							context.drawImage(event.target,0,0);
 						},src:event.target.result
 					})
@@ -75,23 +76,24 @@
 				if(event.buttons%2==0) return;
 				let width=event.offsetX-x;
 				let height=event.offsetY-y;
-				context.drawImage(image,0,0);//できれば修正
+				context.drawImage(image,0,0);
 				context.fillStyle="#f005";
 				context.fillRect(x,y,width,height);
-				clippedCanvas.width=Math.abs(width);
-				clippedCanvas.height=Math.abs(height);
-				clippedCanvas.getContext("2d").drawImage(image,x,y,width,height,0,0,clippedCanvas.width,clippedCanvas.height);
+				Object.assign(trimmedCanvas,{
+					width:Math.abs(width),height:Math.abs(height)
+				}).getContext("2d").drawImage(image,x,y,width,height,0,0,trimmedCanvas.width,trimmedCanvas.height);
 			}
 			sourceCanvas.onmouseup=()=>{
 				Object.assign(result,{
 					placeholder:"読み取り中...",value:""
 				});
-				Tesseract.recognize(clippedCanvas.toDataURL(),language.value||undefined).then(job=>{
+				copyButton.disabled=true;
+				Tesseract.recognize(trimmedCanvas.toDataURL()).then(job=>{
 					Object.assign(result,{
-						placeholder:"読み取り結果",value:job.data.text/*.replace(/ /g,"")*/
+						placeholder:"読み取り結果",value:job.data.text
 					});
-					copyButton.disabled=!result.value;
-				}).catch(()=>alert("言語コードが不正です。"));
+					copyButton.disabled=!job.data.text;
+				}).catch(()=>alert("読み取りに失敗しました。"));//言語コードが不正です
 			}
 			copyButton.onclick=()=>{
 				result.select();
