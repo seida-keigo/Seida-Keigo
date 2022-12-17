@@ -56,14 +56,15 @@
 			let context=sourceCanvas.getContext("2d");
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
-					onload:()=>Object.assign(image,{
-						onerror:()=>alert("このファイルは読み込めません。"),onload:()=>{
-							Object.assign(sourceCanvas,{
-								width:event.target.width,height:event.target.height
-							});
+					onload:()=>{
+						image.onerror=()=>alert("このファイルは読み込めません。");
+						image.onload=()=>{
+							sourceCanvas.width=event.target.width;
+							sourceCanvas.height=event.target.height;
 							context.drawImage(event.target,0,0);
-						},src:event.target.result
-					})
+						}
+						image.src=event.target.result;
+					}
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			let x;
@@ -96,7 +97,7 @@
 			copyButton.onclick=()=>{
 				navigator.clipboard.writeText(result.value);
 				event.target.disabled=true;
-				event.target.innerText="コピー済み"
+				event.target.innerText="コピー済み";
 			}
 		</script>
 	</body>

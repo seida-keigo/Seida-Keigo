@@ -23,7 +23,7 @@
 		</video>
 		<script>
 			navigator.mediaDevices.getUserMedia({
-				video:1
+				video:true
 			}).then(stream=>{
 				video.srcObject=stream;
 				video.play();
