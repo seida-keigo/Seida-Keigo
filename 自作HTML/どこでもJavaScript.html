@@ -16,6 +16,7 @@
 				height:calc(50% - 48px);
 				margin-bottom:16px;
 				margin-top:16px;
+				min-height:calc(1em + 24px);
 				display:block;
 				overflow:scroll;
 				padding:4px 16px;
@@ -25,6 +26,9 @@
 				margin:8px -4px;
 				padding:4px;
 			}
+			p.placeholder{
+				color:#bbb;
+			}
 		</style>
 		<title>どこでもJavaScript</title>
 	</head>
@@ -32,7 +36,7 @@
 		<textarea placeholder="JavaScript"></textarea>
 		<button>実行</button>
 		<div class="console">
-			<p class="placeholder" style="color:#bbb;">コンソール</p>
+			<p class="placeholder">コンソール</p>
 		</div>
 		<script>
 			let stringify=item=>{

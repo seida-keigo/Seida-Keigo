@@ -40,8 +40,7 @@
 				document.querySelectorAll("button")[0].innerText="変換後の文字列をコピー";
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
-				document.querySelectorAll("textarea")[2].select();
-				document.execCommand("copy");
+				navigator.clipboard.writeText(document.querySelectorAll("textarea")[2].value);
 				Object.assign(event.target,{
 					disabled:true,innerText:"コピー済み"
 				});

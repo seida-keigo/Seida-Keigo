@@ -96,8 +96,7 @@
 				}).catch(()=>alert("読み取りに失敗しました。"));//言語コードが不正です
 			}
 			copyButton.onclick=()=>{
-				result.select();
-				document.execCommand("copy");
+				navigator.clipboard.writeText(result.value);
 				Object.assign(event.target,{
 					disabled:true,innerText:"コピー済み"
 				});
