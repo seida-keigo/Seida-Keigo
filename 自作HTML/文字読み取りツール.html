@@ -74,9 +74,9 @@
 			}
 			sourceCanvas.onmousemove=()=>{
 				if(event.buttons%2==0) return;
-				sourceCanvas.getContext("2d").drawImage(image,0,0);
-				sourceCanvas.getContext("2d").fillStyle="#f005";
-				sourceCanvas.getContext("2d").fillRect(x,y,event.offsetX-x,event.offsetY-y);
+				event.target.getContext("2d").drawImage(image,0,0);
+				event.target.getContext("2d").fillStyle="#f005";
+				event.target.getContext("2d").fillRect(x,y,event.offsetX-x,event.offsetY-y);
 				trimmedCanvas.width=Math.abs(event.offsetX-x);
 				trimmedCanvas.height=Math.abs(event.offsetY-y);
 				trimmedCanvas.getContext("2d").drawImage(image,x,y,event.offsetX-x,event.offsetY-y,0,0,Math.abs(event.offsetX-x),Math.abs(event.offsetY-y));
