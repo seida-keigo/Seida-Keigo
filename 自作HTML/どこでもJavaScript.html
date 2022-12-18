@@ -39,7 +39,7 @@
 			<p class="placeholder">コンソール</p>
 		</div>
 		<script>
-			let stringify=item=>{
+			let stringify=function(item){
 				if(typeof item=="bigint") return item+"n";
 				if(typeof item=="boolean") return item;
 				if(typeof item=="function") return item;
