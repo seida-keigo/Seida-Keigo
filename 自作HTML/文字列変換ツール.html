@@ -39,7 +39,6 @@
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
 				navigator.clipboard.writeText(document.querySelectorAll("textarea")[2].value);
-				event.target.disabled=true;
 				event.target.innerText="コピー済み";
 			}
 		</script>
