@@ -18,7 +18,7 @@
 		<textarea placeholder="変換前の文字列 ($に代入)"></textarea>
 		<textarea placeholder="$を変換するJavaScript式 (例: $.toUpperCase())"></textarea>
 		<textarea placeholder="空文字列" readonly style="color:#f00;">値なし</textarea>
-		<button disabled>変換後の文字列をコピー</button>
+		<button disabled>変換結果をコピー</button>
 		<script>
 			for(let $ of[0,1]) document.querySelectorAll("textarea")[$].oninput=()=>{
 				try{
@@ -35,7 +35,7 @@
 					document.querySelectorAll("textarea")[2].value=error;
 					document.querySelectorAll("button")[0].disabled=true;
 				}
-				document.querySelectorAll("button")[0].innerText="変換後の文字列をコピー";
+				document.querySelectorAll("button")[0].innerText="変換結果をコピー";
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
 				navigator.clipboard.writeText(document.querySelectorAll("textarea")[2].value);
