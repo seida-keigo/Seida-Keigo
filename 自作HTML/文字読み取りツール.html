@@ -12,16 +12,15 @@
 				background:#333;
 				margin-bottom:16px;
 				margin-top:16px;
+				min-height:1em;
 				overflow:scroll;
 				padding:16px;
 			}
-			div.source{
+			:has(>#sourceCanvas){
 				height:calc(50% - 104px);
-				min-height:1em;
 			}
-			div.trimmed{
+			:has(>#trimmedCanvas){
 				height:calc(25% - 76px);
-				min-height:1em;
 			}
 			canvas{
 				display:block;
@@ -38,11 +37,11 @@
 	</head>
 	<body>
 		<button id="selectButton">画像を選択</button><!--言語コード（デフォルト: eng）（日本語の場合: jpn）-->
-		<div class="source">
+		<div>
 			<canvas height="0" id="sourceCanvas" width="0">
 			</canvas>
 		</div>
-		<div class="trimmed">
+		<div>
 			<canvas height="0" id="trimmedCanvas" width="0">
 			</canvas>
 		</div>
