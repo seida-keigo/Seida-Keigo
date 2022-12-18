@@ -40,11 +40,11 @@
 		<button id="selectButton">画像を選択</button>
 		<!--input id="language" placeholder="言語コード (デフォルト: eng) (日本語の場合: jpn)"-->
 		<div class="source">
-			<canvas id="sourceCanvas">
+			<canvas height="0" id="sourceCanvas" width="0">
 			</canvas>
 		</div>
 		<div class="trimmed">
-			<canvas id="trimmedCanvas">
+			<canvas height="0" id="trimmedCanvas" width="0">
 			</canvas>
 		</div>
 		<textarea id="result" placeholder="読み取り結果" readonly></textarea>
@@ -82,8 +82,8 @@
 				trimmedCanvas.height=Math.abs(event.offsetY-y);
 				trimmedCanvas.getContext("2d").drawImage(image,x,y,event.offsetX-x,event.offsetY-y,0,0,Math.abs(event.offsetX-x),Math.abs(event.offsetY-y));
 			}
-			sourceCanvas.onmouseup=()=>{
-				if(event.button||event.offsetX==x||event.offsetY==y) return;
+			onmouseup=()=>{
+				if(event.button||x==undefined||event.offsetX==x||event.offsetY==y) return;
 				result.placeholder="読み取り中...";
 				result.value="";
 				copyButton.disabled=true;
