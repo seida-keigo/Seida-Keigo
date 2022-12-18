@@ -73,6 +73,13 @@
 				x=event.offsetX;
 				y=event.offsetY;
 			}
+			sourceCanvas.onmouseenter=()=>{
+				if(event.button) return;
+				x=event.offsetX;
+				y=event.offsetY;
+				//x<=y&&(x=0);
+				//y<=x&&(y=0);
+			}
 			sourceCanvas.onmousemove=()=>{
 				if(~event.buttons&0b1) return;
 				event.target.getContext("2d").drawImage(image,0,0);
@@ -84,6 +91,7 @@
 			}
 			onmouseup=()=>{
 				if(event.button||x==undefined||event.offsetX==x||event.offsetY==y) return;
+				y=x=undefined;
 				result.placeholder="読み取り中...";
 				result.value="";
 				copyButton.disabled=true;
