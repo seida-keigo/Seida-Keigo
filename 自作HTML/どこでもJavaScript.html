@@ -39,12 +39,11 @@
 			<p class="placeholder">コンソール</p>
 		</div>
 		<script>
-			for(let x of ["assert","error","info","log","warn"]) console[x]=(...items)=>{
-				if(x=="assert"&&items[0]||!items.length) return;
-				if(x=="assert") items.shift()
-				for(let p of document.querySelectorAll("p.placeholder")) p.remove();
+			for(let x of["assert","error","info","log","warn"]) console[x]=(...items)=>{
+				if(x=="assert"?items.shift():!items.length) return;
+				if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
-					innerText:(x=="assert"?"アサーションに失敗しました。":"")+items.map(function(item){
+					innerText:(x=="assert"?"アサーションに失敗しました:"+(items.length?"":"console.assert"):"")+items.map(function(item){
 						if(typeof item=="bigint") return item+"n";
 						if(typeof item=="boolean") return item;
 						if(typeof item=="function") return item;
@@ -52,13 +51,13 @@
 						if(item===null) return"null";
 						if(typeof item=="object"||typeof item=="symbol") switch(item.constructor.name){
 							case"Array":
-							return Object.keys(item).length?"Object.assign([],{"+Object.keys(item).map(key=>JSON.stringify(key)+":"+arguments.callee(item[key])).join(",")+"})":"[]";
+							return Object.keys(item).length?"function(){"+Object.keys(item).map(key=>"arguments[0]["+JSON.stringify(key)+"]="+arguments.callee(item[key])).join("\n")+"\nreturn arguments[0]}([])":"[]";
 							case"Object":
 							return"{"+Object.keys(item).map(key=>JSON.stringify(key)+":"+arguments.callee(item[key])).join(",")+"}";
 							case"RegExp":
 							return item;
 							default:
-							return Object.keys(item).length?"Object.assign(new "+item.constructor.name+",{"+Object.keys(item).map(key=>JSON.stringify(key)+":"+arguments.callee(item[key])).join(",")+"})":"new "+item.constructor.name;
+							return Object.keys(item).length?"function(){"+Object.keys(item).map(key=>"arguments[0]["+JSON.stringify(key)+"]="+arguments.callee(item[key])).join("\n")+"\nreturn arguments[0]}(new "+item.constructor.name+")":"new "+item.constructor.name;
 						}
 						if(typeof item=="string") return JSON.stringify(item);
 						//if(typeof item=="symbol") return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
@@ -69,9 +68,9 @@
 				}));
 			}
 			console.clear=()=>{
-				for(let p of document.querySelectorAll("p")) p.remove();
+				while(document.querySelectorAll("p")[0]) document.querySelectorAll("p")[0].remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
-					innerText:"コンソールをクリアしました。",style:"font-style:italic;"
+					innerText:"コンソールがクリアされました",style:"font-style:italic;"
 				}));
 			}
 			document.querySelectorAll("button")[0].onclick=()=>{
@@ -80,7 +79,7 @@
 					eval(document.querySelectorAll("textarea")[0].value);
 				}
 				catch(error){
-					for(let p of document.querySelectorAll("p.placeholder")) p.remove();
+					if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
 					document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 						innerText:error,style:"color:#f00;"
 					}));
