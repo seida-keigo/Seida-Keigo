@@ -57,11 +57,11 @@ h2>small{
 	font-size:14px;
 	letter-spacing:4px;
 }
-p:not(.selfintroduce){
+p:not(.self-introduction){
 	margin-top:0;
 	margin-bottom:0;
 }
-p.selfintroduce{
+p.self-introduction{
 	font-size:16px;
 	letter-spacing:2px;
 	line-height:32px;
@@ -196,7 +196,7 @@ footer{
 		background-image:url(images/top_tab.jpg);
 		height:calc(100vh - 48px);
 	}
-	p.selfintroduce{
+	p.self-introduction{
 		font-size:14px;
 		line-height:24px;
 	}
