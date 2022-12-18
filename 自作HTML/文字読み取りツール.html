@@ -83,7 +83,7 @@
 				trimmedCanvas.getContext("2d").drawImage(image,x,y,event.offsetX-x,event.offsetY-y,0,0,Math.abs(event.offsetX-x),Math.abs(event.offsetY-y));
 			}
 			sourceCanvas.onmouseup=()=>{
-				if(event.button) return;
+				if(event.button||event.offsetX==x||event.offsetY==y) return;
 				result.placeholder="読み取り中...";
 				result.value="";
 				copyButton.disabled=true;
