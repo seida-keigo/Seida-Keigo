@@ -1,0 +1,25 @@
+<input id="fileInput" type="file"><br>
+<canvas id="canvas"></canvas>
+<script src="http://mozilla.github.io/pdf.js/build/pdf.js">
+</script>
+<script>
+fileInput.onchange=()=>{
+	console.log(event.target.files[0].text().then($=>console.log($)));
+
+	return
+	window["pdfjs-dist/build/pdf"].GlobalWorkerOptions.workerSrc="http://mozilla.github.io/pdf.js/build/pdf.worker.js";
+	window["pdfjs-dist/build/pdf"].getDocument("https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf").promise.then(documentProxy=>{
+		console.log(documentProxy);
+		documentProxy.getPage(1).then(pageProxy=>{
+			console.log(pageProxy);
+			let viewport=pageProxy.getViewport({scale:1.5});
+			console.log(viewport);
+			canvas.height=viewport.height;
+			canvas.width=viewport.width;
+			pageProxy.render({
+				canvasContext:canvas.getContext("2d"),viewport:viewport
+			}).promise.then(()=>console.log("Page rendered"));
+		});
+	},reason=>console.error(reason));
+}
+</script>
