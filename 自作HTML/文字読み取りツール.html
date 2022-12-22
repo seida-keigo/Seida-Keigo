@@ -96,7 +96,7 @@
 				result.value="";
 				copyButton.disabled=true;
 				copyButton.innerText="結果をコピー";
-				Tesseract.recognize(range.toDataURL()).then(job=>{
+				Tesseract.recognize(range.toDataURL(),...(confirm("日本語?")?["jpn"]:[])).then(job=>{
 					result.placeholder="読み取り結果";
 					result.readOnly=!job.data.text;
 					result.value=job.data.text;
