@@ -21,8 +21,8 @@
 		<script>
 			text.oninput=()=>event.target.value&&(saveButton.disabled=copyButton.disabled=false);
 			copyButton.onclick=()=>{
-				event.target.innerText="コピー済み";
 				navigator.clipboard.writeText(text.value);
+				event.target.innerText="コピー済み";
 			}
 			saveButton.onclick=()=>{
 				let date=new Date;
