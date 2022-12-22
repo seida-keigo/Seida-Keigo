@@ -103,6 +103,7 @@
 					copyButton.disabled=!job.data.text;
 				}).catch(()=>alert("読み取りに失敗しました。"));
 			}
+			result.oninput=()=>copyButton.disabled=!event.target.value;
 			copyButton.onclick=()=>{
 				navigator.clipboard.writeText(result.value);
 				event.target.innerText="コピー済み";
