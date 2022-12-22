@@ -27,7 +27,10 @@
 				}).click();
 			}
 			Object.assign(new webkitSpeechRecognition,{
-				continuous:true,interimResults:true,lang:"ja-JP",onend:saveButton.onclick,onresult:()=>{
+				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
+					text.readOnly=false;
+					saveButton.onclick();
+				},onresult:()=>{
 					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
 					copyButton.disabled=false;
 					saveButton.disabled=false;
