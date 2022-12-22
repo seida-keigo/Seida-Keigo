@@ -89,7 +89,8 @@
 			onmouseup=()=>{
 				if(event.button||!onselectstart||event.offsetX==x||event.offsetY==y) return;
 				onselectstart=null;
-				y=x=undefined;
+				x=undefined;
+				y=undefined;
 				result.placeholder="読み取り中...";
 				result.readOnly=true;
 				result.value="";

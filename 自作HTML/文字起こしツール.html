@@ -29,7 +29,7 @@
 			Object.assign(new webkitSpeechRecognition,{
 				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
 					text.readOnly=false;
-					if(confirm("メモを保存しますか?")) saveButton.onclick();
+					if(text.value&&confirm("メモを保存しますか?")) saveButton.onclick();
 				},onresult:()=>{
 					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
 					copyButton.disabled=false;
