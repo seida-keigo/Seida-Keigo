@@ -19,7 +19,11 @@
 		<button disabled id="copyButton">コピー</button>
 		<button disabled id="saveButton">メモを保存</button>
 		<script>
-			copyButton.onclick=()=>text.value&&navigator.clipboard.writeText(text.value);
+			text.oninput=()=>event.target.value&&(saveButton.disabled=copyButton.disabled=false);
+			copyButton.onclick=()=>{
+				event.target.innerText="コピー済み";
+				navigator.clipboard.writeText(text.value);
+			}
 			saveButton.onclick=()=>{
 				let date=new Date;
 				Object.assign(document.createElement("a"),{
@@ -32,8 +36,11 @@
 					if(text.value&&confirm("メモを保存しますか?")) saveButton.onclick();
 				},onresult:()=>{
 					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
+					copyButton.innerText="コピー";
+					/*
 					copyButton.disabled=false;
 					saveButton.disabled=false;
+					*/
 				}
 			}).start();
 		</script>
