@@ -24,7 +24,7 @@
 			saveButton.onclick=()=>{
 				let date=new Date;
 				Object.assign(document.createElement("a"),{
-					download:date.getMonth()+1+"月"+date.getDate()+"日 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
+					download:date.getMonth()+1+"月"+date.getDate()+"日 "+date.getHours()+":"+date.getMinutes()+" メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
 				}).click();
 			}
 			Object.assign(new webkitSpeechRecognition,{
