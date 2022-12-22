@@ -14,7 +14,7 @@
 }
 *,::placeholder{
 	all:unset;
-	display:revert;
+	display:revert; 
 	line-height:calc(1em + 8px);
 	transition:.25s background-color;
 	white-space:revert;
