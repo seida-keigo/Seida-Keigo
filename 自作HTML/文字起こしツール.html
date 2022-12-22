@@ -20,7 +20,7 @@
 		<button id="copyButton">コピー</button>
 		<button id="saveButton">メモを保存</button>
 		<script>
-			copyButton.onclick=()=>navigator.clipboard.writeText(text.value);
+			copyButton.onclick=()=>text.value&&navigator.clipboard.writeText(text.value);
 			saveButton.onclick=()=>{
 				let date=new Date;
 				Object.assign(document.createElement("a"),{
