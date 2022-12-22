@@ -19,7 +19,11 @@
 		<button disabled id="copyButton">コピー</button>
 		<button disabled id="saveButton">メモを保存</button>
 		<script>
-			text.oninput=()=>saveButton.disabled=copyButton.disabled=!event.target.value;
+			text.oninput=()=>{
+				saveButton.disabled=!event.target.value;
+				copyButton.disabled=!event.target.value;
+				copyButton.innerText="コピー";
+			}
 			copyButton.onclick=()=>{
 				navigator.clipboard.writeText(text.value);
 				event.target.innerText="コピー済み";
