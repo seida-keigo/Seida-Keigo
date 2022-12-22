@@ -91,11 +91,13 @@
 				onselectstart=null;
 				y=x=undefined;
 				result.placeholder="読み取り中...";
+				result.readOnly=true;
 				result.value="";
 				copyButton.disabled=true;
 				copyButton.innerText="結果をコピー";
 				Tesseract.recognize(range.toDataURL()).then(job=>{
 					result.placeholder="読み取り結果";
+					result.readOnly=!job.data.text;
 					result.value=job.data.text;
 					copyButton.disabled=!job.data.text;
 				}).catch(()=>alert("読み取りに失敗しました。"));//言語コードが不正です
