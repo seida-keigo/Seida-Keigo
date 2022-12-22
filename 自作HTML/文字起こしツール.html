@@ -36,11 +36,9 @@
 					if(text.value&&confirm("メモを保存しますか?")) saveButton.onclick();
 				},onresult:()=>{
 					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
-					copyButton.innerText="コピー";
-					/*
 					copyButton.disabled=false;
+					copyButton.innerText="コピー";
 					saveButton.disabled=false;
-					*/
 				}
 			}).start();
 		</script>
