@@ -17,8 +17,8 @@
 	</head>
 	<body>
 		<textarea id="text" readonly></textarea>
-		<button id="copyButton">コピー</button>
-		<button id="saveButton">メモを保存</button>
+		<button disabled id="copyButton">コピー</button>
+		<button disabled id="saveButton">メモを保存</button>
 		<script>
 			copyButton.onclick=()=>text.value&&navigator.clipboard.writeText(text.value);
 			saveButton.onclick=()=>{
@@ -28,7 +28,11 @@
 				}).click();
 			}
 			Object.assign(new webkitSpeechRecognition,{
-				continuous:true,interimResults:true,lang:"ja-JP",onend:saveButton.onclick,onresult:()=>text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n")
+				continuous:true,interimResults:true,lang:"ja-JP",onend:saveButton.onclick,onresult:()=>{
+					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
+					copyButton.disabled=false;
+					saveButton.disabled=false;
+				}
 			}).start();
 		</script>
 	</body>
