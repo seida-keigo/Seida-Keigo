@@ -1,9 +1,9 @@
 <input id="fileInput" type="file"><br>
 <canvas id="source"></canvas>
-<script src="http://mozilla.github.io/pdf.js/build/pdf.js">
+<script src="http:mozilla.github.io/pdf.js/build/pdf.js">
 </script>
 <script>
-window["pdfjs-dist/build/pdf"].GlobalWorkerOptions.workerSrc="http://mozilla.github.io/pdf.js/build/pdf.worker.js";
+window["pdfjs-dist/build/pdf"].GlobalWorkerOptions.workerSrc="http:mozilla.github.io/pdf.js/build/pdf.worker.js";
 fileInput.onchange=()=>Object.assign(new FileReader,{
 	onload:()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>{
 		console.log(documentProxy);
