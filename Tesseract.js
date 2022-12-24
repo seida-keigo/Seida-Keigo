@@ -1,6 +1,5 @@
 let Tesseract=function(n){
-	let e={}
-	e[n]={
+	let e={
 		exports:{}
 	}
 	;(({
@@ -199,19 +198,6 @@ let Tesseract=function(n){
 			}()
 			t.exports={
 				recognize:u,detect:s
-			}
-		},847:t=>{
-			t.exports={
-				TESSERACT_ONLY:0,LSTM_ONLY:1,TESSERACT_LSTM_COMBINED:2,DEFAULT:3
-			}
-		},711:t=>{
-			t.exports={
-				OSD_ONLY:"0",AUTO_OSD:"1",AUTO_ONLY:"2",AUTO:"3",SINGLE_COLUMN:"4",SINGLE_BLOCK_VERT_TEXT:"5",SINGLE_BLOCK:"6",SINGLE_LINE:"7",SINGLE_WORD:"8",CIRCLE_WORD:"9",SINGLE_CHAR:"10",SPARSE_TEXT:"11",SPARSE_TEXT_OSD:"12"
-			}
-		},214:(t,e,r)=>{
-			var n=r(847)
-			t.exports={
-				defaultOEM:n.DEFAULT
 			}
 		},341:t=>{
 			t.exports={
@@ -1076,7 +1062,7 @@ let Tesseract=function(n){
 		},676:t=>t.exports=t=>new Worker(t.workerBlobURL?URL.createObjectURL(new Blob(['importScripts("'+t.workerPath+'");'])):t.workerPath),147:t=>t.exports={
 			version:"3.0.3",main:"src/index.js"
 		}
-	})[n]||(()=>{})).call(e[n].exports,e[n],e[n].exports,arguments.callee)
-	return e[n].exports
+	})[n]||(()=>{})).call(e.exports,e,e.exports,arguments.callee)
+	return e.exports
 }(352)
 onerror=e=>alert(e);
