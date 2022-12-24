@@ -80,11 +80,15 @@ r=function(n){
 				m&&m!==e&&r.call(m,a)&&(v=m);
 				let w=d.prototype=p.prototype=Object.create(v);
 				function b(t){
-					["next","throw","return"].forEach((function(e){
-						s(t,e,(function(t){
-							return this._invoke(e,t)
-						}))
-					}))
+					s(t,"next",function(t){
+						return this._invoke("next",t)
+					})
+					s(t,"throw",function(t){
+						return this._invoke("throw",t)
+					})
+					s(t,"return",function(t){
+						return this._invoke("return",t)
+					})
 				}
 				function x(){}
 				function L(){}
@@ -291,9 +295,7 @@ r=function(n){
 				try{
 					s({},"")
 				}catch(t){
-					s=function(t,e,r){
-						return t[e]=r
-					}
+					s=(t,e,r)=>(t[e]=r)
 				}
 				function l(t,e,r,n){
 					var o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype),a=new j(n||[]);
@@ -365,11 +367,15 @@ r=function(n){
 				m&&m!==e&&r.call(m,a)&&(v=m);
 				var w=d.prototype=p.prototype=Object.create(v);
 				function b(t){
-					["next","throw","return"].forEach((function(e){
-						s(t,e,(function(t){
-							return this._invoke(e,t)
-						}))
-					}))
+					s(t,"next",function(t){
+						return this._invoke("next",t)
+					})
+					s(t,"throw",function(t){
+						return this._invoke("throw",t)
+					})
+					s(t,"return",function(t){
+						return this._invoke("return",t)
+					})
 				}
 				function x(){}
 				function L(){}
@@ -899,11 +905,15 @@ r=function(n){
 				m&&m!==e&&r.call(m,a)&&(v=m);
 				var w=d.prototype=p.prototype=Object.create(v);
 				function b(t){
-					["next","throw","return"].forEach((function(e){
-						s(t,e,(function(t){
-							return this._invoke(e,t)
-						}))
-					}))
+					s(t,"next",function(t){
+						return this._invoke("next",t)
+					})
+					s(t,"throw",function(t){
+						return this._invoke("throw",t)
+					})
+					s(t,"return",function(t){
+						return this._invoke("return",t)
+					})
 				}
 				function x(){}
 				function L(){}
