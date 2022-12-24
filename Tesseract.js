@@ -3,20 +3,15 @@ r=function(n){
 	e[n]={
 		exports:{}
 	}
-	;({
-		670:()=>{},760:()=>{},927:function(t,e,r){
-			let n=()=>{}
-			let o=n.call(e,r,e,t)
-			undefined===o||(t.exports=o)
+	;(({
+		927:(t,e,r)=>{
+			let o=(()=>{}).call(e,r,e,t)
+			if(undefined!==o)t.exports=o
 		},793:(t,e,r)=>{
-			let n=()=>{}
 			let o=()=>{
-				let o=()=>t
 				let t={}
 				let s=(t,e,r)=>{
-					Object.defineProperty(t,e,{
-						value:r,enumerable:!0,configurable:!0,writable:!0
-					})
+					t[e]=r
 					return t[e]
 				}
 				function l(t,e,r,n){
@@ -52,17 +47,9 @@ r=function(n){
 						}
 					}(t,r,a),i
 				}
-				function f(t,e,r){
-					try{
-						return{
-							type:"normal",arg:t.call(e,r)
-						}
-					}catch(t){
-						return{
-							type:"throw",arg:t
-						}
-					}
-				}
+				let f=(t,e,r)=>({
+					type:"normal",arg:t.call(e,r)
+				})
 				t.wrap=l
 				let h={}
 				function p(){}
@@ -87,11 +74,9 @@ r=function(n){
 						return this._invoke("return",t)
 					})
 				}
-				function L(){}
-				function O(){}
-				function E(t){
-					;(t.completion||{}).type="normal",delete(t.completion||{}).arg,t.completion=(t.completion||{})
-				}
+				let L=()=>{}
+				let O=()=>{}
+				let E=t=>t.completion={}
 				function j(t){
 					this.tryEntries=[{
 						tryLoc:"root"
@@ -177,28 +162,19 @@ r=function(n){
 					var i
 					return o().wrap((function(t){
 						for(;;)switch(t.prev=t.next){
-							case 0:
-								return i=c(n),t.next=3,i.load()
-							case 3:
-								return t.next=5,i.loadLanguage(r)
-							case 5:
-								return t.next=7,i.initialize(r)
-							case 7:
-								return t.abrupt("return",i.recognize(e).finally(a(o().mark((function t(){
-									return o().wrap((function(t){
-										for(;;)switch(t.prev=t.next){
-											case 0:
-												return t.next=2,i.terminate()
-											case 2:
-											case"end":
-												return t.stop()
-											}
-									}),t)
-								})))))
-							case 8:
-							case"end":
-								return t.stop()
-							}
+							case 0:return i=c(n),t.next=3,i.load()
+							case 3:return t.next=5,i.loadLanguage(r)
+							case 5:return t.next=7,i.initialize(r)
+							case 7:return t.abrupt("return",i.recognize(e).finally(a(o().mark((function t(){
+								return o().wrap((function(t){
+									for(;;)switch(t.prev=t.next){
+										case 0:return t.next=2,i.terminate()
+										case 2:case"end":return t.stop()
+									}
+								}),t)
+							})))))
+							case 8:case"end":return t.stop()
+						}
 					}),t)
 				})))
 				return function(e,r,n){
@@ -209,28 +185,19 @@ r=function(n){
 					let n
 					return o().wrap((function(t){
 						for(;;)switch(t.prev=t.next){
-							case 0:
-								return n=c(r),t.next=3,n.load()
-							case 3:
-								return t.next=5,n.loadLanguage("osd")
-							case 5:
-								return t.next=7,n.initialize("osd")
-							case 7:
-								return t.abrupt("return",n.detect(e).finally(a(o().mark((function t(){
-									return o().wrap((function(t){
-										for(;;)switch(t.prev=t.next){
-											case 0:
-												return t.next=2,n.terminate()
-											case 2:
-											case"end":
-												return t.stop()
-											}
-									}),t)
-								})))))
-							case 8:
-							case"end":
-								return t.stop()
-							}
+							case 0:return n=c(r),t.next=3,n.load()
+							case 3:return t.next=5,n.loadLanguage("osd")
+							case 5:return t.next=7,n.initialize("osd")
+							case 7:return t.abrupt("return",n.detect(e).finally(a(o().mark((function t(){
+								return o().wrap((function(t){
+									for(;;)switch(t.prev=t.next){
+											case 0:return t.next=2,n.terminate()
+											case 2:case"end":return t.stop()
+										}
+								}),t)
+							})))))
+							case 8:case"end":return t.stop()
+						}
 					}),t)
 				})))
 				return function(e,r){
@@ -267,7 +234,6 @@ r=function(n){
 					id:c,action:r,payload:a
 				}
 			}
-		},936:()=>{
 		},311:(t,e,r)=>{
 			function n(){}
 			var o=["logger","errorHandler"]
@@ -275,18 +241,8 @@ r=function(n){
 				i=function(){
 					return t
 				}
-				
 				var t={},e=Object.prototype,r=e.hasOwnProperty,o="function"==typeof Symbol?Symbol:{},a=o.iterator||"@@iterator",c=o.asyncIterator||"@@asyncIterator",u=o.toStringTag||"@@toStringTag"
-				function s(t,e,r){
-					return Object.defineProperty(t,e,{
-						value:r,enumerable:!0,configurable:!0,writable:!0
-					}),t[e]
-				}
-				try{
-					s({},"")
-				}catch(t){
-					s=(t,e,r)=>(t[e]=r)
-				}
+				let s=(t,e,r)=>(t[e]=r)
 				function l(t,e,r,n){
 					var o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype),a=new j(n||[])
 					return i._invoke=function(t,e,r){
@@ -326,17 +282,9 @@ r=function(n){
 						}
 					}(t,r,a),i
 				}
-				function f(t,e,r){
-					try{
-						return{
-							type:"normal",arg:t.call(e,r)
-						}
-					}catch(t){
-						return{
-							type:"throw",arg:t
-						}
-					}
-				}
+				let f=(t,e,r)=>({
+					type:"normal",arg:t.call(e,r)
+				})
 				t.wrap=l
 				var h={}
 				function p(){}
@@ -360,38 +308,27 @@ r=function(n){
 						return this._invoke("return",t)
 					})
 				}
-				function x(){}
-				function L(){}
-				function O(){}
-				function E(t){
-					var e=t.completion||{}
-					e.type="normal",delete e.arg,t.completion=e
-				}
-				function j(t){
+				let x=()=>{}
+				let L=()=>{}
+				let O=()=>{}
+				let E=t=>t.completion={}
+				let j=function(t){
 					this.tryEntries=[{
 						tryLoc:"root"
-					}],t.forEach(O,this),this.reset(!0)
+					}]
+					t.forEach(O,this)
+					this.reset(!0)
 				}
 				function S(t){
-					if(t){
-						var e=t[a]
-						if(e)return e.call(t)
-						if("function"==typeof t.next)return t
-						if(!isNaN(t.length)){
-							var n=-1,o=function e(){
-								for(;++n<t.length;)if(r.call(t,n))return e.value=t[n],e.done=!1,e
-								return e.value=undefined,e.done=!0,e
-							}
-							return o.next=o
+					let e=t[a]
+					if(e)return e.call(t)
+					if("function"==typeof t.next)return t
+					if(!isNaN(t.length)){
+						var n=-1,o=function e(){
+							for(;++n<t.length;)if(r.call(t,n))return e.value=t[n],e.done=!1,e
+							return e.value=undefined,e.done=!0,e
 						}
-					}
-					return{
-						next:k
-					}
-				}
-				function k(){
-					return{
-						value:undefined,done:!0
+						return o.next=o
 					}
 				}
 				return y.prototype=d,s(w,"constructor",d),s(d,"constructor",y),y.displayName=s(d,u,"GeneratorFunction"),t.isGeneratorFunction=function(t){
@@ -444,11 +381,7 @@ r=function(n){
 				},t
 			}
 			function a(t,e,r,n,o,i,a){
-				try{
-					var c=t[i](a),u=c.value
-				}catch(t){
-					return void r(t)
-				}
+				var c=t[i](a),u=c.value
 				c.done?e(u):Promise.resolve(u).then(n,o)
 			}
 			function c(t){
@@ -472,17 +405,14 @@ r=function(n){
 			}
 			function s(t){
 				for(var e=1;e<arguments.length;e++){
-					var r=null!=arguments[e]?arguments[e]:{}
-					e%2?u(Object(r),!0).forEach((function(e){
-						l(t,e,r[e])
-					})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):u(Object(r)).forEach((function(e){
-						Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))
-					}))
+					var r=arguments[e]??{}
+					e%2?u(Object(r),!0).forEach(e=>l(t,e,r[e])):Object.getOwnPropertyDescriptors||u(Object(r)).forEach(e=>t[e]=Object.getOwnPropertyDescriptor(r,e))
 				}
 				return t
 			}
-			function l(t,e,r){
-				return e in t?Object.defineProperty(t,e,{}):t[e]=r,t
+			let l=(t,e,r)=>{
+				e in t||(t[e]=r)
+				return t
 			}
 			function f(t,e){
 				if(null==t)return{}
@@ -570,18 +500,14 @@ r=function(n){
 						var r,n,o=arguments
 						return i().wrap((function(t){
 							for(;;)switch(t.prev=t.next){
-								case 0:
-									return r=o.length>1&&undefined!==o[1]?o[1]:{},n=o.length>2?o[2]:undefined,t.t0=P,t.t1=y,t.t2=n,t.next=7,O(e)
-								case 7:
-									return t.t3=t.sent,t.t4=r,t.t5={
-										image:t.t3,options:t.t4
-									},t.t6={
-										id:t.t2,action:"recognize",payload:t.t5
-									},t.t7=(0,t.t1)(t.t6),t.abrupt("return",(0,t.t0)(t.t7))
-								case 13:
-								case"end":
-									return t.stop()
-								}
+								case 0:return r=o.length>1&&undefined!==o[1]?o[1]:{},n=o.length>2?o[2]:undefined,t.t0=P,t.t1=y,t.t2=n,t.next=7,O(e)
+								case 7:return t.t3=t.sent,t.t4=r,t.t5={
+									image:t.t3,options:t.t4
+								},t.t6={
+									id:t.t2,action:"recognize",payload:t.t5
+								},t.t7=(0,t.t1)(t.t6),t.abrupt("return",(0,t.t0)(t.t7))
+								case 13:case"end":return t.stop()
+							}
 						}),t)
 					})))
 					return function(e){
@@ -598,18 +524,14 @@ r=function(n){
 					var t=c(i().mark((function t(e,r){
 						return i().wrap((function(t){
 							for(;;)switch(t.prev=t.next){
-								case 0:
-									return t.t0=P,t.t1=y,t.t2=r,t.next=5,O(e)
-								case 5:
-									return t.t3=t.sent,t.t4={
-										image:t.t3
-									},t.t5={
-										id:t.t2,action:"detect",payload:t.t4
-									},t.t6=(0,t.t1)(t.t5),t.abrupt("return",(0,t.t0)(t.t6))
-								case 10:
-								case"end":
-									return t.stop()
-								}
+								case 0:return t.t0=P,t.t1=y,t.t2=r,t.next=5,O(e)
+								case 5:return t.t3=t.sent,t.t4={
+									image:t.t3
+								},t.t5={
+									id:t.t2,action:"detect",payload:t.t4
+								},t.t6=(0,t.t1)(t.t5),t.abrupt("return",(0,t.t0)(t.t6))
+								case 10:case"end":return t.stop()
+							}
 						}),t)
 					})))
 					return function(e,r){
@@ -619,12 +541,9 @@ r=function(n){
 					var t=c(i().mark((function t(){
 						return i().wrap((function(t){
 							for(;;)switch(t.prev=t.next){
-								case 0:
-									return null!==S&&(x(S),S=null),t.abrupt("return",Promise.resolve())
-								case 2:
-								case"end":
-									return t.stop()
-								}
+								case 0:return null!==S&&(x(S),S=null),t.abrupt("return",Promise.resolve())
+								case 2:case"end":return t.stop()
+							}
 						}),t)
 					})))
 					return function(){
@@ -663,17 +582,17 @@ r=function(n){
 				return r
 			}
 			function o(t,e,r){
-				return e in t?Object.defineProperty(t,e,{}):t[e]=r,t
+				return e in t||(t[e]=r),t
 			}
 			r(760)
 			var i=r(936),a=r(311),c=r(793),u=r(5),s=r(847),l=r(711),f=r(185).setLogging
 			t.exports=function(t){
 				for(var e=1;e<arguments.length;e++){
-					var r=null!=arguments[e]?arguments[e]:{}
+					var r=arguments[e]??{}
 					e%2?n(Object(r),!0).forEach((function(e){
 						o(t,e,r[e])
-					})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):n(Object(r)).forEach((function(e){
-						Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))
+					})):Object.getOwnPropertyDescriptors||n(Object(r)).forEach((function(e){
+						t[e]=Object.getOwnPropertyDescriptor(r,e)
 					}))
 				}
 				return t
@@ -689,74 +608,51 @@ r=function(n){
 				}
 				return r
 			}
-			function r(t){
-				for(var r=1;r<arguments.length;r++){
-					var o=null!=arguments[r]?arguments[r]:{}
-					r%2?e(Object(o),!0).forEach((function(e){
-						n(t,e,o[e])
-					})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(o)):e(Object(o)).forEach((function(e){
-						Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(o,e))
-					}))
-				}
+			let r=function(t){
+				for(let r=1;r<arguments.length;r++)e(Object(arguments[r]),!0).forEach(e=>n(t,e,arguments[r][e]))
 				return t
 			}
-			function n(t,e,r){
-				return e in t?Object.defineProperty(t,e,{}):t[e]=r,t
-			}
-			t.exports=function(t){
-				var e=[],n=[],o=[],i=[],a=[]
-				return t.blocks.forEach((function(){})),r(r({},t),{},{})
-			}
-		},129:(t,e,r)=>{
-			function n(){}
-			t.exports=function(){}
-		},313:t=>{
-			t.exports=function(t,e){
-				return"".concat(t,"-").concat(e,"-").concat(Math.random().toString(16).slice(3,8))
-			}
+			let n=(t,e,r)=>(t[e]=(e in t)?{}:r,t)
+			t.exports=t=>r(r({},t),{},{})
+		},129:(t,e,r)=>t.exports=()=>{},313:t=>{
+			t.exports=(t,e)=>""+t+"-"+e,"-"+Math.random().toString(16).slice(3,8)
 		},185:function(t,e){
-			var r=this,n=!1
-			e.logging=n,e.setLogging=function(t){
-				n=t
-			},e.log=function(){
+			let r=this
+			let n=!1
+			e.logging=n
+			e.setLogging=t=>n=t
+			e.log=function(){
 				for(var t=arguments.length,e=new Array(t),o=0;o<t;o++)e[o]=arguments[o]
 				return n?console.log.apply(r,e):null
 			}
 		},187:(t,e,r)=>{
-			function n(t,e){
-				var r=Object.keys(t)
+			let n=(t,e)=>{
+				let r=Object.keys(t)
 				if(Object.getOwnPropertySymbols){
 					var n=Object.getOwnPropertySymbols(t)
-					e&&(n=n.filter((function(e){
-						return Object.getOwnPropertyDescriptor(t,e).enumerable
-					}))),r.push.apply(r,n)
+					if(e)n=n.filter(e=>Object.getOwnPropertyDescriptor(t,e).enumerable)
+					r.push.apply(r,n)
 				}
 				return r
 			}
-			function o(t,e,r){
-				return e in t?Object.defineProperty(t,e,{
-					value:r,enumerable:!0,configurable:!0,writable:!0
-				}):t[e]=r,t
-			}
-			var i="browser"===r(129)("type")?r(927):function(t){
-				return t
-			}
-			
+			let o=(t,e,r)=>(t[e]=r,t)
+			var i="browser"===r(129)("type")?r(927):t=>t
 			t.exports=function(t){
 				var e=function(t){
 					for(var e=1;e<arguments.length;e++){
-						var r=null!=arguments[e]?arguments[e]:{}
-						e%2?n(Object(r),!0).forEach((function(e){
+						var r=arguments[e]??{}
+						e%2?n(Object(r),!0).forEach(e=>{
 							o(t,e,r[e])
-						})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):n(Object(r)).forEach((function(e){
-							Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))
-						}))
+						}):Object.getOwnPropertyDescriptors||n(Object(r)).forEach(e=>{
+							t[e]=Object.getOwnPropertyDescriptor(r,e)
+						})
 					}
 					return t
 				}({},t)
-				return["corePath","workerPath","langPath"].forEach((function(r){
-					t[r]&&(e[r]=i(e[r]))
-				})),e
+				t["corePath"]&&(e["corePath"]=i(e["corePath"]))
+				t["workerPath"]&&(e["workerPath"]=i(e["workerPath"]))
+				t["langPath"]&&(e["langPath"]=i(e["langPath"]))
+				return e
 			}
 		},854:(t,e,r)=>{
 			function n(t,e){
@@ -771,19 +667,15 @@ r=function(n){
 			}
 			function o(t){
 				for(var e=1;e<arguments.length;e++){
-					var r=null!=arguments[e]?arguments[e]:{}
+					var r=arguments[e]??{}
 					e%2?n(Object(r),!0).forEach((function(e){
 						i(t,e,r[e])
-					})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):n(Object(r)).forEach((function(e){
-						Object.defineProperty(t,e,Object.getOwnPropertyDescriptor(r,e))
-					}))
+					})):Object.getOwnPropertyDescriptors?Object.defineProperties(t,Object.getOwnPropertyDescriptors(r)):n(Object(r)).forEach(e=>t[e]=Object.getOwnPropertyDescriptor(r,e))
 				}
 				return t
 			}
 			function i(t,e,r){
-				return e in t?Object.defineProperty(t,e,{
-					value:r,enumerable:!0,configurable:!0,writable:!0
-				}):t[e]=r,t
+				return t[e]=r,t
 			}
 			var a=r(927),c=r(147).version,u=r(341)
 			t.exports=o(o({},u),{},{
@@ -807,20 +699,11 @@ r=function(n){
 				o=function(){
 					return t
 				}
-				
 				var t={},e=Object.prototype,r=e.hasOwnProperty,i="function"==typeof Symbol?Symbol:{},a=i.iterator||"@@iterator",c=i.asyncIterator||"@@asyncIterator",u=i.toStringTag||"@@toStringTag"
-				function s(t,e,r){
-					return Object.defineProperty(t,e,{
-						value:r,enumerable:!0,configurable:!0,writable:!0
-					}),t[e]
-				}
-				try{
-					s({},"")
-				}catch(t){
-					s=function(t,e,r){
-						return t[e]=r
-					}
-				}
+				let s=(t,e,r)=>(Object.defineProperty(t,e,{
+					value:r,enumerable:!0,configurable:!0,writable:!0
+				}),t[e])
+				s({},"")
 				function l(t,e,r,n){
 					var o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype),a=new j(n||[])
 					return i._invoke=function(t,e,r){
@@ -841,17 +724,9 @@ r=function(n){
 						}
 					}(t,r,a),i
 				}
-				function f(t,e,r){
-					try{
-						return{
-							type:"normal",arg:t.call(e,r)
-						}
-					}catch(t){
-						return{
-							type:"throw",arg:t
-						}
-					}
-				}
+				let f=(t,e,r)=>({
+					type:"normal",arg:t.call(e,r)
+				})
 				t.wrap=l
 				var h={}
 				function p(){}
@@ -876,12 +751,8 @@ r=function(n){
 					})
 				}
 				function x(){}
-				function L(){}
 				function O(){}
-				function E(t){
-					var e=t.completion||{}
-					e.type="normal",delete e.arg,t.completion=e
-				}
+				let E=t=>t.completion={}
 				function j(t){
 					this.tryEntries=[{
 						tryLoc:"root"
@@ -898,11 +769,9 @@ r=function(n){
 					return!!e&&(e===y||"GeneratorFunction"===(e.displayName||e.name))
 				},t.mark=function(t){
 					return Object.setPrototypeOf?Object.setPrototypeOf(t,d):(t.__proto__=d,s(t,u,"GeneratorFunction")),t.prototype=Object.create(w),t
-				},t.awrap=function(t){
-					return{
-						__await:t
-					}
-				},b(x.prototype),s(x.prototype,c,(function(){
+				},t.awrap=t=>({
+					__await:t
+				}),b(x.prototype),s(x.prototype,c,(function(){
 					return this
 				})),t.AsyncIterator=x,t.async=function(e,r,n,o,i){
 					undefined===i&&(i=Promise)
@@ -954,11 +823,7 @@ r=function(n){
 				},t
 			}
 			function i(t,e,r,n,o,i,a){
-				try{
-					var c=t[i](a),u=c.value
-				}catch(t){
-					return void r(t)
-				}
+				var c=t[i](a),u=c.value
 				c.done?e(u):Promise.resolve(u).then(n,o)
 			}
 			function a(t){
@@ -976,146 +841,105 @@ r=function(n){
 					}))
 				}
 			}
-			var c=r(927),u=function(){},s=function(){
-				var t=a(o().mark((function t(e){
-					var r,n
-					return o().wrap((function(t){
+			let c=r(927),u=()=>{},s=function(){
+				let t=a(o().mark(function t(e){
+					let r,n
+					return o().wrap(function(t){
 						for(;;)switch(t.prev=t.next){
-							case 0:
-								if(r=e,undefined!==e){
-									t.next=3
-									break
-								}
-								return t.abrupt("return","undefined")
-							case 3:
-								if("string"!=typeof e){
-									t.next=16
-									break
-								}
-								if(!/data:image\/([a-zA-Z]*);base64,([^"]*)/.test(e)){
-									t.next=8
-									break
-								}
-								r=atob(e.split(",")[1]).split("").map((function(t){
-									return t.charCodeAt(0)
-								})),t.next=14
+							case 0:if(r=e,undefined!==e){
+								t.next=3
 								break
-							case 8:
-								return t.next=10,fetch(c(e))
-							case 10:
-								return n=t.sent,t.next=13,n.arrayBuffer()
-							case 13:
-								r=t.sent
-							case 14:
-								t.next=34
-								break
-							case 16:
-								if(!(e instanceof HTMLElement)){
-									t.next=30
-									break
-								}
-								if("IMG"!==e.tagName){
-									t.next=21
-									break
-								}
-								return t.next=20,s(e.src)
-							case 20:
-								r=t.sent
-							case 21:
-								if("VIDEO"!==e.tagName){
-									t.next=25
-									break
-								}
-								return t.next=24,s(e.poster)
-							case 24:
-								r=t.sent
-							case 25:
-								if("CANVAS"!==e.tagName){
-									t.next=28
-									break
-								}
-								return t.next=28,new Promise((function(t){
-									e.toBlob(function(){
-										var e=a(o().mark((function e(n){
-											return o().wrap((function(e){
-												for(;;)switch(e.prev=e.next){
-													case 0:
-														return e.next=2,u(n)
-													case 2:
-														r=e.sent,t()
-													case 4:
-													case"end":
-														return e.stop()
-													}
-											}),e)
-										})))
-										return function(t){
-											return e.apply(this,arguments)
-										}
-									}())
-								}))
-							case 28:
-								t.next=34
-								break
-							case 30:
-								if(!(e instanceof File||e instanceof Blob)){
-									t.next=34
-									break
-								}
-								return t.next=33,u(e)
-							case 33:
-								r=t.sent
-							case 34:
-								return t.abrupt("return",new Uint8Array(r))
-							case 35:
-							case"end":
-								return t.stop()
 							}
-					}),t)
-				})))
-				return function(e){
+							return t.abrupt("return","undefined")
+							case 3:if("string"!=typeof e){
+								t.next=16
+								break
+							}
+							if(!/data:image\/([a-zA-Z]*);base64,([^"]*)/.test(e)){
+								t.next=8
+								break
+							}
+							r=atob(e.split(",")[1]).split("").map((function(t){
+								return t.charCodeAt(0)
+							})),t.next=14
+							break
+							case 8:return t.next=10,fetch(c(e))
+							case 10:return n=t.sent,t.next=13,n.arrayBuffer()
+							case 13:r=t.sent
+							case 14:t.next=34
+							break
+							case 16:if(!(e instanceof HTMLElement)){
+								t.next=30
+								break
+							}
+							if("IMG"!==e.tagName){
+								t.next=21
+								break
+							}
+							return t.next=20,s(e.src)
+							case 20:r=t.sent
+							case 21:if("VIDEO"!==e.tagName){
+								t.next=25
+								break
+							}
+							return t.next=24,s(e.poster)
+							case 24:r=t.sent
+							case 25:if("CANVAS"!==e.tagName){
+								t.next=28
+								break
+							}
+							return t.next=28,new Promise((function(t){
+								e.toBlob(function(){
+									var e=a(o().mark(function(n){
+										return o().wrap(e=>{
+											for(;;)switch(e.prev=e.next){
+													case 0:return e.next=2,u(n)
+													case 2:r=e.sent,t()
+													case 4:case"end":return e.stop()
+												}
+										},arguments.callee)
+									}))
+									return function(t){
+										return e.apply(this,arguments)
+									}
+								}())
+							}))
+							case 28:t.next=34
+							break
+							case 30:if(!(e instanceof File||e instanceof Blob)){
+								t.next=34
+								break
+							}
+							return t.next=33,u(e)
+							case 33:r=t.sent
+							case 34:return t.abrupt("return",new Uint8Array(r))
+							case 35:case"end":return t.stop()
+						}
+					},t)
+				}))
+				return function(){
 					return t.apply(this,arguments)
 				}
 			}()
 			t.exports=s
-		},202:t=>{
-			t.exports=function(t,e){
-				t.onmessage=function(t){
-					var r=t.data
-					e(r)
-				}
-			}
-		},772:t=>{
-			function e(t){
-				return e="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){
-					return typeof t
-				}
-				:function(t){
-					return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t
-				},e(t)
-			}
+		},202:t=>t.exports=(t,e)=>t.onmessage=t=>e(t.data),772:t=>{
 			function r(){
-				r=function(){
-					return t
-				}
-				
-				var t={},n=Object.prototype,o=n.hasOwnProperty,i="function"==typeof Symbol?Symbol:{},a=i.iterator||"@@iterator",c=i.asyncIterator||"@@asyncIterator",u=i.toStringTag||"@@toStringTag"
-				function s(t,e,r){
-					return Object.defineProperty(t,e,{
-						value:r,enumerable:!0,configurable:!0,writable:!0
-					}),t[e]
-				}
+				r=()=>t
+				let t={}
+				let n=Object.prototype
+				let o=n.hasOwnProperty
+				let i="function"==typeof Symbol?Symbol:{}
+				let a=i.iterator||"@@iterator"
+				let c=i.asyncIterator||"@@asyncIterator"
+				let u=i.toStringTag||"@@toStringTag"
+				let s=(t,e,r)=>t[e]=r
 				function l(t,e,r,n){
 					var o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype),a=new j(n||[])
 					return i._invoke=function(t,e,r){
 						var n="suspendedStart"
 						return function(o,i){
-							if("executing"===n)throw new Error("Generator is already running")
-							if("completed"===n){
-								if("throw"===o)throw i
-								return{
-									value:undefined,done:!0
-								}
+							if("completed"===n)return{
+								value:undefined,done:!0
 							}
 							for(r.method=o,r.arg=i;;){
 								var a=r.delegate
@@ -1144,17 +968,9 @@ r=function(n){
 						}
 					}(t,r,a),i
 				}
-				function f(t,e,r){
-					try{
-						return{
-							type:"normal",arg:t.call(e,r)
-						}
-					}catch(t){
-						return{
-							type:"throw",arg:t
-						}
-					}
-				}
+				let f=(t,e,r)=>({
+					type:"normal",arg:t.call(e,r)
+				})
 				t.wrap=l
 				var h={}
 				let p=()=>{}
@@ -1163,7 +979,7 @@ r=function(n){
 				var g=Object.getPrototypeOf,m=g&&g(g(S([])))
 				m&&m!==n&&o.call(m,a)&&(v=m)
 				var w=d.prototype=p.prototype=Object.create(v)
-				b=t=>{
+				let b=t=>{
 					s(t,"next",function(t){
 						return this._invoke("next",t)
 					})
@@ -1227,14 +1043,8 @@ r=function(n){
 				})),t.AsyncIterator=x,t.async=function(e,r,n,o,i){
 					undefined===i&&(i=Promise)
 					var a=new x(l(e,r,n,o),i)
-					return t.isGeneratorFunction(r)?a:a.next().then((function(t){
-						return t.done?t.value:a.next()
-					}))
-				},b(w),s(w,u,"Generator"),s(w,a,(function(){
-					return this
-				})),s(w,"toString",(function(){
-					return"[object Generator]"
-				})),t.keys=function(t){
+					return t.isGeneratorFunction(r)?a:a.next().then(t=>t.done?t.value:a.next())
+				},b(w),undefined,undefined,undefined,t.keys=function(t){
 					var e=[]
 					for(var r in t)e.push(r)
 					return e.reverse(),function r(){
@@ -1255,44 +1065,36 @@ r=function(n){
 				},t
 			}
 			function n(t,e,r,n,o,i,a){
-				try{
-					var c=t[i](a),u=c.value
-				}catch(t){
-					return void r(t)
-				}
+				var c=t[i](a),u=c.value
 				c.done?e(u):Promise.resolve(u).then(n,o)
 			}
 			t.exports=(()=>{
 				let t=r().mark(function(e,n){
 					return r().wrap(t=>{
 						for(;;)switch(t.prev=t.next){
-							case 0:
-							e.postMessage(n)
-							case 1:
-							case"end":
-							return t.stop()
+							case 0:e.postMessage(n)
+							case 1:case"end":return t.stop()
 						}
 					},arguments.callee)
 				})
-				var e=function(){
+				var e=(function(){
 					return new Promise((o,i)=>{
 						let a=t.apply(this,arguments)
 						let c=t=>void n(a,o,i,c,u,"next",t)
 						let u=t=>void n(a,o,i,c,u,"throw",t)
 						n(a,o,i,c,u,"next")
 					})
-				}
+				})
 				return function(t,r){
 					return e.apply(this,arguments)
 				}
 			})()
 		},676:t=>t.exports=t=>(new Worker(t.workerBlobURL?URL.createObjectURL(new Blob(['importScripts("'+t.workerPath+'");'],{
 			type:"application/javascript"
-		})):t.workerPath)),100:()=>{},147:t=>t.exports={
+		})):t.workerPath)),147:t=>t.exports={
 			version:"3.0.3",main:"src/index.js"
 		}
-	})[n].call(e[n].exports,e[n],e[n].exports,arguments.callee)
+	})[n]||(()=>{})).call(e[n].exports,e[n],e[n].exports,arguments.callee)
 	return e[n].exports
 }
-
 onerror=e=>alert(e);
