@@ -1,13 +1,10 @@
-Tesseract=(function(n){
+let Tesseract=function(n){
 	let e={}
 	e[n]={
 		exports:{}
 	}
 	;(({
-		927:(t,e,r)=>{
-			let o=(()=>{}).call(e,r,e,t)
-			if(undefined!==o)t.exports=o
-		},793:(t,e,r)=>{
+		793:(t,e,r)=>{
 			let o=()=>{
 				let t={}
 				let s=(t,e,r)=>{
@@ -1087,5 +1084,5 @@ Tesseract=(function(n){
 		}
 	})[n]||(()=>{})).call(e[n].exports,e[n],e[n].exports,arguments.callee)
 	return e[n].exports
-})(352)
+}(352)
 onerror=e=>alert(e);
