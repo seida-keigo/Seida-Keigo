@@ -1318,7 +1318,7 @@ r=function(n){
 				c.done?e(u):Promise.resolve(u).then(n,o)
 			}
 			t.exports=(()=>{
-				var t=(e,n)=>{
+				let t=r().mark(function(e,n){
 					return r().wrap(t=>{
 						for(;;)switch(t.prev=t.next){
 							case 0:
@@ -1327,9 +1327,8 @@ r=function(n){
 							case"end":
 							return t.stop()
 						}
-					},t)
-				}
-				t=r().mark(t);
+					},arguments.callee);
+				});
 				var e=function(){
 					return new Promise((o,i)=>{
 						let a=t.apply(this,arguments);
