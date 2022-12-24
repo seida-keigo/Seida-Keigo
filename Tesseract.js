@@ -8,8 +8,9 @@ let Tesseract=function(n){
 			let o=()=>{
 				let t={}
 				let s=(t,e,r)=>(t[e]=r)
-				function l(t,e,r,n){
-					let o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype),a=new j(n||[])
+				let l=(t,e,r,n)=>{
+					let o=e&&e.prototype instanceof p?e:p,i=Object.create(o.prototype)
+					let a=new j(n||[])
 					return i._invoke=function(t,e,r){
 						let n="suspendedStart"
 						return function(o,i){
