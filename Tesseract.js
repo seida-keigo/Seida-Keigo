@@ -47,9 +47,9 @@ let Tesseract=function(n){
 				})
 				t.wrap=l
 				let h={}
-				function p(){}
-				function y(){}
-				function d(){}
+				let p=()=>{}
+				let y=()=>{}
+				let d=()=>{}
 				let v={}
 				s(v,a,function(){
 					return this
@@ -58,7 +58,7 @@ let Tesseract=function(n){
 				let m=g&&g(g(S([])))
 				m&&m!==e&&r.call(m,a)&&(v=m)
 				let w=d.prototype=p.prototype=Object.create(v)
-				function b(t){
+				let b=function(t){
 					s(t,"next",function(t){
 						return this._invoke("next",t)
 					})
@@ -90,9 +90,7 @@ let Tesseract=function(n){
 					return Object.setPrototypeOf?Object.setPrototypeOf(t,d):(t.__proto__=d,s(t,u,"GeneratorFunction")),t.prototype=Object.create(w),t
 				},b(w),s(w,u,"Generator"),s(w,a,function(){
 					return this
-				}),s(w,"toString",(function(){
-					return"[object Generator]"
-				})),t.keys=function(t){
+				}),undefined,t.keys=function(t){
 					let e=[]
 					for(let r in t)e.push(r)
 					e.reverse()
