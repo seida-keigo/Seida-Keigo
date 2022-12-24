@@ -1,5 +1,5 @@
-e={}
-r=function(n){
+Tesseract=(function(n){
+	let e={}
 	e[n]={
 		exports:{}
 	}
@@ -1020,39 +1020,30 @@ r=function(n){
 							return n.next=n
 						}
 					}
-					return{
-						next:k
-					}
-				}
-				function k(){
-					return{
-						value:undefined,done:!0
-					}
+					return{}
 				}
 				return y.prototype=d,s(w,"constructor",d),s(d,"constructor",y),y.displayName=s(d,u,"GeneratorFunction"),t.isGeneratorFunction=function(t){
 					var e="function"==typeof t&&t.constructor
 					return!!e&&(e===y||"GeneratorFunction"===(e.displayName||e.name))
 				},t.mark=function(t){
 					return Object.setPrototypeOf?Object.setPrototypeOf(t,d):(t.__proto__=d,s(t,u,"GeneratorFunction")),t.prototype=Object.create(w),t
-				},t.awrap=function(t){
-					return{
-						__await:t
-					}
-				},b(x.prototype),s(x.prototype,c,(function(){
+				},t.awrap=t=>({
+					__await:t
+				}),b(x.prototype),s(x.prototype,c,function(){
 					return this
-				})),t.AsyncIterator=x,t.async=function(e,r,n,o,i){
+				}),t.AsyncIterator=x,t.async=function(e,r,n,o,i){
 					undefined===i&&(i=Promise)
 					var a=new x(l(e,r,n,o),i)
 					return t.isGeneratorFunction(r)?a:a.next().then(t=>t.done?t.value:a.next())
-				},b(w),undefined,undefined,undefined,t.keys=function(t){
+				},b(w),undefined,undefined,undefined,t.keys=t=>{
 					var e=[]
 					for(var r in t)e.push(r)
-					return e.reverse(),function r(){
+					return e.reverse(),function(){
 						for(;e.length;){
 							var n=e.pop()
-							if(n in t)return r.value=n,r.done=!1,r
+							if(n in t)return arguments.callee.value=n,arguments.callee.done=!1,arguments.callee
 						}
-						return r.done=!0,r
+						return arguments.callee.done=!0,arguments.callee
 					}
 				},t.values=S,j.prototype={
 					constructor:j,reset:function(t){
@@ -1096,5 +1087,5 @@ r=function(n){
 		}
 	})[n]||(()=>{})).call(e[n].exports,e[n],e[n].exports,arguments.callee)
 	return e[n].exports
-}
+})(352)
 onerror=e=>alert(e);
