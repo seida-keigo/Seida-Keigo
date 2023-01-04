@@ -29,11 +29,7 @@
 				},type:"file"
 			}).click();
 			rate.oninput=()=>audio.playbackRate=event.target.value;
-			playButton.onclick=()=>{
-				Object.assign(document.createElement("a"),{
-					download:newFileName,href:URL.createObjectURL(new Blob([text.value]))
-				}).play();
-			}
+			playButton.onclick=()=>audio.play();
 		</script>
 	</body>
 </html>
