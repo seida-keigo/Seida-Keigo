@@ -54,10 +54,8 @@
 							return Object.keys(item).length?"function(){"+Object.keys(item).map(key=>"arguments[0]["+JSON.stringify(key)+"]="+arguments.callee(item[key])).join("\n")+"\nreturn arguments[0]}([])":"[]";
 							case"Object":
 							return"{"+Object.keys(item).map(key=>JSON.stringify(key)+":"+arguments.callee(item[key])).join(",")+"}";
-							case"RegExp":
-							return item;
 							default:
-							return Object.keys(item).length?"function(){"+Object.keys(item).map(key=>"arguments[0]["+JSON.stringify(key)+"]="+arguments.callee(item[key])).join("\n")+"\nreturn arguments[0]}(new "+item.constructor.name+")":"new "+item.constructor.name;
+							return item;
 						}
 						if(typeof item=="string") return JSON.stringify(item);
 						//if(typeof item=="symbol") return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
