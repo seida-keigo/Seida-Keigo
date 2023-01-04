@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="style.css" rel="stylesheet">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<style>
+			html,body{
+				height:calc(100% - 16px);
+			}
+		</style>
+		<title>ピッチシフター</title>
+	</head>
+	<body>
+		<button id="selectButton">音声を選択</button>
+		<input id="rate" placeholder="ピッチ">
+		<button id="playButton">再生</button>
+		<script>
+			let audio=Object.assign(new Audio,{
+				preservesPitch:false
+			})
+			let fileName="";
+			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
+				onchange:()=>{
+					fileName=event.target.files[0].name;
+					Object.assign(new FileReader,{
+						onload:()=>audio.src=event.target.result
+					}).readAsDataURL(event.target.files[0]);
+				},type:"file"
+			}).click();
+			rate.oninput=()=>audio.playbackRate=event.target.value;
+			playButton.onclick=()=>{
+				Object.assign(document.createElement("a"),{
+					download:newFileName,href:URL.createObjectURL(new Blob([text.value]))
+				}).play();
+			}
+		</script>
+	</body>
+</html>
