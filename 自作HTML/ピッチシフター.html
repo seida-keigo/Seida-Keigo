@@ -13,10 +13,11 @@
 	</head>
 	<body>
 		<button id="selectButton">音声を選択</button>
+		<audio controls id="audio">
 		<input id="rate" placeholder="倍率 (JavaScript式可)">
 		<button id="playButton">再生</button>
 		<script>
-			let audio=Object.assign(new Audio,{
+			/*let audio=*/Object.assign(audio/*new Audio*/,{
 				preservesPitch:false,webkitPreservesPitch:false
 			});
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
