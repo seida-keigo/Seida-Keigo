@@ -13,13 +13,12 @@
 	</head>
 	<body>
 		<button id="selectButton">音声を選択</button>
-		<input id="rate" placeholder="ピッチ">
+		<input id="rate" placeholder="倍率 (JavaScript式可)">
 		<button id="playButton">再生</button>
 		<script>
 			let audio=Object.assign(new Audio,{
-				preservesPitch:false
+				preservesPitch:true
 			});
-			let fileName="";
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>{
 					fileName=event.target.files[0].name;
@@ -28,7 +27,7 @@
 					}).readAsDataURL(event.target.files[0]);
 				},type:"file"
 			}).click();
-			rate.oninput=()=>audio.playbackRate=event.target.value;
+			rate.oninput=()=>audio.playbackRate=eval(event.target.value);
 			playButton.onclick=()=>audio.play();
 		</script>
 	</body>
