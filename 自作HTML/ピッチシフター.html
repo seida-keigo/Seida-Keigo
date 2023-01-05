@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		<button id="selectButton">音声を選択</button>
-		<audio controls id="audio">
+		<audio controls id="audio" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA">
 		</audio>
 		<input id="rate" placeholder="倍率 (JavaScript式可)">
 		<button id="playButton">再生</button>
@@ -30,7 +30,7 @@
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			rate.oninput=()=>audio.playbackRate=eval(event.target.value)||1;
-			playButton.onclick=()=>audio.play();
+			//playButton.onclick=()=>audio.play();
 		</script>
 	</body>
 </html>
