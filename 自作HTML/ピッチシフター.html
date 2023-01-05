@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<button id="selectButton">音声を選択</button>
-		<audio controls id="audio" -webkit-preserves-pitch="false">
+		<audio controls id="audio">
 		</audio>
 		<input id="rate" placeholder="速さの倍率 (JavaScript式可)">
 		<button id="changeButton">速さを変更</button>
@@ -28,7 +28,7 @@
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			audio.onratechange=()=>rate.value=event.target.playbackRate;
-			//audio.webkitPreservesPitch=false;
+			audio.webkitPreservesPitch=false;
 			changeButton.onclick=()=>audio.playbackRate=eval(rate.value)||1;
 		</script>
 	</body>
