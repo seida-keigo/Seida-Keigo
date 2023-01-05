@@ -59,7 +59,7 @@
 						}
 						if(typeof item=="string") return JSON.stringify(item);
 						//if(typeof item=="symbol") return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
-						if(item===undefined) return;
+						if(item===undefined) return item;
 					}).join(" "),...{
 						assert:{
 							style:"color:#f00;"
