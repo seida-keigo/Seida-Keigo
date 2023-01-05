@@ -43,7 +43,7 @@
 				if(x=="assert"?items.shift():!items.length) return;
 				if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
-					innerText:(x=="assert"?"アサーションに失敗しました:"+(items.length?"":"console.assert"):"")+items.map(function(item){
+					innerText:(x=="assert"?"アサーションに失敗しました:":"")+items.map(function(item){
 						if(typeof item=="bigint") return item+"n";
 						if(typeof item=="boolean") return item;
 						if(typeof item=="function") return item;
@@ -59,9 +59,15 @@
 						}
 						if(typeof item=="string") return JSON.stringify(item);
 						//if(typeof item=="symbol") return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
-						if(item===undefined) return;
+						if(item===undefined)return"undefined";
 					}).join(" "),...{
-						assert:{style:"color:#f00;"},error:{style:"color:#f00;"},warn:{style:"color:#ff0;"}
+						assert:{
+							style:"color:#f00;"
+						},error:{
+							style:"color:#f00;"
+						},warn:{
+							style:"color:#ff0;"
+						}
 					}[x]
 				}));
 			}
