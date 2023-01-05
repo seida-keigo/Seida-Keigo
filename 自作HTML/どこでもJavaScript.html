@@ -43,7 +43,7 @@
 				if(x=="assert"?items.shift():!items.length) return;
 				if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
-					innerText:(x=="assert"?"アサーションに失敗しました:":"")+items.map(function(item){
+					innerText:(x=="assert"?"アサーションに失敗しました"+(items.length?":":""):"")+items.map(function(item){
 						if(typeof item=="bigint") return item+"n";
 						if(typeof item=="boolean") return item;
 						if(typeof item=="function") return item;
@@ -59,7 +59,7 @@
 						}
 						if(typeof item=="string") return JSON.stringify(item);
 						//if(typeof item=="symbol") return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
-						if(item===undefined)return"undefined";
+						if(item===undefined) return;
 					}).join(" "),...{
 						assert:{
 							style:"color:#f00;"
@@ -80,11 +80,13 @@
 			document.querySelectorAll("button")[0].onclick=()=>{
 				try{
 					let event;
-					eval(document.querySelectorAll("textarea")[0].value);
+					document.querySelectorAll("div.console")[0].append(Object.assign(document.createElement("p"),{
+						innerText:eval(document.querySelectorAll("textarea")[0].value)
+					}))
 				}
 				catch(error){
 					if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
-					document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
+					document.querySelectorAll("div.console")[0].append(Object.assign(document.createElement("p"),{
 						innerText:error,style:"color:#f00;"
 					}));
 				}
