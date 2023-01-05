@@ -44,7 +44,7 @@
 				if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 					innerText:(x=="assert"?"アサーションに失敗しました"+(items.length?":":""):"")+items.map(function(item){
-						if(item===undefined) return;
+						if(item===undefined) return undefined;
 						if(typeof item=="bigint") return item+"n";
 						if(typeof item=="boolean") return item;
 						if(typeof item=="function") return item;
