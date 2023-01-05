@@ -28,7 +28,7 @@
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			audio.onratechange=()=>rate.value=event.target.playbackRate;
-			audio["preservesPitch"in audio?"preservesPitch":"webkitPreservesPitch"]=false;
+			(audio.preservesPitch??audio.webkitPreservesPitch)=false;
 			changeButton.onclick=()=>audio.playbackRate=eval(rate.value)||1;
 		</script>
 	</body>
