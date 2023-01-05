@@ -10,13 +10,14 @@
 			}
 			audio{
 				display:block;
+				width:100%;
 			}
 		</style>
 		<title>ピッチシフター</title>
 	</head>
 	<body>
 		<button id="selectButton">音声を選択</button>
-		<audio controls id="audio" src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA">
+		<audio controls id="audio">
 		</audio>
 		<input id="rate" placeholder="倍率 (JavaScript式可)">
 		<!--button id="playButton">再生</button-->
