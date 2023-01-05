@@ -27,7 +27,7 @@
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			audio["preservesPitch"in audio?"preservesPitch":"webkitPreservesPitch"]=false;
-			audio.onratechange=()=>(rate.value=event.target.playbackRate,console.log(Object.keys(event)))
+			audio.onratechange=()=>(rate.value=event.target.playbackRate,alert(Object.keys(event)))
 			rate.oninput=()=>audio.playbackRate=eval(event.target.value)||1;
 		</script>
 	</body>
