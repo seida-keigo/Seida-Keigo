@@ -44,6 +44,7 @@
 				if(document.querySelectorAll("p.placeholder")[0]) document.querySelectorAll("p.placeholder")[0].remove();
 				document.querySelectorAll("div.console")[0].appendChild(Object.assign(document.createElement("p"),{
 					innerText:(x=="assert"?"アサーションに失敗しました"+(items.length?":":""):"")+items.map(function(item){
+						if(item===undefined) return;
 						if(typeof item=="bigint") return item+"n";
 						if(typeof item=="boolean") return item;
 						if(typeof item=="function") return item;
@@ -59,7 +60,7 @@
 						}
 						if(typeof item=="string") return JSON.stringify(item);
 						//if(typeof item=="symbol") return"Symbol("+(item.description!==undefined&&item.description!==""?"\""+item.description+"\"":"")+")";
-						if(item===undefined) return item;
+						//if(item===undefined) return item;
 					}).join(" "),...{
 						assert:{
 							style:"color:#f00;"
