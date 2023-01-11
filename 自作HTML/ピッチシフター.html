@@ -10,6 +10,7 @@
 			}
 			audio{
 				display:block;
+				height:calc(100% - 192px);
 				width:100%;
 			}
 		</style>
@@ -28,7 +29,7 @@
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			audio.onratechange=()=>rate.value=event.target.playbackRate;
-			audio.webkitPreservesPitch=false;
+			audio["preservesPitch"in audio?"preservesPitch":"webkitPreservesPitch"]=false;
 			changeButton.onclick=()=>audio.playbackRate=eval(rate.value)||1;
 		</script>
 	</body>
