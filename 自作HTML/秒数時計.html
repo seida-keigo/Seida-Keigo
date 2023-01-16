@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link href="style.css" rel="stylesheet">
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width">
 		<style>
-			html,body{
-				height:cacl(100% - 16px);
+			@font-face{
+				font-family:baseline;
+				src:local(verdana);
+				unicode-range:u+20;
+			}
+			*{
+				all:unset;
+				display:revert;
+			}
+			body{
+				background:#000;
+				color:#fff;
+				font-family:baseline,system-ui;
+				line-height:1;
+				overflow-y:hidden;
 			}
 			p{
-				font-family:system-ui;
-				font-size:32px;
+				font-size:calc(100vh/3);
 				font-weight:bold;
+				text-align:center;
 			}
 		</style>
 		<title>秒数時計</title>
 	</head>
 	<body>
-		<p id="seconds">
+		<p id="hours"></p>
+		<p id="minutes"></p>
+		<p id="seconds"></p>
 		<script>
-			setInterval(()=>{
-				let date=new Date;
-				seconds.innerText=date.getHours()+":"+("0"+date.getMinutes()).slice(-2)+":"+("0"+date.getSeconds()).slice(-2);
+			setInterval((date=new Date)=>{
+				hours.innerText=("0"+date.getHours()).slice(-2);
+				minutes.innerText=("0"+date.getMinutes()).slice(-2);
+				seconds.innerText=("0"+date.getSeconds()).slice(-2);
 			});
 		</script>
 	</body>
