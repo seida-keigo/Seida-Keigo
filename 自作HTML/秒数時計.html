@@ -17,25 +17,23 @@
 				background:#000;
 				color:#fff;
 				font-family:baseline,system-ui;
-				line-height:1;
+				font-size:64px/*calc(100dvh/3)*/;
+				line-height:calc(1em + 32px);
 				overflow-y:hidden;
 			}
 			p{
-				font-size:32px/*calc(100dvh/3)*/;
 				font-weight:bold;
+				padding-bottom:16px;
+				padding-top:16px;
 				text-align:center;
 			}
 		</style>
 		<title>秒数時計</title>
 	</head>
 	<body>
-		<p><span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></p>
+		<p id="time"></p>
 		<script>
-			setInterval((date=new Date)=>{
-				hours.innerText=date.getHours();
-				minutes.innerText=("0"+date.getMinutes()).slice(-2);
-				seconds.innerText=("0"+date.getSeconds()).slice(-2);
-			});
+			setInterval((date=new Date)=>time.innerText=date.getHours()+("0"+date.getMinutes()).slice(-2)+("0"+date.getSeconds()).slice(-2));
 		</script>
 	</body>
 </html>
