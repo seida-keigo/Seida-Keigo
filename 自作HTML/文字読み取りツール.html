@@ -17,10 +17,10 @@
 				padding:16px;
 			}
 			div:has(>#source){
-				height:calc(50% - 104px);
+				height:calc(50% - 104px - 32px);
 			}
 			div:has(>#range){
-				height:calc(25% - 76px);
+				height:calc(25% - 76px - 16px);
 			}
 			canvas{
 				display:block;
@@ -31,13 +31,14 @@
 				margin-left:auto;
 			}
 			textarea{
-				height:calc(25% - 68px);
+				height:calc(25% - 68px - 16px);
 			}
 		</style>
 		<title>文字読み取りツール</title>
 	</head>
 	<body>
 		<button id="selectButton">画像かPDFを選択</button>
+		<input id="pdfSize" placeholder="PDFの倍率(デフォルト: 1)">
 		<div>
 			<canvas height="0" id="source" width="0">
 			</canvas>
@@ -66,7 +67,7 @@
 					onload:event.target.files[0].type=="application/pdf"?()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>{
 						documentProxy.getPage(1).then(pageProxy=>{
 							let viewport=pageProxy.getViewport({
-								scale:4*prompt("倍率を入力してください。",1.5)/3
+								scale:(4*pdfSize||4)/3
 							});
 							source.height=viewport.height;
 							source.width=viewport.width;
