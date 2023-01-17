@@ -112,7 +112,7 @@
 				Tesseract.recognize(range.toDataURL()).then(job=>{
 					result.placeholder="読み取り結果";
 					result.readOnly=!job.data.text;
-					result.value=job.data.text;
+					result.value=job.data.text.trimEnd();
 					copyButton.disabled=!job.data.text;
 				}).catch(()=>alert("読み取りに失敗しました。"));
 			}
