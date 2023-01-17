@@ -28,8 +28,7 @@
 					}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
 				},type:"file"
 			}).click();
-			saveButton.onclick=()=>{
-				let newFileName="";
+			saveButton.onclick=(newFileName="")=>{
 				while(newFileName=="") newFileName=prompt("ファイル名を入力してください。",fileName);
 				if(!newFileName) return;
 				Object.assign(document.createElement("a"),{
