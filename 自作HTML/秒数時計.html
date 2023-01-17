@@ -21,7 +21,7 @@
 				overflow-y:hidden;
 			}
 			p{
-				font-size:calc(100dvh/3);
+				font-size:32px/*calc(100dvh/3)*/;
 				font-weight:bold;
 				text-align:center;
 			}
@@ -29,12 +29,10 @@
 		<title>秒数時計</title>
 	</head>
 	<body>
-		<p id="hours"></p>
-		<p id="minutes"></p>
-		<p id="seconds"></p>
+		<p><span id="hours"></span>:<span id="minutes"></span>:<span id="seconds"></span></p>
 		<script>
 			setInterval((date=new Date)=>{
-				hours.innerText=("0"+date.getHours()).slice(-2);
+				hours.innerText=date.getHours();
 				minutes.innerText=("0"+date.getMinutes()).slice(-2);
 				seconds.innerText=("0"+date.getSeconds()).slice(-2);
 			});
