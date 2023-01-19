@@ -1,43 +1,20 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width">
-		<style>
-			@font-face{
-				font-family:baseline;
-				src:local(verdana);
-				unicode-range:u+20;
-			}
-			*{
-				all:unset;
-				display:revert;
-			}
-			body{
-				background:#000;
-				color:#fff;
-				font-family:baseline,system-ui;
-				line-height:1;
-				overflow-y:hidden;
-			}
-			p{
-				font-size:calc(100vh/3);
-				font-weight:bold;
-				text-align:center;
-			}
-		</style>
-		<title>秒数時計</title>
-	</head>
-	<body>
-		<p id="hours"></p>
-		<p id="minutes"></p>
-		<p id="seconds"></p>
-		<script>
-			setInterval((date=new Date)=>{
-				hours.innerText=("0"+date.getHours()).slice(-2);
-				minutes.innerText=("0"+date.getMinutes()).slice(-2);
-				seconds.innerText=("0"+date.getSeconds()).slice(-2);
-			});
-		</script>
-	</body>
-</html>
+<meta content=width=device-width name=viewport>
+<style>
+@font-face{
+	font-family:baseline;src:local(verdana);unicode-range:u+20
+}
+*{
+	all:unset;display:revert
+}
+body{
+	background:#000;color:#fff;font-family:baseline,system-ui;font-kerning:none;font-size:64;line-height:calc(1em + 32px)
+}
+p{
+	font-weight:bold;padding-bottom:16;padding-top:16;text-align:center
+}
+</style>
+<title>秒数時計</title>
+<p id=time></p>
+<script>
+setInterval((date=new Date)=>time.innerText=date.getHours()+":"+("0"+date.getMinutes()).slice(-2)+":"+("0"+date.getSeconds()).slice(-2))
+</script>
