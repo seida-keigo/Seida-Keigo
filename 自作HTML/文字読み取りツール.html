@@ -54,7 +54,6 @@
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
-			window["pdfjs-dist/build/pdf"].GlobalWorkerOptions.workerSrc="https://mozilla.github.io/pdf.js/build/pdf.worker.js";
 			let image=Object.assign(new Image,{
 				onerror:()=>alert("このファイルは読み込めません。"),onload:()=>{
 					source.width=event.target.width;
