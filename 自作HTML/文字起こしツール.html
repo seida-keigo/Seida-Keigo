@@ -29,8 +29,8 @@
 				event.target.innerText="コピー済み";
 			}
 			saveButton.onclick=(date=new Date)=>Object.assign(document.createElement("a"),{
-					download:date.getMonth()+1+"月"+date.getDate()+"日 "+date.getHours()+"時"+date.getMinutes()+"分 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
-				}).click();
+				download:date.getMonth()+1+"月"+date.getDate()+"日 "+date.getHours()+"時"+date.getMinutes()+"分 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
+			}).click();
 			Object.assign(new webkitSpeechRecognition,{
 				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
 					text.readOnly=false;

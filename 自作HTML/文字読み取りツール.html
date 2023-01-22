@@ -54,13 +54,13 @@
 		<script src="https://unpkg.com/tesseract.js@v3.0.3/dist/tesseract.min.js">
 		</script>
 		<script>
-			let image=Object.assign(new Image,{
-				onerror:()=>alert("このファイルは読み込めません。"),onload:()=>{
-					source.width=event.target.width;
-					source.height=event.target.height;
-					source.getContext("2d").drawImage(event.target,0,0);
-				}
-			});
+			let image=new Image;
+			image.onerror=()=>alert("このファイルは読み込めません。");
+			image.onload=()=>{
+				source.width=event.target.width;
+				source.height=event.target.height;
+				source.getContext("2d").drawImage(event.target,0,0);
+			}
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
 					onload:event.target.files[0].type=="application/pdf"?()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>{
