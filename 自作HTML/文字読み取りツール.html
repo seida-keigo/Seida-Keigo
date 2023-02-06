@@ -76,18 +76,16 @@
 			}
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
-					onload:event.target.files[0].type=="application/pdf"?()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>{
-						documentProxy.getPage(1).then(pageProxy=>{
-							let viewport=pageProxy.getViewport({
-								scale:(4*pdfSize.value||4)/3
-							});
-							source.height=viewport.height;
-							source.width=viewport.width;
-							pageProxy.render({
-								canvasContext:source.getContext("2d"),viewport:viewport
-							}).promise.then(()=>image.src=source.toDataURL());
+					onload:event.target.files[0].type=="application/pdf"?()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>documentProxy.getPage(1).then(pageProxy=>{
+						let viewport=pageProxy.getViewport({
+							scale:(4*pdfSize.value||4)/3
 						});
-					}):()=>image.src=event.target.result
+						source.height=viewport.height;
+						source.width=viewport.width;
+						pageProxy.render({
+							canvasContext:source.getContext("2d"),viewport:viewport
+						}).promise.then(()=>image.src=source.toDataURL());
+					})):()=>image.src=event.target.result
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
 			let x;
