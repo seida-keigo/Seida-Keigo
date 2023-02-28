@@ -76,9 +76,10 @@
 				let rect=source.getBoundingClientRect();
 				let width=Math.min(Math.max(0,event.x-rect.x),source.width)-x;
 				let height=Math.min(Math.max(0,event.y-rect.y),source.height)-y;
+				let outline=event.x-x?8*(event.x-x)/Math.abs(event.x-x):0
 				source.getContext("2d").drawImage(image,0,0);
-				source.getContext("2d").fillStyle="#f005";
-				source.getContext("2d").fillRect(x-width,y-height,width+2*width,height+2*height);
+				source.getContext("2d").fillStyle="#00fa";
+				source.getContext("2d").fillRect(x-outline,y-outline,width+2*outline,height+2*outline);
 				source.getContext("2d").drawImage(image,x,y,width,height,x,y,width,height);
 			}
 			onmouseup=()=>{
