@@ -23,7 +23,9 @@
 		</video>
 		<script>
 			navigator.mediaDevices.getUserMedia({
-				audio:true,video:true
+				audio:true,video:{
+					frameRate:60
+				}
 			}).then(stream=>{
 				video.srcObject=stream;
 				video.play();
