@@ -74,13 +74,20 @@
 				if(~event.buttons&0b1||!onselectstart) return;
 				getSelection().removeAllRanges();
 				let rect=source.getBoundingClientRect();
-				let width=Math.min(Math.max(0,event.x-rect.x),source.width)-x;
-				let height=Math.min(Math.max(0,event.y-rect.y),source.height)-y;
-				let outline=event.x-x?8*(event.x-x)/Math.abs(event.x-x):0
+				let x1=Math.max(0,Math.min(x,event.x-rect.x));
+				let x2=Math.min(Math.max(x,event.x-rect.x),source.width);
+				let y1=Math.max(0,Math.min(y,event.y-rect.y));
+				let y2=Math.min(Math.max(y,event.y-rect.y),source.width);
 				source.getContext("2d").drawImage(image,0,0);
-				source.getContext("2d").fillStyle="#00fa";
-				source.getContext("2d").fillRect(x-outline,y-outline,width+2*outline,height+2*outline);
-				source.getContext("2d").drawImage(image,x,y,width,height,x,y,width,height);
+				source.getContext("2d").beginPath();
+				source.getContext("2d").lineWidth=8;
+				source.getContext("2d").moveTo(x1-4,y1-4);
+				source.getContext("2d").lineTo(x2+4,y1-4);
+				source.getContext("2d").lineTo(x2+4,y2+4);
+				source.getContext("2d").lineTo(x1-4,y2+4);
+				source.getContext("2d").closePath();
+				source.getContext("2d").strokeStyle="#00fa";
+				source.getContext("2d").stroke();
 			}
 			onmouseup=()=>{
 				if(event.button||!onselectstart||event.offsetX==x||event.offsetY==y) return;
@@ -91,12 +98,14 @@
 				copyButton.disabled=true;
 				copyButton.innerText="結果をコピー";
 				let rect=source.getBoundingClientRect();
-				let width=Math.min(Math.max(0,event.x-rect.x),source.width)-x;
-				let height=Math.min(Math.max(0,event.y-rect.y),source.height)-y;
+				let x1=Math.max(0,Math.min(x,event.x-rect.x));
+				let width=Math.min(Math.max(x,event.x-rect.x),source.width) - Math.max(0,Math.min(x,event.x-rect.x));
+				let y1=Math.max(0,Math.min(y,event.y-rect.y));
+				let height=Math.min(Math.max(y,event.y-rect.y),source.width) - Math.max(0,Math.min(y,event.y-rect.y));
 				let range=document.createElement("canvas");
-				range.width=Math.abs(width);
-				range.height=Math.abs(height);
-				range.getContext("2d").drawImage(image,x,y,width,height,0,0,Math.abs(width),Math.abs(height));
+				range.width=width;
+				range.height=height;
+				range.getContext("2d").drawImage(image,x1,y1,width,height,0,0,width,height);
 				Tesseract.recognize(range.toDataURL()).then(job=>{
 					result.placeholder="読み取り結果";
 					result.readOnly=!job.data.text;
