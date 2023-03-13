@@ -32,7 +32,7 @@
             let r=(k,i)=>({
                 x:Math.sin(Math.PI*k/180)*Math.cos(Math.PI*i/180),y:Math.sin(Math.PI*i/180),z:Math.cos(Math.PI*k/180)*Math.cos(Math.PI*i/180)
             })
-            /*navigator.geolocation.getCurrentPosition*/;($=>$())(position=>{
+            0&&navigator.geolocation.getCurrentPosition(position=>{
                 let x1=Math.PI*139.75/180//Math.PI*position.coords.longitude/180
                 let y1=Math.PI*(35+41/60)/180//Math.PI*position.coords.latitude/180
                 let x2=Math.PI*(139.75-180)/180//Math.PI*(39+49/60+34.3/3600)/180
