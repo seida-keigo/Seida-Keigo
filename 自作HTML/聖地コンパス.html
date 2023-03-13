@@ -28,7 +28,7 @@
 		<div>↑</div>
 		<script>
 			onload=()=>DeviceOrientationEvent.requestPermission()
-            ondeviceorientation=()=>document.querySelectorAll("div")[0].style="transform:rotatex("+event.beta+"deg)rotatey("+event.gamma+"deg)rotatez(-"+event.alpha+"deg)"
+            ondeviceorientation=()=>document.querySelectorAll("div")[0].style="transform:rotatez(-"+event.alpha+"deg)rotatex(-"+event.beta+"deg)rotatey("+event.gamma+"deg)"
             let r=(k,i)=>({
                 x:Math.sin(Math.PI*k/180)*Math.cos(Math.PI*i/180),y:Math.sin(Math.PI*i/180),z:Math.cos(Math.PI*k/180)*Math.cos(Math.PI*i/180)
             })
