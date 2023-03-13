@@ -28,7 +28,6 @@
 		<div>↑</div>
 		<script>
             ondeviceorientation=()=>document.querySelectorAll("div")[0].style="transform:rotate("+event.alpha+"deg)rotatex("+event.beta+"deg)rotatey("+event.gamma+"deg)"
-            
             let r=(k,i)=>({
                 x:Math.sin(Math.PI*k/180)*Math.cos(Math.PI*i/180),y:Math.sin(Math.PI*i/180),z:Math.cos(Math.PI*k/180)*Math.cos(Math.PI*i/180)
             })
