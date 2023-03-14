@@ -7,11 +7,11 @@
 			#cube{
 				margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
 			}
-			#y,#z{
+			#_y,#z{
 				border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
 			}
-			#y{
-				background:#3f3;transform:rotateX(90deg)
+			#_y{
+				background:#3f3;transform:transformz(calc(-100vw - 100vh)) rotatex(-90deg)
 			}
 			#z{
 				background:#33f
@@ -36,14 +36,14 @@
 		<div id=log></div>
 		<div class=container>
 			<div id=cube>
-				<div id=y>奥</div>
+				<div id=_y>●</div>
 				<div id=z>上</div>
 			</div>
 		</div>
 		<script>
 			ondeviceorientation=()=>{
 				log.innerText="α:"+~~event.alpha+" β:"+~~event.beta+" γ:"+~~event.gamma
-				cube.style.transform="rotateY("+(-event.gamma)+"deg) rotateX("+event.beta+"deg) rotateZ("+event.alpha+"deg)"
+				cube.style.transform="rotatey("+(-event.gamma)+"deg) rotatex("+event.beta+"deg) rotatez("+event.alpha+"deg)"
 			}
 			request.onclick=()=>DeviceOrientationEvent.requestPermission()
 		</script>
