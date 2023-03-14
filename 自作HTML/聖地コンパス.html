@@ -11,18 +11,29 @@
 				margin:unset
 			}
 			#_y{
-				background:#0a0;height:256px;width:256px
+				height:256px;width:256px;transform-origin:50%;transform-style:preserve-3d
+			}
+			#_y>div{
+				background:#0a0;height:256px;transform:translatez(min(-100vh,-100vw))
 			}
 		</style>
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<div id=_y></div>
+		<input id=beta value=90>
+		<input id=gamma value=0>
+		<input id=alpha value=0>
+		<div id=_y>
+			<div></div>
+		</div>
 		<div id=log></div>
 		<script>
 			ondeviceorientation=()=>{
-				log.innerText="α:"+Math.round(event.alpha)+" β:"+Math.round(event.beta)+" γ:"+Math.round(event.gamma)
-				_y.style.transform="translatez(min(-100vh,-100vw))rotatey("+(-event.gamma)+"deg)rotatex("+(event.beta-90)+"deg)rotatez("+event.alpha+"deg)"
+				//event.beta=+beta.value,event.gamma=+gamma.value,event.alpha=+alpha.value
+				alpha.value=Math.round(event.alpha)
+				beta.value=Math.round(event.beta)
+				gamma.value=Math.round(event.gamma)
+				_y.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+(event.beta-90)+"deg)rotatez("+event.alpha+"deg)"
 			}
 			_y.onclick=()=>{
 				DeviceOrientationEvent.requestPermission()
