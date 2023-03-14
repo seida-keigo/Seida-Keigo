@@ -23,7 +23,7 @@
 			onerror=error=>alert(error)
 			ondeviceorientation=()=>{
 				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
-				target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(-32px)"
+				target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(min(-50vh,-50vw))"
 			}
 			target.onclick=()=>DeviceOrientationEvent.requestPermission()
 
