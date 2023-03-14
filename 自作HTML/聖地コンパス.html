@@ -4,19 +4,13 @@
 	#cube{
 		margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
 	}
-	.front,.back,.top,.bottom{
-		background:#f607;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
+	.ue,.temae{
+		background:#f60;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
 	}
-	.front{
+	.ue{
 		transform:translateZ(50px)
 	}
-	.back{
-		transform:rotateY(180deg) translateZ(50px)
-	}
-	.top{
-		transform:rotateX(90deg) translateZ(50px)
-	}
-	.bottom{
+	.temae{
 		transform:rotateX(-90deg) translateZ(50px)
 	}
 </style>
@@ -24,15 +18,13 @@
 <div id=log></div>
 <div class=container>
 	<div id=cube>
-		<div class=front>上</div>
-		<div class=bottom>手</div>
-		<div class=back>下</div>
-		<div class=top>奥</div>
+		<div class=ue>上</div>
+		<div class=temae>手</div>
 	</div>
 </div>
 <script>
 	ondeviceorientation=()=>{
-		log.innerText="α:"+event.alpha+" β:"+event.beta+" γ:"+event.gamma
+		log.innerText="α:"+~~event.alpha+" β:"+~~event.beta+" γ:"+~~event.gamma
 		cube.style.transform="rotateY("+(-event.gamma)+"deg) rotateX("+event.beta+"deg) rotateZ("+event.alpha+"deg)"
 	}
 	request.onclick=()=>DeviceOrientationEvent.requestPermission()
