@@ -1,4 +1,45 @@
-<!DOCTYPE html>
+<meta charset=utf-8>
+<meta content=width=device-width name=viewport>
+<style>
+	#cube{
+		margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
+	}
+	.face{
+		background:#f607;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
+	}
+	.front{
+		transform:translatez(50px)
+	}
+	.back{
+		transform:rotatey(180deg)translatez(50px)
+	}
+	.top{
+		transform:rotatex(90deg)translatez(50px)
+	}
+	.bottom{
+		transform:rotatex(-90deg)translatez(50px)
+	}
+</style>
+<button id=request>クリック</button>
+<div id=log></div>
+<div class=container>
+	<div id=cube>
+		<div class="face front">1</div>
+		<div class="face back">6</div>
+		<div class="face top">3</div>
+		<div class="face bottom">4</div>
+	</div>
+</div>
+<script>
+	request.onclick=()=>{
+		DeviceOrientationEvent.requestPermission()
+		ondeviceorientation=()=>{
+			log.innerText="α:"+event.alpha+" β:"+event.beta+" γ:"+event.gamma
+			cube.style.transform="rotatey(-"+event.gamma+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)"
+		}
+	}
+</script>
+<!--DOCTYPE html>
 <html>
 	<head>
 		<meta charset="utf-8">
@@ -27,21 +68,21 @@
 	<body>
 		<div>↑</div>
 		<script>
-			onclick=()=>DeviceOrientationEvent.requestPermission()
-            ondeviceorientation=()=>document.querySelectorAll("div")[0].style="transform:rotatey(-"+event.gamma+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)"
-            let r=(k,i)=>({
-                x:Math.sin(Math.PI*k/180)*Math.cos(Math.PI*i/180),y:Math.sin(Math.PI*i/180),z:Math.cos(Math.PI*k/180)*Math.cos(Math.PI*i/180)
-            })
-            0&&navigator.geolocation.getCurrentPosition(position=>{
-                let x1=Math.PI*139.75/180//Math.PI*position.coords.longitude/180
-                let y1=Math.PI*(35+41/60)/180//Math.PI*position.coords.latitude/180
-                let x2=Math.PI*(139.75-180)/180//Math.PI*(39+49/60+34.3/3600)/180
-                let y2=Math.PI*(35+41/60)/180//Math.PI*(21+25/60+21/3600)/180
-                let cos=Math.cos
-                let sin=Math.sin
-                let tan=Math.tan
-                alert("x: "+sin(x2-x1)+"\ny: "+(cos(y1)*tan(y2)-sin(y1)*cos(x2-x1))+"\nz: "+(cos(x2-x1)-1)) // 修正中
-            })
+			onclick=()=>DeviceOrientationEvent.requestPermission?.()
+			ondeviceorientation=()=>document.querySelectorAll("div")[0].style="transform:rotatey(-"+event.gamma+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)"
+			let r=(k,i)=>({
+				x:Math.sin(Math.PI*k/180)*Math.cos(Math.PI*i/180),y:Math.sin(Math.PI*i/180),z:Math.cos(Math.PI*k/180)*Math.cos(Math.PI*i/180)
+			})
+			0&&navigator.geolocation.getCurrentPosition(position=>{
+				let x1=Math.PI*139.75/180//Math.PI*position.coords.longitude/180
+				let y1=Math.PI*(35+41/60)/180//Math.PI*position.coords.latitude/180
+				let x2=Math.PI*(139.75-180)/180//Math.PI*(39+49/60+34.3/3600)/180
+				let y2=Math.PI*(35+41/60)/180//Math.PI*(21+25/60+21/3600)/180
+				let cos=Math.cos
+				let sin=Math.sin
+				let tan=Math.tan
+				alert("x: "+sin(x2-x1)+"\ny: "+(cos(y1)*tan(y2)-sin(y1)*cos(x2-x1))+"\nz: "+(cos(x2-x1)-1)) // 修正中
+			})
 		</script>
 	</body>
-</html>
+</html-->
