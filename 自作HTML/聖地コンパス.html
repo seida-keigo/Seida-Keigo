@@ -14,21 +14,20 @@
 				margin:unset
 			}
 			#_y{
-				background:#3f3;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
+				background:#0a0;height:256px;width:256px
 			}
 		</style>
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<button id=request>クリック</button>
+		<div id=_y></div>
 		<div id=log></div>
-		<div id=_y>●</div>
 		<script>
 			ondeviceorientation=()=>{
 				log.innerText="α:"+Math.round(event.alpha)+" β:"+Math.round(event.beta)+" γ:"+Math.round(event.gamma)
 				_y.style.transform="translatez(min(-100vh,-100vw))rotatey("+(-event.gamma)+"deg)rotatex("+(event.beta-90)+"deg)rotatez("+event.alpha+"deg)"
 			}
-			request.onclick=()=>{
+			_y.onclick=()=>{
 				DeviceOrientationEvent.requestPermission()
 				event.target.remove()
 			}
