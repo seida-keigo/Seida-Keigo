@@ -4,22 +4,24 @@
 		<meta charset=utf-8>
 		<meta content=width=device-width name=viewport>
 		<style>
-			html,body,#target{
-				height:100%
+			html,body,div{
+				height:100%;scroll:hidden
 			}
 			body{
 				margin:unset;transform-style:preserve-3d
 			}
-			#back{
+			div:not(#back){
 				background:#fff;height:100%;left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
 			}
 			#target{
-				background:#0a0;transform-style:preserve-3d;width:100%
+				background:#0a0;transform-style:preserve-3d
 			}
 		</style>
 		<title>聖地コンパス</title>
 	</head>
-	<body><div id=back></div>
+	<body>
+		<div>
+		</div>
 		<div id=target>
 		</div>
 		<script>
