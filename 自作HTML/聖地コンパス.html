@@ -5,21 +5,21 @@
 		margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
 	}
 	.ue,.temae{
-		background:#f60;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
+		border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
 	}
-	.ue{
-		transform:translateZ(50px)
+	#y{
+		background:#f60;transform:rotateX(-90deg)
 	}
-	.temae{
-		transform:rotateX(-90deg) translateZ(50px)
+	#z{
+		background:#f60
 	}
 </style>
 <button id=request>クリック</button>
 <div id=log></div>
 <div class=container>
 	<div id=cube>
-		<div class=ue>上</div>
-		<div class=temae>手</div>
+		<div id=y>手</div>
+		<div id=z>上</div>
 	</div>
 </div>
 <script>
