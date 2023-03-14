@@ -11,28 +11,18 @@
 				height:calc(100% - 32px);margin:unset;padding:16px
 			}
 			#target{
-				transform-style:preserve-3d;width:100%/*
-			}
-			#target>div{*/;
-				background:#0a0/*;transform:translatez(min(-100vh,-100vw))*/
+				background:#0a0;transform-style:preserve-3d;width:100%
 			}
 		</style>
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<!--div>β <input id=beta value=0><br>γ <input id=gamma value=0><br>α <input id=alpha value=0></div-->
 		<div id=target>
-			<!--div></div-->
 		</div>
 		<script>
 			onerror=error=>alert(error)
 			ondeviceorientation=()=>{
 				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
-				/*
-				beta.value=Math.round(event.beta)
-				gamma.value=Math.round(event.gamma)
-				alpha.value=Math.round(event.alpha)
-				*/
 				target.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(min(-100vh,-100vw))"
 			}
 			target.onclick=()=>DeviceOrientationEvent.requestPermission()
