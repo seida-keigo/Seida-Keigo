@@ -4,7 +4,7 @@
 	#cube{
 		margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
 	}
-	.face{
+	.front,.back,.top,.bottom{
 		background:#f607;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
 	}
 	.front{
@@ -24,10 +24,10 @@
 <div id=log></div>
 <div class=container>
 	<div id=cube>
-		<div class="face front">手前</div>
-		<div class="face back">奥</div>
-		<div class="face top">上</div>
-		<div class="face bottom">下</div>
+		<div class=front>手前</div>
+		<div class=back>奥</div>
+		<div class=top>上</div>
+		<div class=bottom>下</div>
 	</div>
 </div>
 <script>
