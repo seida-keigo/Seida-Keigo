@@ -32,7 +32,7 @@
 				gamma.value=Math.round(event.gamma)
 				alpha.value=Math.round(event.alpha)
 				*/
-				target.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatey(-90deg)translatez(min(-100vh,-100vw))"
+				target.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(min(-100vh,-100vw))"
 			}
 			target.onclick=()=>DeviceOrientationEvent.requestPermission()
 
