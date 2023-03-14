@@ -8,7 +8,7 @@
 				height:100%
 			}
 			body{
-				height:calc(100% - 32px);margin:unset;padding:16px;perspective:16px
+				height:calc(100% - 32px);margin:unset;padding:16px;perspective:16px;transform-style:preserve-3d
 			}
 			#target{
 				background:#0a0;transform-style:preserve-3d;width:100%
@@ -23,7 +23,7 @@
 			onerror=error=>alert(error)
 			ondeviceorientation=()=>{
 				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
-				target.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(-32px)"
+				target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(-32px)"
 			}
 			target.onclick=()=>DeviceOrientationEvent.requestPermission()
 
