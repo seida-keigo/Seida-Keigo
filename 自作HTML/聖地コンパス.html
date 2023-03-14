@@ -31,13 +31,11 @@
 	</div>
 </div>
 <script>
-	request.onclick=()=>{
-		DeviceOrientationEvent.requestPermission()
-		ondeviceorientation=()=>{
-			log.innerText="α:"+event.alpha+" β:"+event.beta+" γ:"+event.gamma
-			cube.style.transform="rotateY("+(-event.gamma)+"deg) rotateX("+event.beta+"deg) rotateZ("+event.alpha+"deg)"
-		}
+	ondeviceorientation=()=>{
+		log.innerText="α:"+event.alpha+" β:"+event.beta+" γ:"+event.gamma
+		cube.style.transform="rotateY("+(-event.gamma)+"deg) rotateX("+event.beta+"deg) rotateZ("+event.alpha+"deg)"
 	}
+	request.onclick=()=>DeviceOrientationEvent.requestPermission()
 </script>
 <!--DOCTYPE html>
 <html>
