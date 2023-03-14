@@ -11,7 +11,7 @@
 				margin:unset
 			}
 			#target{
-				backgound-clip:content-box;height:calc(100% - 32px);padding:32px;transform-origin:center;transform-style:preserve-3d;width:calc(100% - 32px)/*
+				height:calc(100% - 32px);margin:16px;transform-origin:center;transform-style:preserve-3d;width:calc(100% - 32px)/*
 			}
 			#target>div{*/;
 				background:#0a0/*;transform:translatez(min(-100vh,-100vw))*/
@@ -25,6 +25,7 @@
 			<!--div></div-->
 		</div>
 		<script>
+			onerror=error=>alert(error)
 			ondeviceorientation=()=>{
 				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
 				/*
