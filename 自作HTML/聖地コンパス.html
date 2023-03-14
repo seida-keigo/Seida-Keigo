@@ -11,7 +11,7 @@
 				border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
 			}
 			#_y{
-				background:#3f3;transform:transformz(calc(-100vw - 100vh)) rotatex(-90deg)
+				background:#3f3;transform:transformz(calc(-100vw - 100vh))rotatex(-90deg)
 			}
 			#z{
 				background:#33f
@@ -42,8 +42,8 @@
 		</div>
 		<script>
 			ondeviceorientation=()=>{
-				log.innerText="α:"+~~event.alpha+" β:"+~~event.beta+" γ:"+~~event.gamma
-				cube.style.transform="rotatey("+(-event.gamma)+"deg) rotatex("+event.beta+"deg) rotatez("+event.alpha+"deg)"
+				log.innerText="α:"+Math.round(event.alpha)+" β:"+Math.round(event.beta)+" γ:"+Math.round(event.gamma)
+				cube.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)"
 			}
 			request.onclick=()=>DeviceOrientationEvent.requestPermission()
 		</script>
