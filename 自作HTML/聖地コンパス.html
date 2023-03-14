@@ -1,26 +1,20 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset=utf-8>
 		<meta content=width=device-width name=viewport>
 		<style>
+			*{
+				transform-style:preserve-3d
+			}
 			html,body{
 				height:100%
 			}
 			body{
 				margin:unset
 			}
-			#cube{
-				margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
-			}
-			#_y,#z{
-				border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
-			}
 			#_y{
-				background:#3f3;transform:translatey(min(-100vh,-100vw))rotatex(-90deg)
-			}
-			#z{
-				background:#33f
+				background:#3f3;border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
 			}
 		</style>
 		<title>聖地コンパス</title>
@@ -28,16 +22,11 @@
 	<body>
 		<button id=request>クリック</button>
 		<div id=log></div>
-		<div class=container>
-			<div id=cube>
-				<div id=_y>●</div>
-				<div id=z>上</div>
-			</div>
-		</div>
+		<div id=_y>●</div>
 		<script>
 			ondeviceorientation=()=>{
 				log.innerText="α:"+Math.round(event.alpha)+" β:"+Math.round(event.beta)+" γ:"+Math.round(event.gamma)
-				cube.style.transform="rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)"
+				_y.style.transform="translatey(min(-100vh,-100vw))rotatey("+(-event.gamma)+"deg)rotatex("+event.beta-90+"deg)rotatez("+event.alpha+"deg)"
 			}
 			request.onclick=()=>{
 				DeviceOrientationEvent.requestPermission()
