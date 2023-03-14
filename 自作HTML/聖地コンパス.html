@@ -1,62 +1,53 @@
-<meta charset=utf-8>
-<meta content=width=device-width name=viewport>
-<style>
-	#cube{
-		margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
-	}
-	.ue,.temae{
-		border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
-	}
-	#y{
-		background:#f60;transform:rotateX(-90deg)
-	}
-	#z{
-		background:#f60
-	}
-</style>
-<button id=request>クリック</button>
-<div id=log></div>
-<div class=container>
-	<div id=cube>
-		<div id=y>手</div>
-		<div id=z>上</div>
-	</div>
-</div>
-<script>
-	ondeviceorientation=()=>{
-		log.innerText="α:"+~~event.alpha+" β:"+~~event.beta+" γ:"+~~event.gamma
-		cube.style.transform="rotateY("+(-event.gamma)+"deg) rotateX("+event.beta+"deg) rotateZ("+event.alpha+"deg)"
-	}
-	request.onclick=()=>DeviceOrientationEvent.requestPermission()
-</script>
-<!--DOCTYPE html>
+<DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8">
-		<meta content="width=device-width" name="viewport">
+		<meta charset=utf-8>
+		<meta content=width=device-width name=viewport>
 		<style>
+			#cube{
+				margin-left:auto;margin-right:auto;transform-style:preserve-3d;width:0
+			}
+			.ue,.temae{
+				border:1px solid;font-size:64px;left:-50px;line-height:100px;height:100px;position:absolute;text-align:center;top:-50px;width:100px
+			}
+			#y{
+				background:#f60;transform:rotateX(-90deg)
+			}
+			#z{
+				background:#f60
+			}/*
 			html,body{
-				height:100%;
+				height:100%
 			}
 			body{
-				margin:unset;
+				margin:unset
 			}
 			video{
-				display:block;
-				width:100%;
+				display:block;width:100%
 			}
 			div{
-				font-family:verdana;
-				font-size:min(100vh,100vw);
-				line-height:1;
-				height:100%;
-				text-align:center;
-			}
+				font-family:verdana;font-size:min(100vh,100vw);line-height:1;height:100%;text-align:center
+			}*/
 		</style>
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<div>↑</div>
+		<button id=request>クリック</button>
+		<div id=log></div>
+		<div class=container>
+			<div id=cube>
+				<div id=y>手</div>
+				<div id=z>上</div>
+			</div>
+		</div>
+		<script>
+			ondeviceorientation=()=>{
+				log.innerText="α:"+~~event.alpha+" β:"+~~event.beta+" γ:"+~~event.gamma
+				cube.style.transform="rotateY("+(-event.gamma)+"deg) rotateX("+event.beta+"deg) rotateZ("+event.alpha+"deg)"
+			}
+			request.onclick=()=>DeviceOrientationEvent.requestPermission()
+		</script>
+		<!--div>↑</div>
 		<script>
 			onclick=()=>DeviceOrientationEvent.requestPermission?.()
 			ondeviceorientation=()=>document.querySelectorAll("div")[0].style="transform:rotatey(-"+event.gamma+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)"
@@ -73,6 +64,6 @@
 				let tan=Math.tan
 				alert("x: "+sin(x2-x1)+"\ny: "+(cos(y1)*tan(y2)-sin(y1)*cos(x2-x1))+"\nz: "+(cos(x2-x1)-1)) // 修正中
 			})
-		</script>
+		</script-->
 	</body>
-</html-->
+</html>
