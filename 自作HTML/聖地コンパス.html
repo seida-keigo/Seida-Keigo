@@ -26,16 +26,12 @@
 		</div>
 		<script>
 			onerror=error=>alert(error)
-			ondeviceorientation=()=>{
-				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
-				target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(min(-50vh,-50vw))"
-			}
-			target.onclick=()=>DeviceOrientationEvent.requestPermission()
-
-			let r=(k,i)=>({
-				x:Math.sin(Math.PI*k/180)*Math.cos(Math.PI*i/180),y:Math.sin(Math.PI*i/180),z:Math.cos(Math.PI*k/180)*Math.cos(Math.PI*i/180)
-			})
-			0&&navigator.geolocation.getCurrentPosition(position=>{
+			navigator.geolocation.getCurrentPosition(position=>{
+				DeviceOrientationEvent.requestPermission?.()
+				ondeviceorientation=()=>{
+					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
+					target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(-1920px)rotarex("+(-position.coords.latitude)+"deg)rotatey("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotatex("+(21+25/60+21/60**2)+"deg)translatez(1920px)"
+				}
 				let x1=Math.PI*139.75/180//Math.PI*position.coords.longitude/180
 				let y1=Math.PI*(35+41/60)/180//Math.PI*position.coords.latitude/180
 				let x2=Math.PI*(139.75-180)/180//Math.PI*(39+49/60+34.3/3600)/180
