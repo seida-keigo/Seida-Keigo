@@ -37,7 +37,7 @@
 		<div id=white></div>
 		<script>
 			onerror=error=>alert(error)
-			coords.onclick=()=>DeviceOrientationEvent.requestPermission?.()
+			white.onclick=()=>DeviceOrientationEvent.requestPermission?.()
 			let position
 			navigator.geolocation.getCurrentPosition(pos=>{
 				position=pos
