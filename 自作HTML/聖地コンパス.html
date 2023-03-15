@@ -25,7 +25,7 @@
 		<div id=capeCanaveral>ケープカナベラル</div>
 		<script>
 			onerror=error=>alert(error)
-			target.onclick=()=>DeviceOrientationEvent.requestPermission?.()
+			onclick=()=>DeviceOrientationEvent.requestPermission?.()
 			let position
 			navigator.geolocation.getCurrentPosition(pos=>{
 				position=pos
