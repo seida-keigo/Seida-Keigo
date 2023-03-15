@@ -40,12 +40,14 @@
 			let position,firstDir
 			navigator.geolocation.getCurrentPosition(pos=>{
 				position=pos
+white.background=""
 				ondeviceorientation=()=>{try{
 					//firstDir||(firseDir=event.webkitCompassHeading)
 					makkah.style.transform="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(event.alpha*0-event.webkitCompassHeading)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
 					capeCanaveral.style.transform="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(event.alpha*0-event.webkitCompassHeading)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-80-36/60-position.coords.longitude)+"deg)rotateX("+(28+24/60)+"deg)translateZ(1920px)"
 				}catch(error){alert(error)}}
 			})
+white.background="#000a"
 		</script>
 	</body>
 </html>
