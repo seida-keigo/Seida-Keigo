@@ -10,12 +10,20 @@
 			body{
 				margin:unset
 			}
-div{height:100%;left:0;position:absolute;top:0;width:100%;
-			
-				/*background:#fff;*/transform-style:preserve-3d
-			}#makkah{background:#0a0}#capeCanaveral{background:#0aa}
+			div{
+				height:100%;left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
+			}
+			#coords{
+				background:#fff
+			}
+			#makkah{
+				background:#0a0
+			}
+			#capeCanaveral{
+				background:#0aa
+			}
 			#makkah,#capeCanaveral{
-				transform-style:preserve-3d;font-size:25vw;text-align:center
+				font-size:25vw;text-align:center
 			}
 		</style>
 		<title>聖地コンパス</title>
@@ -32,10 +40,10 @@ div{height:100%;left:0;position:absolute;top:0;width:100%;
 				position=pos
 				ondeviceorientation=()=>{
 					let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
-					//coords.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
 					makkah.style.transform=a
 					let b="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-80-36/60-position.coords.longitude)+"deg)rotateX("+(28+24/60)+"deg)translateZ(1920px)"
 					capeCanaveral.style.transform=b
+					coords.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)//+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
 				}
 			})
 		</script>
