@@ -32,14 +32,6 @@
 					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
 					target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(-1920px)rotarex("+(-position.coords.latitude)+"deg)rotatey("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotatex("+(21+25/60+21/60**2)+"deg)translatez(1920px)"
 				}
-				let x1=Math.PI*139.75/180//Math.PI*position.coords.longitude/180
-				let y1=Math.PI*(35+41/60)/180//Math.PI*position.coords.latitude/180
-				let x2=Math.PI*(139.75-180)/180//Math.PI*(39+49/60+34.3/3600)/180
-				let y2=Math.PI*(35+41/60)/180//Math.PI*(21+25/60+21/3600)/180
-				let cos=Math.cos
-				let sin=Math.sin
-				let tan=Math.tan
-				alert("x: "+sin(x2-x1)+"\ny: "+(cos(y1)*tan(y2)-sin(y1)*cos(x2-x1))+"\nz: "+(cos(x2-x1)-1)) // 修正中
 			})
 		</script>
 	</body>
