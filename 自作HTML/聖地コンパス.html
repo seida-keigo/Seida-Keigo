@@ -4,17 +4,20 @@
 		<meta charset=utf-8>
 		<meta content=width=device-width name=viewport>
 		<style>
+			*{
+				overflow:hidden
+			}
 			html,body,div{
-				height:100%;overflow:hidden
+				height:100%
 			}
 			body{
 				margin:unset
 			}
 			div{
-				height:100%;left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
+				left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
 			}
-			#coords{
-				background:#fff
+			#makkah,#capeCanaveral{
+				font-size:25vw;text-align:center
 			}
 			#makkah{
 				background:#0a0
@@ -22,8 +25,8 @@
 			#capeCanaveral{
 				background:#0aa
 			}
-			#makkah,#capeCanaveral{
-				font-size:25vw;text-align:center
+			#white{
+				background:#fff
 			}
 		</style>
 		<title>聖地コンパス</title>
@@ -31,7 +34,7 @@
 	<body>
 		<div id=makkah>マッカ</div>
 		<div id=capeCanaveral>ケープカナベラル</div>
-		<div id=coords></div>
+		<div id=white></div>
 		<script>
 			onerror=error=>alert(error)
 			coords.onclick=()=>DeviceOrientationEvent.requestPermission?.()
@@ -43,7 +46,7 @@
 					makkah.style.transform=a
 					let b="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-80-36/60-position.coords.longitude)+"deg)rotateX("+(28+24/60)+"deg)translateZ(1920px)"
 					capeCanaveral.style.transform=b
-					coords.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)//+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
+					//white.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)//+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
 				}
 			})
 		</script>
