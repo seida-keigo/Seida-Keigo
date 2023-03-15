@@ -10,8 +10,9 @@
 			body{
 				margin:unset
 			}
-			#coords{
-				/*background:#fff;*/height:100%;left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
+div{height:100%;left:0;position:absolute;top:0;width:100%;
+			
+				/*background:#fff;*/transform-style:preserve-3d
 			}#makkah{background:#0a0}#capeCanaveral{background:#0aa}
 			#makkah,#capeCanaveral{
 				transform-style:preserve-3d;font-size:25vw;text-align:center
@@ -20,12 +21,12 @@
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<div id=coords></div>
 		<div id=makkah>マッカ</div>
 		<div id=capeCanaveral>ケープカナベラル</div>
+		<div id=coords></div>
 		<script>
 			onerror=error=>alert(error)
-			onclick=()=>DeviceOrientationEvent.requestPermission?.()
+			coords.onclick=()=>DeviceOrientationEvent.requestPermission?.()
 			let position
 			navigator.geolocation.getCurrentPosition(pos=>{
 				position=pos
