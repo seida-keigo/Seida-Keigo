@@ -42,11 +42,10 @@
 			navigator.geolocation.getCurrentPosition(pos=>{
 				position=pos
 				ondeviceorientation=()=>{
-					let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(event.webkitCompassHeading||event.alpha)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
+					let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(event.webkitCompassHeading||0&&event.alpha)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
 					makkah.style.transform=a
-					let b="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(event.webkitCompassHeading||event.alpha)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-80-36/60-position.coords.longitude)+"deg)rotateX("+(28+24/60)+"deg)translateZ(1920px)"
+					let b="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(event.webkitCompassHeading||0&&event.alpha)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-80-36/60-position.coords.longitude)+"deg)rotateX("+(28+24/60)+"deg)translateZ(1920px)"
 					capeCanaveral.style.transform=b
-					//white.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.webkitCompassHeading||event.alpha)//+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
 				}
 			})
 		</script>
