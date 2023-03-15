@@ -10,8 +10,8 @@
 			body{
 				margin:unset
 			}
-			div:not(#target){
-				background:#fff;height:100%;left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
+			#coords{
+				/*background:#fff;*/height:100%;left:0;position:absolute;top:0;transform-style:preserve-3d;width:100%
 			}
 			#target{
 				background:#0a0;transform-style:preserve-3d
@@ -20,8 +20,7 @@
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<!--div>
-		</div-->
+		<div id=coords></div>
 		<div id=target>
 		</div>
 		<script>
@@ -32,8 +31,7 @@
 				position=pos
 				ondeviceorientation=()=>{
 					let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
-					//let a="rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)"
-					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
+					coords.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
 					target.style.transform=a
 				}
 			})
