@@ -30,7 +30,7 @@
 			navigator.geolocation.getCurrentPosition(pos=>{
 				position=pos
 				ondeviceorientation=()=>{
-					let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateZ("+(position.coords.longitude-39-49/60-34.3/60**2)+"deg)rotateX("+(21+25/60+21/60**2-90)+"deg)translateZ(1920px)"
+					let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)translateZ(-1920px)rotateX("+position.coords.latitude+"deg)rotateZ("+(position.coords.longitude-39-49/60-34.3/60**2)+"deg)rotateX("+(21+25/60+21/60**2-90)+"deg)translateZ(1920px)"
 					coords.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
 					target.style.transform=a
 				}
