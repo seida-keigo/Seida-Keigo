@@ -20,19 +20,21 @@
 		<title>聖地コンパス</title>
 	</head>
 	<body>
-		<div>
-		</div>
+		<!--div>
+		</div-->
 		<div id=target>
 		</div>
 		<script>
 			onerror=error=>alert(error)
 			target.onclick=()=>DeviceOrientationEvent.requestPermission?.()
-			let position
+			let position={
+				coords:{}
+			}
 			navigator.geolocation.getCurrentPosition(pos=>position=pos)
 			ondeviceorientation=()=>{
 				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
 				//let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)translateZ(-1920px)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
-				let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)"
+				let a="rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)"
 				alert(a),target.style.transform=a
 			}
 		</script>
