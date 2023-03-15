@@ -26,11 +26,11 @@
 		</div>
 		<script>
 			onerror=error=>alert(error)
-			target.onclick=()=>navigator.geolocation.getCurrentPosition(position=>{
+			/*target.onclick=()=>*/navigator.geolocation.getCurrentPosition(position=>{
 				DeviceOrientationEvent.requestPermission?.()
 				ondeviceorientation=()=>{
 					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
-					target.style.transform="scalez(-1)rotatey("+(-event.gamma)+"deg)rotatex("+event.beta+"deg)rotatez("+event.alpha+"deg)rotatex(-90deg)translatez(-1920px)rotarex("+(-position.coords.latitude)+"deg)rotatey("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotatex("+(21+25/60+21/60**2)+"deg)translatez(1920px)"
+					target.style.transform="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)translateZ(-1920px)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
 				}
 			})
 		</script>
