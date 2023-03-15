@@ -26,7 +26,7 @@
 		</div>
 		<script>
 			onerror=error=>alert(error)
-			navigator.geolocation.getCurrentPosition(position=>{
+			target.onclick=()=>navigator.geolocation.getCurrentPosition(position=>{
 				DeviceOrientationEvent.requestPermission?.()
 				ondeviceorientation=()=>{
 					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
