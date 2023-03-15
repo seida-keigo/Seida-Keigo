@@ -35,8 +35,8 @@
 				ondeviceorientation=()=>{
 					//let a="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)translateZ(-1920px)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
 					let a="rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)"
-					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)+"\n"+a
-					alert(a),target.style.transform=a
+					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)+"\n"+a.match(/[^\(\)]+\([^\(\)]*\)/g).join("\n")
+					target.style.transform=a
 				}
 			})
 		</script>
