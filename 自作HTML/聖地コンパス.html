@@ -15,13 +15,14 @@
 			}
 			#target{
 				background:#0a0;transform-style:preserve-3d
+;font-size:100vw;text-align:center
 			}
 		</style>
 		<title>聖地コンパス</title>
 	</head>
 	<body>
 		<div id=coords></div>
-		<div id=target></div>
+		<div id=target>北</div>
 		<script>
 			onerror=error=>alert(error)
 			target.onclick=()=>DeviceOrientationEvent.requestPermission?.()
