@@ -26,13 +26,13 @@
 		</div>
 		<script>
 			onerror=error=>alert(error)
-			/*target.onclick=()=>*/navigator.geolocation.getCurrentPosition(position=>{
-				DeviceOrientationEvent.requestPermission?.()
-				ondeviceorientation=()=>{
-					target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
-					target.style.transform="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)translateZ(-1920px)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
-				}
-			})
+			target.onclick=()=>DeviceOrientationEvent.requestPermission?.()
+			let position
+			navigator.geolocation.getCurrentPosition(pos=>position=pos)
+			ondeviceorientation=()=>{
+				target.innerText="β(x軸): "+Math.round(event.beta)+"\nγ(y軸): "+Math.round(event.gamma)+"\nα(z軸): "+Math.round(event.alpha)
+				target.style.transform="scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+event.alpha+"deg)rotateX(-90deg)translateZ(-1920px)rotareX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
+			}
 		</script>
 	</body>
 </html>
