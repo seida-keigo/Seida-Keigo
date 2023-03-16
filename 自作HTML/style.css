@@ -1,23 +1,14 @@
 @font-face{
-	font-family:baseline;
-	src:local(verdana);
-	unicode-range:u+20;
+	font-family:baseline;src:local(verdana);unicode-range:u+20;
 }
 @font-face{
-	font-family:yu gothic;
-	src:local(yu gothic medium);
+	font-family:yu gothic;src:local(yu gothic medium);
 }
 @font-face{
-	font-family:yu gothic;
-	font-weight:bold;
-	src:local(yu gothic bold);
+	font-family:yu gothic;font-weight:bold;src:local(yu gothic bold);
 }
 *,::placeholder{
-	all:unset;
-	display:revert;
-	line-height:calc(1em + 8px);
-	transition:.25s background-color;
-	white-space:revert;
+	all:unset;display:revert;line-height:calc(1em + 8px);transition:.25s background-color;white-space:revert;
 }
 ::placeholder{
 	color:#bbb;
@@ -26,33 +17,22 @@
 	display:none;
 }
 body{
-	background:#000;
-	color:#fff;
-	font-family:baseline,arial,yu gothic;
-	font-kerning:none;
-	margin:16px;
-	overflow-wrap:break-word;
+	background:#000;color:#fff;font-family:baseline,arial,yu gothic;font-kerning:none;margin:16px;overflow-wrap:break-word;
 }
 button,p,input,textarea{
-	margin-bottom:16px;
-	margin-top:16px;
+	margin-bottom:16px;margin-top:16px;
 }
 button,input,textarea{
-	display:block;
-	padding:12px 16px;
-	width:calc(100% - 32px);
+	display:block;padding:12px 16px;width:calc(100% - 32px);
 }
 button{
-	color:initial;
-	font-weight:bold;
-	text-align:center;
+	color:initial;font-weight:bold;text-align:center;
 }
 button:disabled{
 	background:#fff6;
 }
 button:not(:disabled){
-	background:#fff;
-	cursor:pointer;
+	background:#fff;cursor:pointer;
 }
 button:hover:not(:disabled){
 	background:#ccc;
@@ -61,8 +41,7 @@ input,textarea{
 	background:#333;
 }
 p::after,p::before{
-	content:"";
-	display:block;
+	content:"";display:block;
 }
 p::after{
 	margin-top:-4px;
