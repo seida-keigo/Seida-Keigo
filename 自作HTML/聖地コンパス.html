@@ -36,19 +36,19 @@
 	</head>
 	<body>
 		<div id=northPole>北極点</div>
-		<div id=southPole>北極点</div>
+		<div id=southPole>南極点</div>
 		<div id=makkah>マッカ</div>
 		<div id=capeCanaveral>ケープカナベラル</div>
 		<div id=white style=background:#000a></div>
 		<script>
 			white.onclick=()=>DeviceOrientationEvent.requestPermission?.()
-			let position,comp
+			let position,comp=0
 			navigator.geolocation.getCurrentPosition(pos=>{
 				try{
 					white.removeAttribute("style")
 					position=pos
 					ondeviceorientation=()=>{
-						//if(event.webkitCompassHeading!=comp) comp=event.webkitCompassHeading
+						if(event.webkitCompassHeading!=comp) comp=event.alpha
 						northPole.style="transform:scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(-event.webkitCompassHeading)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-position.coords.longitude)+"deg)rotateX(90deg)translateZ(1920px)"
 						southPole.style="transform:scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(-event.webkitCompassHeading)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(-position.coords.longitude)+"deg)rotateX(-90deg)translateZ(1920px)"
 						makkah.style="transform:scaleZ(-1)rotateY("+(-event.gamma)+"deg)rotateX("+event.beta+"deg)rotateZ("+(-event.webkitCompassHeading)+"deg)translateZ(-1920px)rotateX("+(-position.coords.latitude)+"deg)rotateY("+(39+49/60+34.3/60**2-position.coords.longitude)+"deg)rotateX("+(21+25/60+21/60**2)+"deg)translateZ(1920px)"
