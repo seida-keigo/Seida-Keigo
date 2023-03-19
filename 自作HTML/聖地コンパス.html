@@ -62,3 +62,29 @@
 		</script>
 	</body>
 </html>
+
+<!--
+let compassHeading=(a,b,g)=>{
+	let _x=Math.PI*b/180
+	let _y=Math.PI*g/180
+	let _z=Math.PI*a/180
+	let cX=Math.cos(_x)
+	let cY=Math.cos(_y)
+	let cZ=Math.cos(_z)
+	let sX=Math.sin(_x)
+	let sY=Math.sin(_y)
+	let sZ=Math.sin(_z)
+	let Vx=-cZ*sY-sZ*sX*cY
+	let Vy=-sZ*sY+cZ*sX*cY
+	return 180*Math.atan(Vx/Vy)/Math.PI+(Vy<0?180:360*(Vx<0))
+}
+
+<svg id=equator>
+<circle cx=0 cy=0 r=1920 stroke=#000 width=8px>
+</svg>
+<svg id=primeMeridian>
+<circle cx=0 cy=0 r=1920 stroke=#000 width=8px>
+</svg>
+
+qiita.com/umi_kappa/items/38499c03792b2aac49ad
+-->
