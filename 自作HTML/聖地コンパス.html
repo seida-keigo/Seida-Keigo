@@ -35,6 +35,12 @@
 		<title>聖地コンパス</title>
 	</head>
 	<body>
+		<svg id=equator>
+			<circle cx=0 cy=0 r=960 stroke=#000 width=8px>
+		</svg>
+		<svg id=primeMeridian>
+			<circle cx=0 cy=0 r=960 stroke=#000 width=8px>
+		</svg>
 		<div id=northPole>北極点</div>
 		<div id=southPole>南極点</div>
 		<div id=makkah>マッカ</div>
@@ -78,13 +84,6 @@ let compassHeading=(a,b,g)=>{
 	let Vy=-sZ*sY+cZ*sX*cY
 	return 180*Math.atan(Vx/Vy)/Math.PI+(Vy<0?180:360*(Vx<0))
 }
-
-<svg id=equator>
-<circle cx=0 cy=0 r=1920 stroke=#000 width=8px>
-</svg>
-<svg id=primeMeridian>
-<circle cx=0 cy=0 r=1920 stroke=#000 width=8px>
-</svg>
 
 qiita.com/umi_kappa/items/38499c03792b2aac49ad
 -->
