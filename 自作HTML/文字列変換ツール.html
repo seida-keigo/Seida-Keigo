@@ -20,7 +20,7 @@
 		<textarea placeholder="空文字列" readonly style="color:#f00;">値なし</textarea>
 		<button disabled>変換結果をコピー</button>
 		<script>
-			for(let $ of[0,1]) document.querySelectorAll("textarea")[$].oninput=()=>{
+			oninput=()=>{
 				try{
 					let event;
 					let $=document.querySelectorAll("textarea")[0].value;
