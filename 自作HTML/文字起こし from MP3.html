@@ -25,7 +25,7 @@
 			}
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
-					onload:fetch(event.target.result).then(response=>response.blob()).then(()=>Object.assign(new webkitSpeechRecognition,{
+					onload:()=>fetch(event.target.result).then(response=>response.blob()).then(()=>Object.assign(new webkitSpeechRecognition,{
 						continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
 							text.readOnly=false;
 							if(text.value&&confirm("メモを保存しますか?")) saveButton.onclick();
