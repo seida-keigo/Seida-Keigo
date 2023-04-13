@@ -21,11 +21,9 @@
 		<input id="rate" placeholder="速さの倍率（JavaScript式可）">
 		<button id="changeButton">速さを変更</button>
 		<script>
-			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
-				onchange:()=>Object.assign(new FileReader,{
-					onload:()=>audio.src=event.target.result
-				}).readAsDataURL(event.target.files[0]),type:"file"
-			}).click();
+			selectButton.onclick=()=>showOpenFilePicker().then(handle=>handle[0].getFile()).then(file=>Object.assign(new FileReader,{
+				onload:()=>audio.src=event.target.result
+			}).readAsDataURL(file));
 			audio.onratechange=()=>rate.value=event.target.playbackRate;
 			audio["preservesPitch"in audio?"preservesPitch":"webkitPreservesPitch"]=false;
 			changeButton.onclick=()=>audio.playbackRate=eval(rate.value)||1;
