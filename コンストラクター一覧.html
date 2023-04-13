@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="style.css" rel="stylesheet">
+		<meta charset="utf-8">
+		<meta content="width=device-width" name="viewport">
+		<style>
+			ul{
+				padding-left:1.5em;
+			}
+			ul>h1{
+				font-size:inherit;margin-bottom:initial;margin-left:-1.5em;margin-top:initial;
+			}
+		</style>
+		<title>コンストラクター一覧</title>
+	</head>
+	<body>
+		<ul id="constructorList">
+			<h1>new演算子を使用できるコンストラクター:</h1>
+		</ul>
+		<script>
+			constructorList.append(...Object.getOwnPropertyNames(window).filter(propertyName=>{
+				try{
+					eval("new "+propertyName);
+				}
+				catch(error){
+					if(error.message.match(/(Illegal|.+ is not a) constructor/g)) return;
+				}
+				return true;
+			}).sort().map(propertyName=>Object.assign(document.createElement("li"),{
+				innerText:propertyName
+			})));
+		</script>
+	</body>
+</html>
