@@ -20,12 +20,12 @@
 		<video id="video" playsinline>
 		</video>
 		<script>
-			navigator.mediaDevices.getUserMedia({
-				audio:true,video:true
-			}).then(stream=>{
-				video.srcObject=stream;
+			(async()=>{
+				video.srcObject=await navigator.mediaDevices.getUserMedia({
+					audio:true,video:true
+				});
 				video.play();
-			});
+			})();
 		</script>
 	</body>
 </html>
