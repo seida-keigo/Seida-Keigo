@@ -9,7 +9,7 @@
 				height:calc(100% - 16px);
 			}
 			textarea{
-				height:calc(100% - 152px);
+				height:calc(100% - 216px);
 			}
 		</style>
 		<title>どこでもテキストエディター</title>
@@ -17,6 +17,7 @@
 	<body>
 		<button id="selectButton">ファイルを選択</button>
 		<textarea id="text" placeholder="テキスト"></textarea>
+		<button id="previewButton">HTMLとしてプレビュー</button>
 		<button id="saveButton">保存</button>
 		<script>
 			let fileName="";
@@ -36,6 +37,9 @@
 				}).readAsText(file,prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
 			});
 			*/
+			previewButton.onclick=()=>open(URL.createObjectURL(new Blob([text.value],{
+				type:"text/html"
+			})));
 			saveButton.onclick=()=>{
 				let newFileName=prompt("ファイル名を入力してください。",fileName);
 				if(!newFileName.trim().match(/^[^.].*\..*[^.]$/g)) event.target.onclick();
