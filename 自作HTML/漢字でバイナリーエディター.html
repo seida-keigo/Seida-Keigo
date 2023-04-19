@@ -21,20 +21,26 @@
 		<!--button id="saveButton">保存</button-->
 		<script>
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
-				onchange:()=>Object.assign(new FileReader,{
-					onload:()=>text.value=[...event.target.result].map($=>String.fromCharCode($.charCodeAt()+0x4e00)).join("")
-				}).readAsBinaryString(event.target.files[0]),type:"file"
+				onchange:()=>{
+					fileName=event.target.files[0].name;
+					Object.assign(new FileReader,{
+						onload:()=>text.value=[...event.target.result].map($=>String.fromCharCode($.charCodeAt()+0x4e00)).join("")
+					}).readAsBinaryString(event.target.files[0]);
+				},type:"file"
 			}).click();
 
 			selectButton2.onclick=()=>Object.assign(document.createElement("input"),{
-				onchange:async()=>text.value=[...new Uint8Array(await event.target.files[0].arrayBuffer())].map($=>String.fromCharCode($+0x4e00)).join(""),type:"file"
+				onchange:async()=>{
+					fileName=event.target.files[0].name;
+					text.value=[...new Uint8Array(await event.target.files[0].arrayBuffer())].map($=>String.fromCharCode($+0x4e00)).join("");
+				},type:"file"
 			}).click();
 
-			saveButton.onclick=()=>{
+			saveButton.onclick=async()=>{
 				let newFileName=prompt("ファイル名を入力してください。",fileName);
-				if(newFileName=="") event.target.onclick();
+				if(!newFileName.trim().match(/^[^.].*\..*[^.]$/g)) event.target.onclick();
 				else if(newFileName) Object.assign(document.createElement("a"),{
-					download:newFileName,href:URL.createObjectURL(new Blob([text.value]))
+					download:newFileName,href:URL.createObjectURL(await new Blob([...text.value].map($=>String.fromCharCode($.charCodeAt()%0x100))))
 				}).click();
 			}
 		</script>
