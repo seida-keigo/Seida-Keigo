@@ -17,7 +17,7 @@
 	<body>
 		<button id="selectButton">ファイルを選択</button>
 		<textarea id="text" placeholder="テキスト"></textarea>
-		<button id="previewButton">HTMLとしてプレビュー</button>
+		<button id="htmlPreviewButton">HTMLとしてプレビュー</button>
 		<button id="saveButton">保存</button>
 		<script>
 			let fileName="";
@@ -37,7 +37,7 @@
 				}).readAsText(file,prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
 			});
 			*/
-			previewButton.onclick=()=>open(URL.createObjectURL(new Blob([text.value],{
+			htmlPreviewButton.onclick=()=>open(URL.createObjectURL(new Blob([text.value],{
 				type:"text/html"
 			})));
 			saveButton.onclick=()=>{
