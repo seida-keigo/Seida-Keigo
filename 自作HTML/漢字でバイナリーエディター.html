@@ -19,6 +19,7 @@
 		<textarea id="text" placeholder="テキスト"></textarea>
 		<button id="saveButton">保存</button>
 		<script>
+			let fileName="";
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:async()=>{
 					fileName=event.target.files[0].name;
