@@ -24,7 +24,11 @@
 		<button id="selectButton">ファイルを選択</button>
 		<script>
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
-				onchange:()=>open(URL.createObjectURL(event.target.files[0])),type:"file"
+				onchange:()=>Object.assign(new FileReader,{
+					onload:()=>open(URL.createObjectURL(new Blob([event.target.result],{
+						type:"text/html"
+					})))
+				}).readAsText(event.target.files[0],prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis")),type:"file"
 			}).click();
 		</script>
 	</body>
