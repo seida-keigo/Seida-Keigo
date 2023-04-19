@@ -25,11 +25,11 @@
 					text.value=new Uint8Array(await event.target.files[0].arrayBuffer()).map($=>String.fromCharCode($+0x4e00)).join("");
 				},type:"file"
 			}).click();
-			saveButton.onclick=async()=>{
+			saveButton.onclick=()=>{
 				let newFileName=prompt("ファイル名を入力してください。",fileName);
 				if(!newFileName.trim().match(/^[^.].*\..*[^.]$/g)) event.target.onclick();
 				else if(newFileName) Object.assign(document.createElement("a"),{
-					download:newFileName,href:URL.createObjectURL(await new Blob([...text.value].map($=>String.fromCharCode($.charCodeAt()%0x100))))
+					download:newFileName,href:URL.createObjectURL(new Blob([...text.value].map($=>String.fromCharCode($.charCodeAt()%0x100))))
 				}).click();
 			}
 		</script>
