@@ -21,20 +21,11 @@
 		<title>コンストラクター一覧</title>
 	</head>
 	<body>
-		<ul id="constructorList">
-			<h1>new演算子を使用できるコンストラクター:</h1>
-		</ul>
+		<button id="selectButton">ファイルを選択</button>
 		<script>
-			constructorList.append(...Object.getOwnPropertyNames(window).filter(propertyName=>{
-				try{
-					return eval("new "+propertyName);
-				}
-				catch(error){
-					return!error.message.match(/(Illegal|.+ is not a) constructor/g);
-				}
-			}).sort().map(propertyName=>Object.assign(document.createElement("li"),{
-				innerText:propertyName
-			})));
+			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
+				onchange:()=>open(URL.createObjectURL(event.target.files[0])),type:"file"
+			}).click();
 		</script>
 	</body>
 </html>

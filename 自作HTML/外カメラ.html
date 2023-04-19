@@ -1,37 +1,45 @@
-<meta content=width=device-width name=viewport>
-<style>
-	html,body,video{
-		height:100%
-	}
-	body{
-		background:#000;margin:unset
-	}
-	video{
-		display:block;width:100%
-	}
-</style>
-<title>ŠOƒJƒƒ‰</title>
-<video id=video playsinline>
-</video>
-<script>
-	navigator.mediaDevices.getUserMedia({
-		video:{
-			facingMode:{
-				exact:"environment"
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width" name="viewport">
+		<style>
+			html,body,video{
+				height:100%;
 			}
-		}
-	}).then(stream=>{
-		video.srcObject=stream
-		video.play()
-		video.onclick=()=>{
-			let canvas=document.createElement("canvas")
-			canvas.height=video.videoHeight
-			canvas.width=video.videoWidth
-			canvas.getContext("2d").drawImage(video,0,0)
-			let date=new Date
-			Object.assign(document.createElement("a"),{
-				download:date.getFullYear()+"”N"+(date.getMonth()+1)+"Œ"+date.getDate()+"“ú "+date.getHours()+""+date.getMinutes()+"•ª"+date.getSeconds()+"•b.png",href:canvas.toDataURL()
-			}).click()
-		}
-	})
-</script>
+			body{
+				background:#000;margin:unset;
+			}
+			video{
+				display:block;width:100%;
+			}
+		</style>
+		<title>å¤–ã‚«ãƒ¡ãƒ©</title>
+	</head>
+	<body>
+		<video id="video" playsinline>
+		</video>
+		<script>
+			(async()=>{
+				video.srcObject=await navigator.mediaDevices.getUserMedia({
+					video:{
+						facingMode:{
+							exact:"environment"
+						}
+					}
+				});
+				video.play();
+			})();
+			video.onclick=()=>{
+				let canvas=document.createElement("canvas");
+				canvas.height=video.videoHeight;
+				canvas.width=video.videoWidth;
+				canvas.getContext("2d").drawImage(video,0,0);
+				let date=new Date;
+				Object.assign(document.createElement("a"),{
+					download:date.getFullYear()+"å¹´"+(date.getMonth()+1)+"æœˆ"+date.getDate()+"æ—¥ "+date.getHours()+"æ™‚"+date.getMinutes()+"åˆ†"+date.getSeconds()+"ç§’.png",href:canvas.toDataURL()
+				}).click();
+			}
+		</script>
+	</body>
+</html>
