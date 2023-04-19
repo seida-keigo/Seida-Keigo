@@ -16,26 +16,15 @@
 	</head>
 	<body>
 		<button id="selectButton">ファイルを選択</button>
-		<button id="selectButton2">ファイルを選択2</button>
 		<textarea id="text" placeholder="テキスト"></textarea>
-		<!--button id="saveButton">保存</button-->
+		<button id="saveButton">保存</button>
 		<script>
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
-				onchange:()=>{
-					fileName=event.target.files[0].name;
-					Object.assign(new FileReader,{
-						onload:()=>text.value=[...event.target.result].map($=>String.fromCharCode($.charCodeAt()+0x4e00)).join("")
-					}).readAsBinaryString(event.target.files[0]);
-				},type:"file"
-			}).click();
-
-			selectButton2.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:async()=>{
 					fileName=event.target.files[0].name;
-					text.value=[...new Uint8Array(await event.target.files[0].arrayBuffer())].map($=>String.fromCharCode($+0x4e00)).join("");
+					text.value=new Uint8Array(await event.target.files[0].arrayBuffer()).map($=>String.fromCharCode($+0x4e00)).join("");
 				},type:"file"
 			}).click();
-
 			saveButton.onclick=async()=>{
 				let newFileName=prompt("ファイル名を入力してください。",fileName);
 				if(!newFileName.trim().match(/^[^.].*\..*[^.]$/g)) event.target.onclick();
