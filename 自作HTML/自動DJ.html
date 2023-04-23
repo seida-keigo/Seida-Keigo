@@ -1,0 +1,53 @@
+<link href="style.css" rel="stylesheet">
+<style>
+	html,body{
+		height:calc(100% - 16px);
+	}
+</style>
+<audio controls id="audio1">
+</audio>
+<audio controls id="audio2">
+</audio>
+<script>
+	let tracks=[{
+		src:"tracks/1.mp3",currentTime:0,playbackRate:140/138,BEATS:0xc0
+	}/*,{
+		src:"tracks/2.mp3",currentTime:0x70*60/143,playbackRate:140/143,BEATS:0xc0
+	},{
+		src:"tracks/3.mp3",currentTime:5.6,playbackRate:140/136,BEATS:0xa4
+	},{
+		src:"tracks/4.mp3",currentTime:4.5,playbackRate:140/162,BEATS:0x80
+	}*/];
+	Object.assign(audio1,{
+		preservesPitch:false,volume:1/64
+	},tracks[~~(tracks.length*Math.random())]);
+	Object.assign(audio2,{
+		preservesPitch:false,volume:1/64
+	},tracks[~~(tracks.length*Math.random())]);
+	onclick=()=>{
+		setInterval(()=>{
+			if(audio1.paused&&audio1.paused) audio1.play();
+			if(audio1.BEATS==0) audio2.play();
+			if(audio2.BEATS==0) audio1.play();
+
+			if(audio1.BEATS>0&&audio1.volume<1) audio1.volume+=1/64;
+			if(audio1.BEATS<0&&audio1.volume>1/64) audio1.volume-=1/64;
+			if(audio1.BEATS<0&&audio1.volume==1/64){
+				audio1.pause();
+				Object.assign(audio1,tracks[~~(tracks.length*Math.random())]);
+			}
+
+			if(audio2.BEATS>0&&audio2.volume<1) audio2.volume+=1/64;
+			if(audio2.BEATS<0&&audio2.volume>1/64) audio2.volume-=1/64;
+			if(audio2.BEATS<0&&audio2.volume==1/64){
+				audio2.pause();
+				Object.assign(audio2,tracks[~~(tracks.length*Math.random())]);
+			}
+
+			if(!audio1.paused) audio1.BEATS-=.25;
+			if(!audio2.paused) audio2.BEATS-=.25;
+			console.log(audio1.BEATS,audio2.BEATS);
+		},15e3/140);
+		onclick=null;
+	}
+</script>
