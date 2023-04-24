@@ -26,28 +26,50 @@
 	},tracks[~~(tracks.length*Math.random())]);
 	onclick=()=>{
 		setInterval(()=>{
-			if(audio1.paused&&audio1.paused) audio1.play();
-			if(audio1.BEATS==0) audio2.play();
-			if(audio2.BEATS==0) audio1.play();
-
-			if(audio1.BEATS>0&&audio1.volume<1) audio1.volume+=1/64;
-			if(audio1.BEATS<0&&audio1.volume>1/64) audio1.volume-=1/64;
-			if(audio1.BEATS<0&&audio1.volume==1/64){
-				audio1.pause();
-				Object.assign(audio1,tracks[~~(tracks.length*Math.random())]);
-			}
-
-			if(audio2.BEATS>0&&audio2.volume<1) audio2.volume+=1/64;
-			if(audio2.BEATS<0&&audio2.volume>1/64) audio2.volume-=1/64;
-			if(audio2.BEATS<0&&audio2.volume==1/64){
-				audio2.pause();
-				Object.assign(audio2,tracks[~~(tracks.length*Math.random())]);
-			}
-
-			if(!audio1.paused) audio1.BEATS-=.25;
-			if(!audio2.paused) audio2.BEATS-=.25;
-			console.log(audio1.BEATS,audio2.BEATS);
-		},15e3/140);
+			if(audio1.paused&&audio2.paused) audio1.play(),fadeIn((new Date).getTime());
+			if(audio2.BEATS==0) audio1.play(),fade2To1((new Date).getTime());
+			if(audio1.BEATS==0) audio2.play(),fade1To2((new Date).getTime());
+			if(!audio1.paused) --audio1.BEATS;
+			if(!audio2.paused) --audio2.BEATS;
+			/**/console.log(audio1.BEATS,audio2.BEATS);
+		},60e3/140);
 		onclick=null;
+	}
+	let duration=16*60e3/140;
+	let fadeIn=startTime=>{
+		let now=(new Date).getTime();
+		if(now<startTime+duration){
+			audio1.volume=Math.min((now-startTime)/duration,1);
+			setTimeout(fadeIn,undefined,startTime);
+		}
+		else audio1.volume=1;
+	}
+	let fade1To2=startTime=>{
+		let now=(new Date).getTime();
+		if(now<startTime+duration){
+			audio1.volume=Math.max(1-(now-startTime)/duration,0);
+			audio2.volume=Math.min((now-startTime)/duration,1);
+			setTimeout(fade1To2,undefined,startTime);
+		}
+		else{
+			audio2.volume=1;
+			audio1.pause();
+			audio1.volume=0;
+			Object.assign(audio1,tracks[~~(tracks.length*Math.random())]);
+		}
+	}
+	let fade2To1=startTime=>{
+		let now=(new Date).getTime();
+		if(now<startTime+duration){
+			audio1.volume=Math.min((now-startTime)/duration,1);
+			audio2.volume=Math.max(1-(now-startTime)/duration,0);
+			setTimeout(fade2To1,undefined,startTime);
+		}
+		else{
+			audio1.volume=1;
+			audio2.pause();
+			audio2.volume=0;
+			Object.assign(audio2,tracks[~~(tracks.length*Math.random())]);
+		}
 	}
 </script>
