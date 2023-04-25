@@ -21,7 +21,7 @@
 				cursor:crosshair;margin-left:auto;
 			}
 			#pdfSize::placeholder{
-				color:#fff;
+				color:#f00;
 			}
 			textarea{
 				height:calc((100% + 4px)/3 - 96px);
@@ -94,13 +94,11 @@
 				copyButton.innerText="結果をコピー";
 				let rect=source.getBoundingClientRect();
 				let x1=Math.max(0,Math.min(x,event.x-rect.x));
-				let width=Math.min(Math.max(x,event.x-rect.x),source.width) - Math.max(0,Math.min(x,event.x-rect.x));
 				let y1=Math.max(0,Math.min(y,event.y-rect.y));
-				let height=Math.min(Math.max(y,event.y-rect.y),source.width) - Math.max(0,Math.min(y,event.y-rect.y));
 				let range=document.createElement("canvas");
-				range.width=width;
-				range.height=height;
-				range.getContext("2d").drawImage(image,x1,y1,width,height,0,0,width,height);
+				range.width=Math.min(Math.max(x,event.x-rect.x),source.width) - Math.max(0,Math.min(x,event.x-rect.x));
+				range.height=Math.min(Math.max(y,event.y-rect.y),source.width) - Math.max(0,Math.min(y,event.y-rect.y));
+				range.getContext("2d").drawImage(image,x1,y1,range.width,range.height,0,0,range.width,range.height);
 				try{
 					result.value=(await Tesseract.recognize(range.toDataURL())).data.text.trimEnd();
 					result.readOnly=!result.value;
