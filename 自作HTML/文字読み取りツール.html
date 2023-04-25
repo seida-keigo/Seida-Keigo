@@ -49,54 +49,39 @@
 			}
 			selectButton.onclick=()=>Object.assign(document.createElement("input"),{
 				onchange:()=>Object.assign(new FileReader,{
-					onload:event.target.files[0].type=="application/pdf"?()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>documentProxy.getPage(1).then(pageProxy=>{
-						let viewport=pageProxy.getViewport({
+					onload:event.target.files[0].type=="application/pdf"?async()=>{
+						if(!pdfSize.value) return alert("PDFの倍率が不正です。");
+						let proxy=await(await window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise).getPage(1);
+						let viewport=proxy.getViewport({
 							scale:(4*pdfSize.value||4)/3
 						});
 						source.height=viewport.height;
 						source.width=viewport.width;
-						pageProxy.render({
+						await proxy.render({
 							canvasContext:source.getContext("2d"),viewport:viewport
-						}).promise.then(()=>image.src=source.toDataURL());
-					})):()=>image.src=event.target.result
+						}).promise;
+						image.src=source.toDataURL();
+					}:()=>image.src=event.target.result
 				}).readAsDataURL(event.target.files[0]),type:"file"
 			}).click();
-			/*
-			selectButton.onclick=()=>showOpenFilePicker().then(handle=>handle[0].getFile()).then(file=>Object.assign(new FileReader,{
-				onload:file.type=="application/pdf"?()=>window["pdfjs-dist/build/pdf"].getDocument(event.target.result).promise.then(documentProxy=>documentProxy.getPage(1).then(pageProxy=>{
-					let viewport=pageProxy.getViewport({
-						scale:(4*pdfSize.value||4)/3
-					});
-					source.height=viewport.height;
-					source.width=viewport.width;
-					pageProxy.render({
-						canvasContext:source.getContext("2d"),viewport:viewport
-					}).promise.then(()=>image.src=source.toDataURL());
-				})):()=>image.src=event.target.result
-			}).readAsDataURL(file));
-			*/
 			let x;
 			let y;
 			onmousemove=()=>{
 				if(~event.buttons&0b1||!onselectstart) return;
 				getSelection().removeAllRanges();
 				let rect=source.getBoundingClientRect();
-				let x1=Math.max(0,Math.min(x,event.x-rect.x));
-				let x2=Math.min(Math.max(x,event.x-rect.x),source.width);
-				let y1=Math.max(0,Math.min(y,event.y-rect.y));
-				let y2=Math.min(Math.max(y,event.y-rect.y),source.width);
 				source.getContext("2d").drawImage(image,0,0);
 				source.getContext("2d").beginPath();
 				source.getContext("2d").lineWidth=8;
-				source.getContext("2d").moveTo(x1-4,y1-4);
-				source.getContext("2d").lineTo(x2+4,y1-4);
-				source.getContext("2d").lineTo(x2+4,y2+4);
-				source.getContext("2d").lineTo(x1-4,y2+4);
+				source.getContext("2d").moveTo(x-4*Math.sign(event.x-rect.x-x),y-4*Math.sign(event.y-rect.y-y));
+				source.getContext("2d").lineTo(event.x-rect.x+4*Math.sign(event.x-rect.x-x),y-4*Math.sign(event.y-rect.y-y));
+				source.getContext("2d").lineTo(event.x-rect.x+4*Math.sign(event.x-rect.x-x),event.y-rect.y+4*Math.sign(event.y-rect.y-y));
+				source.getContext("2d").lineTo(x-4*Math.sign(event.x-rect.x-x),event.y-rect.y+4*Math.sign(event.y-rect.y-y));
 				source.getContext("2d").closePath();
 				source.getContext("2d").strokeStyle="#00fa";
 				source.getContext("2d").stroke();
 			}
-			onmouseup=()=>{
+			onmouseup=async()=>{
 				if(event.button||!onselectstart||event.offsetX==x||event.offsetY==y) return;
 				onselectstart=null;
 				result.placeholder="読み取り中...";
@@ -113,12 +98,15 @@
 				range.width=width;
 				range.height=height;
 				range.getContext("2d").drawImage(image,x1,y1,width,height,0,0,width,height);
-				Tesseract.recognize(range.toDataURL()).then(job=>{
+				try{
+					result.value=(await Tesseract.recognize(range.toDataURL())).data.text.trimEnd();
+					result.readOnly=!result.value;
+					copyButton.disabled=!result.value;
 					result.placeholder="読み取り結果";
-					result.readOnly=!job.data.text;
-					result.value=job.data.text.trimEnd();
-					copyButton.disabled=!job.data.text;
-				}).catch(()=>alert("読み取りに失敗しました。"));
+				}
+				catch{
+					alert("読み取りに失敗しました。");
+				}
 				x=undefined;
 				y=undefined;
 			}

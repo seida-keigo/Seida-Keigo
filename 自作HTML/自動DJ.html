@@ -8,6 +8,7 @@
 </audio>
 <audio controls id="audio2">
 </audio>
+<button id="start">スタート</button>
 <script>
 	let tracks=[{
 		src:"tracks/1.mp3",currentTime:0,playbackRate:140/138,BEATS:0xc0
@@ -24,7 +25,7 @@
 	Object.assign(audio2,{
 		preservesPitch:false,volume:1/64
 	},tracks[~~(tracks.length*Math.random())]);
-	onclick=()=>{
+	start.onclick=()=>{
 		setInterval(()=>{
 			if(audio1.paused&&audio2.paused) audio1.play(),fadeIn((new Date).getTime());
 			if(audio2.BEATS==0) audio1.play(),fade2To1((new Date).getTime());
