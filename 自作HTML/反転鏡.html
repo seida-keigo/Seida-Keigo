@@ -19,13 +19,11 @@
 	<body>
 		<video id="video" playsinline>
 		</video>
-		<script>
-			(async()=>{
-				video.srcObject=await navigator.mediaDevices.getUserMedia({
-					audio:true,video:true
-				});
-				video.play();
-			})();
+		<script type="module">
+			video.srcObject=await navigator.mediaDevices.getUserMedia({
+				audio:true,video:true
+			});
+			video.play();
 		</script>
 	</body>
 </html>
