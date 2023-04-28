@@ -30,12 +30,13 @@
 				},type:"file"
 			}).click();
 			/*
-			selectButton.onclick=()=>showOpenFilePicker().then(handle=>handle[0].getFile()).then(file=>{
+			selectButton.onclick=async()=>{
+				let file=await(await showOpenFilePicker())[0].getFile();
 				fileName=file.name;
 				Object.assign(new FileReader,{
 					onload:()=>text.value=event.target.result
 				}).readAsText(file,prompt("読み込まれるファイルの文字コードを入力してください。\nキャンセルされた場合は、UTF-8で読み込みます。","sjis"));
-			});
+			};
 			*/
 			htmlPreviewButton.onclick=()=>open(URL.createObjectURL(new Blob([text.value],{
 				type:"text/html"
