@@ -85,5 +85,12 @@ let compassHeading=(a,b,g)=>{
 	return 180*Math.atan(Vx/Vy)/Math.PI+(Vy<0?180:360*(Vx<0))
 }
 
+let comp
+ondeviceorientation=()=>{
+	if(!event.webkitCompassHeading) return
+	comp=event.webkitCompassHeading
+	ondeviceorientation=null
+}
+
 qiita.com/umi_kappa/items/38499c03792b2aac49ad
 -->
