@@ -10,15 +10,22 @@
 </audio>
 <button id="start">スタート</button>
 <script>
-	let tracks=[{
-		src:"tracks/1.mp3",currentTime:0,playbackRate:140/138,BEATS:0x80
-	}/*,{
-		src:"tracks/2.mp3",currentTime:0x70*60/143,playbackRate:140/143,BEATS:0xc0
-	},{
+	let tracks=[/*{
+		src:"tracks/1.mp3",currentTime:0,playbackRate:140/138,BEATS:0xc0
+	},*/{
+		src:"tracks/2.mp3",currentTime:0x70*60/143,playbackRate:140/143,BEATS:(0xc0,32)
+	},/*{
 		src:"tracks/3.mp3",currentTime:5.6,playbackRate:140/136,BEATS:0xa4
 	},{
 		src:"tracks/4.mp3",currentTime:4.5,playbackRate:140/162,BEATS:0x80
 	}*/];
+	let doOnTheNextClock=()=>{
+		if(audio1.paused&&audio2.paused) audio1.play(),fadeIn((new Date).getTime());
+		if(audio2.BEATS==0) audio1.play(),fade2To1((new Date).getTime());
+		if(audio1.BEATS==0) audio2.play(),fade1To2((new Date).getTime());
+		if(!audio1.paused) --audio1.BEATS;
+		if(!audio2.paused) --audio2.BEATS;
+	};
 	Object.assign(audio1,{
 		preservesPitch:false,volume:1/64
 	},tracks[~~(tracks.length*Math.random())]);
@@ -26,15 +33,8 @@
 		preservesPitch:false,volume:1/64
 	},tracks[~~(tracks.length*Math.random())]);
 	start.onclick=()=>{
-		setInterval(()=>{
-			if(audio1.paused&&audio2.paused) audio1.play(),fadeIn((new Date).getTime());
-			if(audio2.BEATS==0) audio1.play(),fade2To1((new Date).getTime());
-			if(audio1.BEATS==0) audio2.play(),fade1To2((new Date).getTime());
-			if(!audio1.paused) --audio1.BEATS;
-			if(!audio2.paused) --audio2.BEATS;
-			/**/console.log(audio1.BEATS,audio2.BEATS);
-		},60e3/140);
-		onclick=null;
+		setInterval(()=>doOnTheNextClock(),60e3/140);
+		event.target.disabled=true;
 	}
 	let duration=16*60e3/140;
 	let fadeIn=startTime=>{
