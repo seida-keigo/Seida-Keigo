@@ -5,10 +5,13 @@
 		<meta content="width=device-width" name="viewport">
 		<style>
 			body{
-				background:#000;color:#fff;
+				background:#000;color:#fff;margin:initial;padding:8px;
 			}
 			h1,li,ul{
 				margin-bottom:initial;margin-top:initial;
+			}
+			h1,ul{
+				padding:4px 8px;
 			}
 			h1{
 				font-size:inherit;
@@ -23,8 +26,8 @@
 		<title>コンストラクター一覧</title>
 	</head>
 	<body>
+		<h1>new演算子を使用できるコンストラクター:</h1>
 		<ul id="constructorList">
-			<h1>new演算子を使用できるコンストラクター:</h1>
 		</ul>
 		<script>
 			constructorList.append(...Object.getOwnPropertyNames(window).filter(propertyName=>{
