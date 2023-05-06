@@ -32,7 +32,7 @@
 					return eval("new "+propertyName);
 				}
 				catch(error){
-					return!error.message.match(/(Illegal|.+ is not a) constructor/g);
+					return!/(Illegal|.+ is not a) constructor/.test(error.message);
 				}
 			}).sort().map(propertyName=>Object.assign(document.createElement("li"),{
 				innerText:propertyName

@@ -28,7 +28,7 @@
 			}).click();
 			saveButton.onclick=()=>{
 				let newFileName=prompt("ファイル名を入力してください。",fileName);
-				if(!newFileName.trim().match(/^[^.].*\..*[^.]$/g)) event.target.onclick();
+				if(!/^[^.].*\..*[^.]$/.test(newFileName.trim())) event.target.onclick();
 				else if(newFileName) Object.assign(document.createElement("a"),{
 					download:newFileName,href:URL.createObjectURL(new Blob([new Uint8Array([...text.value].map($=>$.charCodeAt()%0x100)).buffer]))
 				}).click();
