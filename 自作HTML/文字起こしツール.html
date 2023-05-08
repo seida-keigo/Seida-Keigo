@@ -15,34 +15,35 @@
 		<title>文字起こしツール</title>
 	</head>
 	<body>
-		<textarea id="text" placeholder="結果" readonly></textarea>
+		<textarea id="result" placeholder="結果" readonly></textarea>
 		<button disabled id="copyButton">コピー</button>
 		<button disabled id="saveButton">メモを保存</button>
 		<script>
-			text.oninput=()=>{
+			result.oninput=()=>{
 				saveButton.disabled=!event.target.value;
 				copyButton.disabled=!event.target.value;
 				copyButton.innerText="コピー";
 			}
 			copyButton.onclick=()=>{
-				navigator.clipboard.writeText(text.value);
+				navigator.clipboard.writeText(result.value);
 				event.target.innerText="コピー済み";
 			}
 			saveButton.onclick=()=>{
 				let date=new Date;
 				Object.assign(document.createElement("a"),{
-					download:date.getMonth()+1+"月"+date.getDate()+"日 "+date.getHours()+"時"+date.getMinutes()+"分 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
+					download:date.getMonth()+1+"月"+date.getDate()+"日 "+date.getHours()+"時"+date.getMinutes()+"分 メモ.txt",href:URL.createObjectURL(new Blob([result.value]))
 				}).click();
 			}
 			let previousTexts=[];
 			let currentTexts;
-			Object.assign(r=new webkitSpeechRecognition,{
+			Object.assign(new webkitSpeechRecognition,{
 				continuous:true,interimResults:true,lang:"ja",onend:()=>{
 					if(currentTexts) previousTexts.push(...currentTexts);
 					event.target.start();
 				},onresult:()=>{
 					currentTexts=[...event.results].map(result=>result[0].transcript);
-					text.value=[...previousTexts,...currentTexts].map($=>"　"+$).join("\n");
+					result.value=[...previousTexts,...currentTexts].map($=>"　"+$).join("\n");
+					if(result.value) return;
 					copyButton.disabled=false;
 					copyButton.innerText="コピー";
 					saveButton.disabled=false;
