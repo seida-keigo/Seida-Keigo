@@ -38,7 +38,7 @@
 			let currentTexts;
 			Object.assign(r=new webkitSpeechRecognition,{
 				continuous:true,interimResults:true,lang:"ja",onend:()=>{
-					if(currentTexts.length) previousTexts.push(...currentTexts);
+					if(currentTexts) previousTexts.push(...currentTexts);
 					event.target.start();
 				},onresult:()=>{
 					currentTexts=[...event.results].map(result=>result[0].transcript);
