@@ -19,11 +19,6 @@
 		<button disabled id="copyButton">コピー</button>
 		<button disabled id="saveButton">メモを保存</button>
 		<script>
-			result.oninput=()=>{
-				saveButton.disabled=!event.target.value;
-				copyButton.disabled=!event.target.value;
-				copyButton.innerText="コピー";
-			}
 			copyButton.onclick=()=>{
 				navigator.clipboard.writeText(result.value);
 				event.target.innerText="コピー済み";
@@ -42,8 +37,8 @@
 					event.target.start();
 				},onresult:()=>{
 					currentTexts=[...event.results].map(result=>result[0].transcript);
-					result.value=[...previousTexts,...currentTexts].map($=>"　"+$).join("\n");
-					if(result.value) return;
+					result.value=[...previousTexts,...currentTexts].map(text=>"　"+text).join("\n");
+					if(!copyButton.disabled) return;
 					copyButton.disabled=false;
 					copyButton.innerText="コピー";
 					saveButton.disabled=false;
