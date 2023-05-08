@@ -35,7 +35,7 @@
 				continuous:true,interimResults:true,lang:"ja",onend:()=>{
 					if(currentTexts) previousTexts.push(...currentTexts);
 					event.target.start();
-				},onresult:()=>{
+				},onresult:event=>{
 					currentTexts=[...event.results].map(result=>result[0].transcript);
 					result.value=[...previousTexts,...currentTexts].map(text=>"　"+text).join("\n");
 					if(!copyButton.disabled) return;
