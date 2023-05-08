@@ -34,11 +34,24 @@
 					download:date.getMonth()+1+"月"+date.getDate()+"日 "+date.getHours()+"時"+date.getMinutes()+"分 メモ.txt",href:URL.createObjectURL(new Blob([text.value]))
 				}).click();
 			}
-			Object.assign(new webkitSpeechRecognition,{
-				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
-					//text.readOnly=false;
-					/*if(text.value&&confirm("メモを保存しますか?"))*/ saveButton.onclick();
+			let history=[];
+			let currentText;
+			Object.assign(a=new webkitSpeechRecognition,{
+				continuous:true,interimResults:true,lang:"ja",onend:()=>{
+					if(currentText) history.push(currentText);
 					event.target.start();
+				},onresult:()=>{
+					currentText=[...event.results].map(result=>result[0].transcript).join("");
+					text.value=[...history,currentText].map($=>"　"+$).join("\n");
+					copyButton.disabled=false;
+					copyButton.innerText="コピー";
+					saveButton.disabled=false;
+				}
+			}).start();
+			1||Object.assign(new webkitSpeechRecognition,{
+				continuous:true,interimResults:true,lang:"ja",onend:()=>{
+					text.readOnly=false;
+					if(text.value&&confirm("メモを保存しますか?")) saveButton.onclick();
 				},onresult:()=>{
 					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
 					copyButton.disabled=false;
