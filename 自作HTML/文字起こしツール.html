@@ -36,8 +36,9 @@
 			}
 			Object.assign(new webkitSpeechRecognition,{
 				continuous:true,interimResults:true,lang:"ja-JP",onend:()=>{
-					text.readOnly=false;
-					if(text.value&&confirm("メモを保存しますか?")) saveButton.onclick();
+					//text.readOnly=false;
+					/*if(text.value&&confirm("メモを保存しますか?"))*/ saveButton.onclick();
+					event.target.start();
 				},onresult:()=>{
 					text.value=[...event.results].map(result=>"　"+result[0].transcript).join("\n");
 					copyButton.disabled=false;
