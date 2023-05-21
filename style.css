@@ -2,7 +2,7 @@ html{
 	scroll-behavior:smooth;
 }
 body{
-	font-family:arial,sans-serif;font-kerning:none;margin:80px 0 0;
+	font-family:arial,sans-serif;font-kerning:none;margin:80px 0 0;-webkit-text-size-adjust:none;
 }
 header{
 	background:#000c;color:#fff;height:40px;line-height:40px;margin-top:-80px;padding:20px;position:fixed;width:calc(100% - 40px);
